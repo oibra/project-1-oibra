@@ -1,7 +1,5 @@
  @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-html {
-    width: 100%;
-}
+
 body {
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     margin: 0;
@@ -23,21 +21,26 @@ h1, h2, h3 {
     font-weight: normal;
 }
 
+
 main {
-    padding: 0 10%;
+    padding: 0 12%;
 }
 
 section {
     border-bottom: 3px solid mediumslateblue;
-    padding-bottom: 1%;
+    padding: 0 2% 1% 2%;
 }
 
-#proposal {
-    border-bottom: none;
-}
-
-main h3 {
+h3 {
     color: mediumslateblue;
+}
+
+p {
+    text-align: justify;
+}
+
+li {
+    margin-bottom: 1%;
 }
 
 main a {
@@ -57,5 +60,9 @@ blockquote {
     margin-left: 0;
     margin-right: 0;
     padding: 2% 1% 2% 3%;
-    width: 96%;
+    width: 95%;
+}
+
+.no-border {
+    border-bottom: none;
 }
