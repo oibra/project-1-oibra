@@ -13,15 +13,6 @@ header {
     height: 10%;
 }
 
-header h1, header h3 {
-    padding-left: 10%;
-}
-
-h1, h2, h3 {
-    font-weight: normal;
-}
-
-
 main {
     padding: 0 12%;
 }
@@ -31,8 +22,16 @@ section {
     padding: 0 2% 1% 2%;
 }
 
+h1, h2, h3 {
+    font-weight: normal;
+}
+
 h3 {
     color: mediumslateblue;
+}
+
+header h1, header h3 {
+    padding-left: 10%;
 }
 
 p {
@@ -43,7 +42,7 @@ li {
     margin-bottom: 1%;
 }
 
-main a {
+a {
     color: mediumslateblue;
     font-weight: bold;
     text-decoration: none;
