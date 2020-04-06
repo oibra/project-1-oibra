@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Java Style Linter</title>
+    <meta name="author" content="Omar Ibrahim" />
+    <meta charset="UTF8" />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+<body>
+    <nav>
+        <h1 class="title">Java Style Linter</h1>
+        <ul>
+            <li><a href="splash.html">About</a></li>
+            <li><a href="#">Style Checker</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="description">
+            <p>This web app will function as an educational Java linter that checks the style of users’ input Java code and inform users of what the style errors are with suggestions on how to fix them. This app will be built around the style guidelines for UW CSE 14X (Intro CS1 & 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners.</p>
+        </section>
+        <section >
+            <h2>Code Input</h2>
+        <!--
+            insert form here
+            - checkbox for file upload or text input
+            - file upload
+            - text input
+            - number input for tab size
+            - submit button
+        -->
+            <form>
+                <label><input type="radio" name="input-source" value="file" id="file" checked="checked" />File Input</label>
+                <label><input type="radio" name="input-source" value="text" id="text" />Text Entry</label>
+                <br />
+                <input type="file" name="code-file" />
+                <br />
+                <textarea name="code-text"></textarea>
+                <br />
+                <label>Tab Size (in spaces): <input type="number" name="tab-size" required="required"/></label>
+                <br />
+                <input type="submit" name="submit" value="Analyze Code" />
+            </form>
+        </section>
+        <section class="collapsible collapsed">
+            <h2><span class="collapse-button">&nbsp;</span>Errors Found</h2>
+            <span class="warning">
+                This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code.
+            </span>
+            <!--Found errors added here by javascript-->
+        </section>
+    </main>
+    <footer>
+
+    </footer>
+</body>
+</html>
