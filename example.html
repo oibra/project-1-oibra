@@ -12,7 +12,7 @@
         <h1 class="title">Java Style Linter</h1>
         <ul>
             <li><a href="splash.html">About</a></li>
-            <li><a href="#">Style Checker</a></li>
+            <li><a href="index.html">Style Checker</a></li>
         </ul>
     </nav>
     <main>
@@ -21,17 +21,9 @@
         </section>
         <section >
             <h2>Code Input</h2>
-        <!--
-            insert form here
-            - checkbox for file upload or text input
-            - file upload
-            - text input
-            - number input for tab size
-            - submit button
-        -->
-            <form action="example.html" spellcheck="false">
-                <label><input type="radio" name="input-source" value="file" id="file"  />File Input</label>
-                <label><input type="radio" name="input-source" value="text" id="text" checked="checked"/>Text Entry</label>
+            <form spellcheck="false">
+                <label><input type="radio" name="input-source" value="file" id="file" />File Input</label>
+                <label><input type="radio" name="input-source" value="text" id="text" checked="checked" />Text Entry</label>
                 <br />
                 <input type="file" name="code-file" />
                 <br />
@@ -50,12 +42,14 @@ int Var = 6;
                 <input type="submit" name="submit" value="Analyze Code" />
             </form>
         </section>
-        <section class="collapsible collapsed">
-            <h2><span class="collapse-button">&nbsp;</span>Errors Found</h2>
-            <span class="warning">
-                This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code.
-            </span>
-            <!--Found errors added here by javascript-->
+        <section class="collapsible">
+            <h2><span class="collapse-button-active">&nbsp;</span>Errors Found</h2>
+            <div>
+                <span class="warning">
+                    This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code.
+                </span>
+                <!--Found errors added here by javascript-->
+            </div>
         </section>
     </main>
     <footer>

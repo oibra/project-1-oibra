@@ -72,6 +72,7 @@ textarea {
     padding: 5px;
     margin-top: .5rem;
     margin-bottom: 1.5rem;
+
 }
 
 input[type="number"] {
@@ -83,7 +84,6 @@ input[type="number"] {
 textarea:focus, input[type="number"]:focus {
     background-color: white;
     border-color: mediumslateblue;
-
 }
 
 input[type="submit"] {
@@ -95,6 +95,11 @@ input[type="submit"] {
     font-size: 1.25rem;
     font-weight: bold;
     border-radius: .25rem;
+
+}
+
+input[type="submit"]:hover, input[type="submit"]:focus, input[type="submit"]:active {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 input[type="radio"] {
@@ -113,7 +118,22 @@ input[type="file"]:before {
 .collapsible h2 {
     background-color: mediumslateblue;
     color: whitesmoke;
-    border-radius: .25rem;
+    margin-top: 0;
+    border: 2px solid mediumslateblue;
+}
+
+.collapsible {
+    border: 2px solid mediumslateblue;
+}
+
+.collapsible.collapsed {
+    border: none;
+}
+
+.collapsible > div {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
 }
 
 .collapse-button {
@@ -144,6 +164,12 @@ article {
     grid-template-rows: 50% 50%;
 }
 
+@keyframes img-pulse {
+    0% {margin-top: -20%;}
+    50% {margin-top: -17.5%;}
+    100% {margin-top: -20%;}
+}
+
 article img {
     grid-column: 2;
     grid-row: 2;
@@ -152,7 +178,13 @@ article img {
     margin-top: -15%;
     height: 120%;
     padding-bottom: 2rem;
+    padding-right: 4rem;
+    animation-iteration-count: infinite;
+    animation-duration: 4s;
+    animation-name: img-pulse;
+    animation-timing-function: ease-in;
 }
+
 article div {
     display: flex;
     align-items: center;
@@ -160,11 +192,21 @@ article div {
     margin: 10%;
     padding: 2%;
 }
+
+@keyframes pulse {
+    0% {margin-top: 5%;}
+    50% {margin-top: 2.5%;}
+    100% {margin-top: 5%;}
+}
+
 article p {
     color: whitesmoke;
     margin: 5%;
     font-size: 1.05rem;
-
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+    animation-name: pulse;
+    animation-timing-function: ease-in;
 }
 
 article a {
