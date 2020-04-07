@@ -49,6 +49,57 @@ int Var = 6;
                     This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code.
                 </span>
                 <!--Found errors added here by javascript-->
+                <div class="errors">
+                    <h3>Indentation</h3>
+                    <div class="error">
+                        <h4>Line 4</h4>
+                        <code>int Var = 6;</code>
+                        <h5 class="issue">This line is indented incorrectly.</h5>
+                        <p class="suggestion">You should indent your program one tab further every time you open a curly brace and indent one tab less every time you close a curly brace. This line should be indented more.</p>
+                    </div>
+                </div>
+                <div class="errors">
+                    <h3>Long Lines</h3>
+                    <div class="error">
+                        <h4>Line 3</h4>
+                        <pre><code>   // this is a really long comment that should be picked up as being too long by the style checker because it's so long</code></pre>
+                        <h5 class="issue">This line is too long (over 100 characters).</h5>
+                        <p class="suggestion">Lines of code should ideally max out at 80 characters, and should never exceed 100 characters in length. Lines that are too long should be broken up and wrapped to the next line.</p>
+                    </div>
+                </div>
+                <div class="errors">
+                    <h3>Naming Conventions</h3>
+                    <div class="error">
+                        <h4>Line 1</h4>
+                        <code>public static final int constant = 1;</code>
+                        <h5 class="issue">This constant name has the wrong naming conventions.</h5>
+                        <p class="suggestion">Constant names should be SCREAMING_CASED, in all uppercase letters with words separated by underscores.</p>
+                    </div>
+                </div>
+                <div class="errors">
+                    <h3>Printing</h3>
+                    <div class="error">
+                        <h4>Line 5</h4>
+                        <code>System.out.print("hello world\n");</code>
+                        <h5 class="issue">\n should only be used in printf.</h5>
+                        <p class="suggestion">\n should only be used in printf statements, and only once at the end of the line. Otherwise, you should just use println if you want to print a full line.</p>
+                    </div>
+                    <div class="error">
+                        <h4>Line 5</h4>
+                        <code>
+System.out.print("hello world\n");
+System.out.println("");
+                        </code>
+                        <h5 class="issue">These printing statements can probably be combined.</h5>
+                        <p class="suggestion">Rather than have a bunch of adjacent print statements, you should combine them into one where you can. Each full line can be combined into one println statement.</p>
+                    </div>
+                    <div class="error">
+                        <h4>Line 6</h4>
+                        <code>System.out.println("");</code>
+                        <h5 class="issue">A blank println should actually be blank.</h5>
+                        <p class="suggestion">You should always print a blank line using System.out.println(). Printing an empty String (System.out.println("")) is considered bad style; it makes the intention less clear.</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

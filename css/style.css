@@ -56,7 +56,7 @@ main {
     margin-right: 1.75rem;
 }
 
-h2 {
+h2, h3 {
     color: mediumslateblue;
 }
 
@@ -111,6 +111,43 @@ input[type="file"]:before {
     color: mediumslateblue;
 }
 
+.errors:not(:last-child) {
+    border-bottom: 1px solid mediumslateblue;
+}
+
+.error {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.error:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+h4 {
+    margin-bottom: .5rem;
+}
+
+code {
+    font-family: 'Source Code Pro', monospace;
+    font-size: .75rem;
+    background-color: rgba(112,99,236, 0.075);
+    color: mediumslateblue;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+h5 {
+    margin-top: .75rem;
+    margin-bottom: .5rem;
+}
+
+.error p {
+    width: 90%;
+    border-left: 4px solid mediumslateblue;
+    padding-left: 1rem;
+}
+
 .collapsed > :not(h2) {
     display: none;
 }
@@ -124,6 +161,10 @@ input[type="file"]:before {
 
 .collapsible {
     border: 2px solid mediumslateblue;
+}
+
+.collapsible:not(.collapsed) {
+    margin-bottom: 2rem;
 }
 
 .collapsible.collapsed {
