@@ -1,3 +1,15 @@
+@keyframes img-pulse {
+    0% {margin-top: -20%;}
+    50% {margin-top: -17.5%;}
+    100% {margin-top: -20%;}
+}
+
+@keyframes pulse {
+    0% {margin-top: 5%;}
+    50% {margin-top: 2.5%;}
+    100% {margin-top: 5%;}
+}
+
 * {
     box-sizing: border-box;
     font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -25,30 +37,6 @@ nav {
     padding: .75rem;
 }
 
-nav ul {
-    display: inline-block;
-    float: right;
-    margin: 1rem;
-    margin-top: 1.3rem;
-    margin-right: 2rem;
-}
-
-nav li {
-    display: inline;
-    margin-left: 1.5rem;
-}
-
-nav a {
-    text-decoration: none;
-    color: whitesmoke;
-}
-
-.title {
-    display: inline-block;
-    vertical-align: baseline;
-    margin: 1rem;
-    margin-bottom: 1.25rem;
-}
 
 main {
     margin-top: 7rem;
@@ -73,6 +61,34 @@ textarea {
     margin-top: .5rem;
     margin-bottom: 1.5rem;
 
+}
+
+h4 {
+    margin-bottom: .5rem;
+}
+
+code {
+    font-family: 'Source Code Pro', monospace;
+    font-size: .75rem;
+    background-color: rgba(112,99,236, 0.075);
+    color: mediumslateblue;
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+h5 {
+    margin-top: .75rem;
+    margin-bottom: .5rem;
+}
+
+article {
+    background-color: mediumslateblue;
+    height: 100%;
+    width: 100%;
+    padding-top: 7rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
 }
 
 input[type="number"] {
@@ -111,8 +127,11 @@ input[type="file"]:before {
     color: mediumslateblue;
 }
 
-.errors:not(:last-child) {
-    border-bottom: 1px solid mediumslateblue;
+.title {
+    display: inline-block;
+    vertical-align: baseline;
+    margin: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .error {
@@ -120,61 +139,8 @@ input[type="file"]:before {
     margin-right: 1rem;
 }
 
-.error:not(:last-child) {
-    border-bottom: 1px solid black;
-}
-
-h4 {
-    margin-bottom: .5rem;
-}
-
-code {
-    font-family: 'Source Code Pro', monospace;
-    font-size: .75rem;
-    background-color: rgba(112,99,236, 0.075);
-    color: mediumslateblue;
-    padding: 4px 6px;
-    border-radius: 4px;
-}
-
-h5 {
-    margin-top: .75rem;
-    margin-bottom: .5rem;
-}
-
-.error p {
-    width: 90%;
-    border-left: 4px solid mediumslateblue;
-    padding-left: 1rem;
-}
-
-.collapsed > :not(h2) {
-    display: none;
-}
-
-.collapsible h2 {
-    background-color: mediumslateblue;
-    color: whitesmoke;
-    margin-top: 0;
-    border: 2px solid mediumslateblue;
-}
-
 .collapsible {
     border: 2px solid mediumslateblue;
-}
-
-.collapsible:not(.collapsed) {
-    margin-bottom: 2rem;
-}
-
-.collapsible.collapsed {
-    border: none;
-}
-
-.collapsible > div {
-    margin-left: 2rem;
-    margin-right: 2rem;
-    margin-bottom: 2rem;
 }
 
 .collapse-button {
@@ -195,20 +161,38 @@ h5 {
     background-size: contain;
 }
 
-article {
-    background-color: mediumslateblue;
-    height: 100%;
-    width: 100%;
-    padding-top: 7rem;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
+.error:not(:last-child) {
+    border-bottom: 1px solid black;
 }
 
-@keyframes img-pulse {
-    0% {margin-top: -20%;}
-    50% {margin-top: -17.5%;}
-    100% {margin-top: -20%;}
+.errors:not(:last-child) {
+    border-bottom: 1px solid mediumslateblue;
+}
+
+.collapsible:not(.collapsed) {
+    margin-bottom: 2rem;
+}
+
+.collapsible.collapsed {
+    border: none;
+}
+
+nav ul {
+    display: inline-block;
+    float: right;
+    margin: 1rem;
+    margin-top: 1.3rem;
+    margin-right: 2rem;
+}
+
+nav li {
+    display: inline;
+    margin-left: 1.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: whitesmoke;
 }
 
 article img {
@@ -234,12 +218,6 @@ article div {
     padding: 2%;
 }
 
-@keyframes pulse {
-    0% {margin-top: 5%;}
-    50% {margin-top: 2.5%;}
-    100% {margin-top: 5%;}
-}
-
 article p {
     color: whitesmoke;
     margin: 5%;
@@ -252,4 +230,27 @@ article p {
 
 article a {
     color: whitesmoke;
+}
+
+.error p {
+    width: 90%;
+    border-left: 4px solid mediumslateblue;
+    padding-left: 1rem;
+}
+
+.collapsible h2 {
+    background-color: mediumslateblue;
+    color: whitesmoke;
+    margin-top: 0;
+    border: 2px solid mediumslateblue;
+}
+
+.collapsed > :not(h2) {
+    display: none;
+}
+
+.collapsible > div {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
 }
