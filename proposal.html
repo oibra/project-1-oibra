@@ -23,20 +23,20 @@
             <p>
                 A few attempts have been made at providing resources to students in the CSE 14X series to help make our requirements on style more clear. These have included:
             </p>
-                <ul>
-                    <li>
-                        Some instructors include a page of <a href="https://courses.cs.washington.edu/courses/cse142/20wi/homework/style.shtml">General Style Deductions</a> where they list new items that will be graded on internally that week.
-                    </li>
-                    <li>
-                        Both courses always include style guides defining what good Java style means for that class, usually in the form of a <a href="https://courses.cs.washington.edu/courses/cse142/20sp/homework/style2.pdf">PDF document found on the site</a>, although 143's has been updated to now be integrated with their course website for this quarter (see <a href="https://courses.cs.washington.edu/courses/cse143/20sp/style/">here</a>). As a personal project, I developed an <a href="https://staff.washington.edu/oibra/style-guide/">updated web-based style guide for CSE 142</a>, which I hoped would make the style information more accessible to students (this version of the guide has never been published to students, so I have no idea of its effectiveness compared to other versions).
-                    </li>
-                    <li>
-                        14X students are provided the <a href="https://courses.cs.washington.edu/courses/cse143/19au/indent.html">Indenter Tool</a>, a tool which students can paste their code into which will output a correctly indented version of their code (most Java IDE's also have functionality to correctly indent code, including the one used by CSE 14X, but this is not advertised well/at all to students). The Indenter Tool seems to be the one that gets the most/best use; after the first few weeks of students being pointed to this tool after making indentation mistakes, indentation mistakes tend to drop a lot.
-                        <blockquote>
-                            It is not entirely clear if this effect is actually due to student use of the Indenter Tool or if it's a side effect of students becoming more comfortable writing Java code. I am going to work under the assumption of the former.
-                        </blockquote>
-                    </li>
-                </ul>
+            <ul>
+                <li>
+                    Some instructors include a page of <a href="https://courses.cs.washington.edu/courses/cse142/20wi/homework/style.shtml">General Style Deductions</a> where they list new items that will be graded on internally that week.
+                </li>
+                <li>
+                    Both courses always include style guides defining what good Java style means for that class, usually in the form of a <a href="https://courses.cs.washington.edu/courses/cse142/20sp/homework/style2.pdf">PDF document found on the site</a>, although 143's has been updated to now be integrated with their course website for this quarter (see <a href="https://courses.cs.washington.edu/courses/cse143/20sp/style/">here</a>). As a personal project, I developed an <a href="https://staff.washington.edu/oibra/style-guide/">updated web-based style guide for CSE 142</a>, which I hoped would make the style information more accessible to students (this version of the guide has never been published to students, so I have no idea of its effectiveness compared to other versions).
+                </li>
+                <li>
+                    14X students are provided the <a href="https://courses.cs.washington.edu/courses/cse143/19au/indent.html">Indenter Tool</a>, a tool which students can paste their code into which will output a correctly indented version of their code (most Java IDE's also have functionality to correctly indent code, including the one used by CSE 14X, but this is not advertised well/at all to students). The Indenter Tool seems to be the one that gets the most/best use; after the first few weeks of students being pointed to this tool after making indentation mistakes, indentation mistakes tend to drop a lot.
+                    <blockquote>
+                        It is not entirely clear if this effect is actually due to student use of the Indenter Tool or if it's a side effect of students becoming more comfortable writing Java code. I am going to work under the assumption of the former.
+                    </blockquote>
+                </li>
+            </ul>
             <p>
                 There also exist some general online tools, often called code "beautifiers" or "formatters", that take in Java code and output "beautified" code (<a href="https://codebeautify.org/javaviewer/cb8a77e0">example</a>). I believe that these don't cover the proposed territory of my application for the following reasons:
             </p>
@@ -52,7 +52,7 @@
         <section>
             <h2>Proposed Application</h2>
             <p>
-                I am going to create an online Java linter which users will be able to submit code into and will output the style issues with the code and suggestions for how to fix them, based on the CSE 14X code style guidelines. Users will be able to submit code through either text input (similar to the indenter tool shown above) or file upload, and then the application will output information about the style issues in the code with suggestions about how to fix them, teaching users what the style issues in their code are and how to fix them without doing the work for the users, helping them to do a better job of identifying issues and understanding how to fix them without the tool in the future.
+                I am going to create an online Java linter which users will be able to submit code into and will output the style issues with the code and suggestions for how to fix them, based on the CSE 14X code style guidelines. Users will be able to submit code through either text input (similar to the indenter tool shown above) or file upload, and then the application will output information about the style issues in the code with suggestions about how to fix them, teaching users what the style issues in their code are and how to fix them without doing the work for the users, hopefully helping them to do a better job of identifying issues and understanding how to fix them without the tool in the future <em>(interaction 1)</em>. Users will be able to choose to view errors in one of two ways; either view a visual of their code where lines with errors are highlighted and users can click on them to view what the errors on that line are, or view a more readable list of all the errors in the program at once <em>(interaction 2)</em>. To ensure that the scope of this project is reasonable, the linter's functionality will be limited to style guidelines that are graded on in CSE 14X and constitute things that can be caught on a single-line (as a restraint on the scope of the parts of the project not directly related to the goals of the project).
             </p>
             <p>
                 The intended audience is primarily CSE 14X students, but a well-functioning version of this tool should function as a good resource for any novice Java learner to learn to write well-styled code. A perfect version of this application used by a student for the full quarter, in my mind, would no longer have a use to the student by the time they complete the course.
