@@ -5,103 +5,145 @@
     <meta name="author" content="Omar Ibrahim" />
     <meta charset="UTF8" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav>
-        <h1 class="title">Java Style Linter</h1>
-        <ul>
-            <li><a href="splash.html">About</a></li>
-            <li><a href="index.html">Style Checker</a></li>
-        </ul>
+    <nav class="navbar navbar-expand">
+        <span class="navbar-brand">Java Style Linter</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ml-2"><a class="nav-link" href="splash.html">About</a></li>
+                <li class="nav-item ml-2"><a class="nav-link" href="index.html">Style Checker</a></li>
+                <li class="nav-item ml-2"><a class="nav-link" href="https://github.com/info340c-sp20/project-1-oibra">Codebase</a></li>
+            </ul>
+        </div>
     </nav>
-    <main>
-        <section class="description">
+    <main class="container mt-5">
+        <section class="collapsible">
             <p>This web app will function as an educational Java linter that checks the style of users’ input Java code and inform users of what the style errors are with suggestions on how to fix them. This app will be built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners.</p>
         </section>
-        <section >
-            <h2>Code Input</h2>
-            <form spellcheck="false">
-                <label><input type="radio" name="input-source" value="file" id="file" />File Input</label>
-                <label><input type="radio" name="input-source" value="text" id="text" checked="checked" />Text Entry</label>
-                <br />
-                <input type="file" name="code-file" />
-                <br />
-                <textarea name="code-text">
-public static final int constant = 1;
-public static void main(String[] args) {
-   // this is a really long comment that should be picked up as being too long by the style checker because it's so long
-int Var = 6;
-   System.out.print("hello world\n");
-   System.out.println("");
-}
-                </textarea>
-                <br />
-                <label>Tab Size (in spaces): <input type="number" name="tab-size" required="required" value="3"/></label>
-                <br />
-                <input type="submit" name="submit" value="Analyze Code" />
-            </form>
-        </section>
-        <section class="collapsible">
-            <h2><span class="collapse-button-active">&nbsp;</span>Errors Found</h2>
-            <div>
-                <span class="warning">
+        <div class="container">
+            <h2 class="collapse-toggler p-2" type="button" data-toggle="collapse" data-target="#code-input"><span class="collapse-button">&nbsp;</span>Code Input</h2>
+            <section class="collapse" id="code-input">
+
+                <form spellcheck="false">
+                    <div class="form-group form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="input-source" value="file" id="file"  /><label class="form-check-label">File Input</label>
+                    </div>
+                    <div class="form-group form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="input-source" value="text" id="text" checked="checked"/><label class="form-check-label">Text Entry</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="file" name="code-file" />
+                    </div>
+                    <textarea name="code-text">
+                        public static final int constant = 1;
+                        public static void main(String[] args) {
+                            // this is a really long comment that should be picked up as being too long by the style checker because it's so long
+                            int Var = 6;
+                            System.out.print("hello world\n");
+                            System.out.println("");
+                        }
+                    </textarea>
+                    <br />
+                    <label>Tab Size (in spaces): <input type="number" name="tab-size" required="required" value="3"/></label>
+                    <br />
+                    <button type="submit" class="btn btn-primary mb-4" name="submit">Analyze Code</button>
+                </form>
+            </section>
+        </div>
+        <div class="container">
+            <h2 class="collapse-toggler p-2" type="button" data-toggle="collapse" data-target="#lint-output"><span class="collapse-button">&nbsp;</span>Errors Found</h2>
+            <section class="collapse show" id="lint-output">
+
+                <div class="alert alert-warning" role="alert">
                     This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code.
-                </span>
-                <!--Found errors added here by javascript-->
-                <div class="errors">
-                    <h3>Indentation</h3>
-                    <div class="error">
-                        <h4>Line 4</h4>
-                        <code>int Var = 6;</code>
-                        <h5 class="issue">This line is indented incorrectly.</h5>
-                        <p class="suggestion">You should indent your program one tab further every time you open a curly brace and indent one tab less every time you close a curly brace. This line should be indented more.</p>
-                    </div>
                 </div>
-                <div class="errors">
-                    <h3>Long Lines</h3>
-                    <div class="error">
-                        <h4>Line 3</h4>
-                        <pre><code>   // this is a really long comment that should be picked up as being too long by the style checker because it's so long</code></pre>
-                        <h5 class="issue">This line is too long (over 100 characters).</h5>
-                        <p class="suggestion">Lines of code should ideally max out at 80 characters, and should never exceed 100 characters in length. Lines that are too long should be broken up and wrapped to the next line.</p>
-                    </div>
-                </div>
-                <div class="errors">
-                    <h3>Naming Conventions</h3>
-                    <div class="error">
-                        <h4>Line 1</h4>
-                        <code>public static final int constant = 1;</code>
-                        <h5 class="issue">This constant name has the wrong naming conventions.</h5>
-                        <p class="suggestion">Constant names should be SCREAMING_CASED, in all uppercase letters with words separated by underscores.</p>
-                    </div>
-                </div>
-                <div class="errors">
-                    <h3>Printing</h3>
-                    <div class="error">
-                        <h4>Line 5</h4>
-                        <code>System.out.print("hello world\n");</code>
-                        <h5 class="issue">\n should only be used in printf.</h5>
-                        <p class="suggestion">\n should only be used in printf statements, and only once at the end of the line. Otherwise, you should just use println if you want to print a full line.</p>
-                    </div>
-                    <div class="error">
-                        <h4>Line 5</h4>
-                        <code>
-System.out.print("hello world\n");
-System.out.println("");
-                        </code>
-                        <h5 class="issue">These printing statements can probably be combined.</h5>
-                        <p class="suggestion">Rather than have a bunch of adjacent print statements, you should combine them into one where you can. Each full line can be combined into one println statement.</p>
-                    </div>
-                    <div class="error">
-                        <h4>Line 6</h4>
-                        <code>System.out.println("");</code>
-                        <h5 class="issue">A blank println should actually be blank.</h5>
-                        <p class="suggestion">You should always print a blank line using System.out.println(). Printing an empty String (System.out.println("")) is considered bad style; it makes the intention less clear.</p>
-                    </div>
-                </div>
+                <div class="container">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#">Errors List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#">Error Highlighting</a>
+                    </li>
+                </ul>
             </div>
-        </section>
+                    <!--Found errors added here by javascript-->
+                    <div class="errors container">
+                        <h3>Indentation</h3>
+                        <div class="card">
+                            <div class="card-header">Line 4</div>
+                            <div class="card-body">
+                                <code>int Var = 6;</code>
+                                <p class="lead">This line is indented incorrectly.</p>
+                                <p class="suggestion">You should indent your program one tab further every time you open a curly brace and indent one tab less every time you close a curly brace. This line should be indented more.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="errors container">
+                        <h3>Long Lines</h3>
+                        <div class="card">
+                            <div class="card-header">Line 3</div>
+                            <div class="card-body">
+                                <pre><code>   // this is a really long comment that should be picked up as being too long by the style checker because it's so long</code></pre>
+                                <p class="lead">This line is too long (over 100 characters).</p>
+                                <p class="suggestion">Lines of code should ideally max out at 80 characters, and should never exceed 100 characters in length. Lines that are too long should be broken up and wrapped to the next line.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="errors container">
+                        <h3>Naming Conventions</h3>
+                        <div class="card">
+                            <div class="card-header">Line 1</div>
+                            <div class="card-body">
+                                <code>public static final int constant = 1;</code>
+                                <p class="lead">This constant name has the wrong naming conventions.</p>
+                                <p class="suggestion">Constant names should be SCREAMING_CASED, in all uppercase letters with words separated by underscores.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="errors container">
+                        <h3>Printing</h3>
+                        <div class="card">
+                            <div class="card-header">Line 5</div>
+                            <div class="card-body">
+                                <code>System.out.print("hello world\n");</code>
+                                <p class="lead">\n should only be used in printf.</p>
+                                <p class="suggestion">\n should only be used in printf statements, and only once at the end of the line. Otherwise, you should just use println if you want to print a full line.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Line 5</div>
+                            <div class="card-body">
+                                <code>
+                                    System.out.print("hello world\n");
+                                    System.out.println("");
+                                </code>
+                                <p class="lead">These printing statements can probably be combined.</p>
+                                <p class="suggestion">Rather than have a bunch of adjacent print statements, you should combine them into one where you can. Each full line can be combined into one println statement.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Line 6</div>
+                            <div class="card-body">
+                                <code>System.out.println("");</code>
+                                <p class="lead">A blank println should actually be blank.</p>
+                                <p class="suggestion">You should always print a blank line using System.out.println(). Printing an empty String (System.out.println("")) is considered bad style; it makes the intention less clear.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
     <footer>
 

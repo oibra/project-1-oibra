@@ -7,57 +7,79 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav>
-        <h1 class="title">Java Style Linter</h1>
-        <ul>
-            <li><a href="splash.html">About</a></li>
-            <li><a href="#">Style Checker</a></li>
-        </ul>
+    <nav class="navbar navbar-expand">
+        <span class="navbar-brand">Java Style Linter</span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item ml-2"><a class="nav-link" href="splash.html">About</a></li>
+                <li class="nav-item ml-2"><a class="nav-link" href="#">Style Checker</a></li>
+                <li class="nav-item ml-2"><a class="nav-link" href="https://github.com/info340c-sp20/project-1-oibra">Codebase</a></li>
+            </ul>
+        </div>
     </nav>
-    <main>
-        <section class="description">
+    <main class="container mt-5">
+        <section class="collapsible">
             <p>This web app will function as an educational Java linter that checks the style of users’ input Java code and inform users of what the style errors are with suggestions on how to fix them. This app will be built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners.</p>
         </section>
-        <section >
-            <h2>Code Input</h2>
-        <!--
-            insert form here
-            - checkbox for file upload or text input
-            - file upload
-            - text input
-            - number input for tab size
-            - submit button
-        -->
+        <div class="container">
+        <h2 class="collapse-toggler p-2" type="button" data-toggle="collapse" data-target="#code-input"><span class="collapse-button">&nbsp;</span>Code Input</h2>
+        <section class="collapse show" id="code-input">
+
             <form action="example.html" spellcheck="false">
-                <label><input type="radio" name="input-source" value="file" id="file"  />File Input</label>
-                <label><input type="radio" name="input-source" value="text" id="text" checked="checked"/>Text Entry</label>
-                <br />
-                <input type="file" name="code-file" />
-                <br />
-                <textarea name="code-text">
+                <div class="form-group form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="input-source" value="file" id="file"  /><label class="form-check-label">File Input</label>
+                </div>
+                <div class="form-group form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="input-source" value="text" id="text" checked="checked"/><label class="form-check-label">Text Entry</label>
+                </div>
+                <div class="form-group">
+                    <input type="file" name="code-file" />
+                </div>
+                    <textarea name="code-text">
 public static final int constant = 1;
 public static void main(String[] args) {
-   // this is a really long comment that should be picked up as being too long by the style checker because it's so long
-int Var = 6;
-   System.out.print("hello world\n");
-   System.out.println("");
+    // this is a really long comment that should be picked up as being too long by the style checker because it's so long
+    int Var = 6;
+    System.out.print("hello world\n");
+    System.out.println("");
 }
-                </textarea>
+                    </textarea>
                 <br />
                 <label>Tab Size (in spaces): <input type="number" name="tab-size" required="required" value="3"/></label>
                 <br />
-                <input type="submit" name="submit" value="Analyze Code" />
+                <button type="submit" class="btn btn-primary mb-4" name="submit">Analyze Code</button>
             </form>
         </section>
-        <section class="collapsible collapsed">
-            <h2><span class="collapse-button">&nbsp;</span>Errors Found</h2>
-            <span class="warning">
+    </div>
+    <div class="container">
+        <h2 class="collapse-toggler p-2" type="button" data-toggle="collapse" data-target="#lint-output"><span class="collapse-button">&nbsp;</span>Errors Found</h2>
+        <section class="collapse" id="lint-output">
+
+            <div class="alert alert-warning" role="alert">
                 This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code.
-            </span>
+            </div>
+            <div class="container">
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#">Errors List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#">Error Highlighting</a>
+                </li>
+            </ul>
+        </div>
             <!--Found errors added here by javascript-->
         </section>
+    </div>
     </main>
     <footer>
 
