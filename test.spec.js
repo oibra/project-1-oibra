@@ -18,7 +18,10 @@ describe('Source code is valid', () => {
       'indent-width':false, //don't need to beautify
       'line-no-trailing-whitespace': false, //don't need to beautify
       'id-class-style':false, //I like dashes in classnames
-      'img-req-alt':true
+      'img-req-alt':true,
+      'link-req-noopener':false,
+      'spec-char-escape':false //for params in link urls
+
     }
 
     const htmlfiles = fs.readdirSync(__dirname).filter((f) => f.endsWith('.html'));
