@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
@@ -20,7 +20,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item mr-2"><a class="nav-link" href="splash.html">About</a></li>
+                <li class="nav-item mr-2"><a class="nav-link" href="index2.html">About</a></li>
                 <li class="nav-item mr-2 active"><a class="nav-link" href="index.html">Style Checker</a></li>
                 <li class="nav-item mr-2"><a class="nav-link" href="https://github.com/info340c-sp20/project-1-oibra">Codebase</a></li>
             </ul>
@@ -70,15 +70,15 @@ int Var = 6;
                 <div class="container">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#errors-list">Errors List</a>
+                            <a class="nav-link active" data-toggle="tab" href="#errors-highlighting">Error Highlighting</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#errors-highlighting">Error Highlighting</a>
+                            <a class="nav-link" data-toggle="tab" href="index4.html" >Errors List</a><!--should link to #errors-list-->
                         </li>
                     </ul>
                 </div>
                 <div id="tab-content" class="tab-content">
-                    <div class="tab-pane fade show active" id="errors-list">
+                    <div class="tab-pane fade" id="errors-list">
                         <!--Found errors added here by javascript-->
                         <div class="errors container">
                             <h3>Indentation</h3>
@@ -144,9 +144,9 @@ int Var = 6;
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="errors-highlighting">
+                    <div class="tab-pane fade show active" id="errors-highlighting">
                         <div class="contatiner mt-4">
-                            <div class="container"><pre><code><span class="error" type="button" data-toggle="modal" data-target="#line1">public static final int constant = 1;</span>
+                            <div class="container"><pre><code><span class="error" type="button" data-toggle="modal" data-target="#line1"><!--remove when it's not static--><a href="index5.html">public static final int constant = 1;</a></span>
 public static void main(String[] args) {
 <span class="error" type="button" data-toggle="modal" data-target="#line3">    // this is a really long comment that should be picked up as being too long by the style checker because it's so long</span>
 <span class="error" type="button" data-toggle="modal" data-target="#line4">int Var = 6;</span>
@@ -173,6 +173,9 @@ public static void main(String[] args) {
                                 <p class="lead">This constant name has the wrong naming conventions.</p>
                                 <p class="suggestion">Constant names should be SCREAMING_CASED, in all uppercase letters with words separated by underscores.</p>
                             </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button">Edit & Re-check</button>
+                              </div>
                         </div>
                     </div>
                 </div>
