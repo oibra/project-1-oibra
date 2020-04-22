@@ -4,6 +4,7 @@
     <title>Java Style Linter</title>
     <meta name="author" content="Omar Ibrahim" />
     <meta charset="UTF8" />
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -53,13 +54,13 @@
                                 <input class="form-check-input" type="radio" name="input-source" value="text" id="text" checked="checked"/><label class="form-check-label" for="text">Text Entry</label>
                             </div>
                         </fieldset>
-                        <div class="form-group">
+                        <div class="form-group mb-0">
                             <label for="code-input" class="text-primary"><strong>Input code as file:</strong></label>
                             <input type="file" name="code-file" id="code-input"/>
                         </div>
                         <div class="form-group">
                             <label for="code-text" class="text-primary"><strong>Input code as text:</strong></label>
-                            <textarea name="code-text" id="code-text">
+                            <textarea name="code-text" id="code-text" class="mb-1">
 public static final int constant = 1;
 public static void main(String[] args) {
     // this is a really long comment that should be picked up as being too long by the style checker because it's so long
@@ -69,10 +70,10 @@ int Var = 6;
 }
                             </textarea>
                         </div>
-                        <br />
+                        <!-- <br /> -->
                         <label>Tab Size (in spaces): <input type="number" name="tab-size" required="required" value="3"/></label>
                         <br />
-                        <button type="submit" class="btn btn-primary mb-4" name="submit">Analyze Code</button>
+                        <button type="submit" class="btn btn-primary mb-4 mt-3" name="submit">Analyze Code</button>
                     </form>
                 </section>
             </div>
