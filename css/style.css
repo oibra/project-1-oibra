@@ -27,8 +27,6 @@ footer {
 }
 
 h2 {
-    background-color: mediumslateblue;
-    color: whitesmoke;
     padding: .25rem;
     font-size: 1.5rem;
     font-weight: bold;
@@ -94,7 +92,11 @@ code a, code a:hover {
 }
 
 .bg-primary {
-    background-color: mediumslateblue !important;
+    background-color: #6c56ec !important;
+}
+
+.text-primary {
+    color: #6c56ec !important;
 }
 
 .error {
@@ -121,9 +123,9 @@ code a, code a:hover {
 }
 
 .btn-primary {
-    background-color: mediumslateblue;
+    background-color: #6c56ec;
     color: whitesmoke;
-    border: 2px solid mediumslateblue;
+    border: 2px solid #6c56ec;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {

@@ -37,28 +37,35 @@
                 <p>This web app will function as an educational Java linter that checks the style of users’ input Java code and inform users of what the style errors are with suggestions on how to fix them. This app will be built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners.</p>
             </section>
             <div class="container">
-                <h2 class="collapse-toggler p-2" type="button" data-toggle="collapse" data-target="#code-input"><span class="collapse-button">&nbsp;</span>Code Input</h2>
+                <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" data-toggle="collapse" data-target="#code-input"><span class="collapse-button">&nbsp;</span>Code Input</h2>
                 <section class="collapse show" id="code-input">
 
                     <form action="index3.html" spellcheck="false">
-                        <div class="form-group form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="input-source" value="file" id="file"  /><label class="form-check-label" for="file">File Input</label>
-                        </div>
-                        <div class="form-group form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="input-source" value="text" id="text" checked="checked"/><label class="form-check-label" for="text">Text Entry</label>
+                        <fieldset class="form-group">
+                            <legend class="form-label">Code Input Format</legend>
+                            <div class="form-group form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="input-source" value="file" id="file"  /><label class="form-check-label" for="file">File Input</label>
+                            </div>
+                            <div class="form-group form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="input-source" value="text" id="text" checked="checked"/><label class="form-check-label" for="text">Text Entry</label>
+                            </div>
+                        </fieldset>
+                        <div class="form-group">
+                            <label for="code-file">Input code as file:</label><br />
+                            <input type="file" name="code-file" id="code-input"/>
                         </div>
                         <div class="form-group">
-                            <input type="file" name="code-file" />
+                            <label for="code-text">Input code as text:</label>
+                            <textarea name="code-text" id="code-text">
+public static final int constant = 1;
+public static void main(String[] args) {
+    // this is a really long comment that should be picked up as being too long by the style checker because it's so long
+    int Var = 6;
+    System.out.print("hello world\n");
+    System.out.println("");
+}
+                            </textarea>
                         </div>
-                        <textarea name="code-text">
-                            public static final int constant = 1;
-                            public static void main(String[] args) {
-                                // this is a really long comment that should be picked up as being too long by the style checker because it's so long
-                                int Var = 6;
-                                System.out.print("hello world\n");
-                                System.out.println("");
-                            }
-                        </textarea>
                         <br />
                         <label>Tab Size (in spaces): <input type="number" name="tab-size" required="required" value="3"/></label>
                         <br />
@@ -67,7 +74,7 @@
                 </section>
             </div>
             <div class="container">
-                <h2 class="collapse-toggler p-2" type="button" data-toggle="collapse" data-target="#lint-output"><span class="collapse-button">&nbsp;</span>Errors Found</h2>
+                <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" data-toggle="collapse" data-target="#lint-output"><span class="collapse-button">&nbsp;</span>Errors Found</h2>
                 <section class="collapse" id="lint-output">
 
                     <div class="alert alert-warning" role="alert">
