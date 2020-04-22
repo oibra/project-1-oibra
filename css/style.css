@@ -81,7 +81,7 @@ code a, code a:hover {
     margin-top: 1.5rem;
 }
 
-.splash-img {
+/* .splash-img {
     animation-name: pulse;
     animation-duration: 5s;
     animation-iteration-count: infinite;
@@ -89,7 +89,7 @@ code a, code a:hover {
 
 .splash-img:nth-child(2) {
     animation-delay: 2s;
-}
+} */
 
 .bg-primary {
     background-color: #6c56ec !important;
@@ -213,7 +213,7 @@ code a, code a:hover {
     color: whitesmoke;
 }
 
-footer a {
+#splash main a, #splash footer a {
     color: whitesmoke;
 }
 
@@ -230,25 +230,30 @@ footer a {
     background-color: rgba(112,99,236, 0.2);
 }
 
-@media (min-width: 576px) and (max-width: 767.98px) {
-    p {
+@media (max-width: 767.98px) {
+    /* p {
         font-size: 2.5rem;
     }
 
     code, pre {
         font-size: 1.4rem;
-    }
+    } */
 
-    .navbar-brand{
+    /* .navbar-brand{
         font-size: 2.5rem;
-    }
+    } */
 
-    .navbar {
+    /* .navbar {
         font-size: 1.5rem;
     }
 
     .nav-tabs {
         font-size: 1.5rem;
+    } */
+
+    #splash main {
+        flex-direction: column;
+        padding-bottom: 2rem;
     }
 }
 
@@ -281,6 +286,7 @@ footer a {
         height: 90%;
         display: flex;
         align-items: center;
+        flex-direction: column;
     }
 }
 
