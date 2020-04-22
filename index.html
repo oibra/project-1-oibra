@@ -32,7 +32,7 @@
         </div>
     </nav>
     <main class="bg-white">
-        <div class="container pt-3 pb-5">
+        <div class="container pb-5">
             <section class="mt-3">
                 <div class="container">
                     <h1 class="text-primary">Java Style Linter</h1>
@@ -54,16 +54,16 @@
                             </div>
                         </fieldset>
                         <div class="form-group">
-                            <label for="code-input">Input code as file:</label><br />
+                            <label for="code-input" class="text-primary"><strong>Input code as file:</strong></label>
                             <input type="file" name="code-file" id="code-input"/>
                         </div>
                         <div class="form-group">
-                            <label for="code-text">Input code as text:</label>
+                            <label for="code-text" class="text-primary"><strong>Input code as text:</strong></label>
                             <textarea name="code-text" id="code-text">
 public static final int constant = 1;
 public static void main(String[] args) {
     // this is a really long comment that should be picked up as being too long by the style checker because it's so long
-    int Var = 6;
+int Var = 6;
     System.out.print("hello world\n");
     System.out.println("");
 }
