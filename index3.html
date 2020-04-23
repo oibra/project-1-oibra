@@ -48,34 +48,38 @@
 
                     <form action="index3.html" spellcheck="false">
                         <fieldset class="form-group">
-                            <legend class="form-label">Code Input Format</legend>
-                            <div class="form-group form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="input-source" value="file" id="file"  /><label class="form-check-label" for="file">File Input</label>
-                            </div>
-                            <div class="form-group form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="input-source" value="text" id="text" checked="checked"/><label class="form-check-label" for="text">Text Entry</label>
+                            <div class="row align-items-center">
+                                <legend class="col-form-label col-sm-2 pt-0 text-primary"><strong>Code Input Format</strong></legend>
+                                    <div class="col-sm-10">
+                                    <div class="form-group form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="input-source" value="file" id="file"  /><label class="form-check-label" for="file">File Input</label>
+                                    </div>
+                                    <div class="form-group form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="input-source" value="text" id="text" checked="checked"/><label class="form-check-label" for="text">Text Entry</label>
+                                    </div>
+                                </div>
                             </div>
                         </fieldset>
-                        <div class="form-group mb-0">
-                            <label for="code-input" class="text-primary"><strong>Input code as file:</strong></label>
-                            <input type="file" name="code-file" id="code-input"/>
+                        <div class="form-group mb-0 row align-items-center">
+                            <label for="code-input" class="text-primary col-sm-2 col-form-label"><strong>Input code as file</strong></label>
+                            <input type="file" name="code-file" id="code-input" class="form-control-file col-sm-10"/>
                         </div>
-                        <div class="form-group">
-                            <label for="code-text" class="text-primary"><strong>Input code as text:</strong></label>
-                            <textarea name="code-text" id="code-text" class="mb-1">
+                        <div class="form-group row">
+                            <label for="code-text" class="text-primary col-sm-2 col-form-label"><strong>Input code as text</strong></label>
+                            <div class="col-sm-10">
+                            <textarea name="code-text" id="code-text" class="form-control form-control-sm mb-1 " rows="10">
 public static final int constant = 1;
 public static void main(String[] args) {
     // this is a really long comment that should be picked up as being too long by the style checker because it's so long
 int Var = 6;
     System.out.print("hello world\n");
     System.out.println("");
-}
-                            </textarea>
+}</textarea></div>
                         </div>
-                        <!-- <br /> -->
-                        <label>Tab Size (in spaces): <input type="number" name="tab-size" required="required" value="3"/></label>
-                        <br />
-                        <button type="submit" class="btn btn-primary mb-4 mt-3" name="submit">Analyze Code</button>
+                        <div class="form-group row align-items-center">
+                        <label for="tab-size" class="col-sm-2 text-primary col-form-label"><strong>Tab Size (in spaces)</strong></label> <div class="container justify-content-start col"><input type="number" id="tab-size" name="tab-size" required="required" value="3" class="form-control"/></div>
+                    </div>
+                        <button type="submit" class="btn btn-primary mb-4 " name="submit">Analyze Code</button>
                     </form>
                 </section>
             </div>
