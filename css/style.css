@@ -1,17 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
-@keyframes pulse {
+/* @keyframes pulse {
     0% {margin-top: 0%;}
     50% {margin-top: 2%;}
     100% {margin-top: 0%;}
-}
-
-.editor-modal .recheck-edit-btn {
-    display: none;
-}
-
-.modal:not(.editor-modal) .recheck-submit-btn {
-    display: none;
-}
+} */
 
 html {
     height: 100%;
@@ -23,7 +16,7 @@ body, html {
     min-height: 100%;
 }
 
-body {
+body:not(#splash) {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -45,18 +38,11 @@ h3 {
     font-size: 1.5em;
 }
 
-/* input {
-    margin-bottom: .75rem;
-} */
-
 textarea {
     width: 100%;
     height: 20rem;
     font-family: 'Source Code Pro', monospace;
     background-color: whitesmoke;
-    /* padding: 5px; */
-    /* margin-left: 15px; */
-    /* margin-bottom: 1.5rem; */
 }
 
 code, pre {
@@ -65,12 +51,6 @@ code, pre {
     padding: 1px 2px;
 
 }
-
-/* input[type="number"] {
-    background-color: whitesmoke;
-    padding: 5px;
-    border: 1px solid rgb(169, 169, 169);
-} */
 
 .form-control:focus {
     background-color: white;
@@ -206,12 +186,11 @@ code a, code a:hover {
     display: block;
 }
 
-#splash {
-    width: 100%;
-    height: 100%;
+.nav-tabs .nav-link, .nav-tabs .nav-item .nav-link {
+    color: #212529;
 }
 
-.nav-tabs .nav-item .nav-links:hover, .nav-tabs .nav-link:hover {
+.nav-tabs .nav-link:hover, .nav-tabs .nav-item .nav-link:hover {
     background-color: rgba(112,99,236, 0.075);
 }
 
@@ -219,8 +198,15 @@ code a, code a:hover {
     color: mediumslateblue;
 }
 
-.nav-tabs .nav-item .nav-links, .nav-tabs .nav-link {
-    color: #212529;
+
+
+
+.editor-modal .recheck-edit-btn {
+    display: none;
+}
+
+.modal:not(.editor-modal) .recheck-submit-btn {
+    display: none;
 }
 
 .collapsible > div {
@@ -270,7 +256,7 @@ code a, code a:hover {
         flex-direction: column;
     }
 }
-
+/*
 @media (min-width: 992px) and (max-width: 1199.98px) {
 
-}
+} */
