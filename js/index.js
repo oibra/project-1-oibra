@@ -83,5 +83,6 @@ function assignModalCloseListeners() {
 
 // returns true if the code has been fixed, false otherwise
 function checkModal(modal) {
+    console.log(modal);
     return false;
 }
