@@ -5,6 +5,14 @@
     100% {margin-top: 0%;}
 }
 
+.editor-modal .recheck-edit-btn {
+    display: none;
+}
+
+.modal:not(.editor-modal) .recheck-submit-btn {
+    display: none;
+}
+
 html {
     height: 100%;
 }
@@ -46,7 +54,8 @@ textarea {
     height: 20rem;
     font-family: 'Source Code Pro', monospace;
     background-color: whitesmoke;
-    padding: 5px;
+    /* padding: 5px; */
+    /* margin-left: 15px; */
     /* margin-bottom: 1.5rem; */
 }
 
@@ -57,15 +66,16 @@ code, pre {
 
 }
 
-input[type="number"] {
+/* input[type="number"] {
     background-color: whitesmoke;
     padding: 5px;
     border: 1px solid rgb(169, 169, 169);
-}
+} */
 
-textarea:focus, input[type="number"]:focus {
+.form-control:focus {
     background-color: white;
     border-color: mediumslateblue;
+    box-shadow: 0 0 0 .2rem rgba(123,104,238,.25);
 }
 
 input[type="file"]:before {
@@ -110,8 +120,18 @@ code a, code a:hover {
     margin-top: .5rem;
 }
 
-.card-header, .modal-header {
+.card-header, .modal-header, .modal-footer {
     background-color: #f8f7fe;
+}
+
+.modal-footer {
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.modal-footer .alert {
+    margin-top: 0;
+    width: 100%;
 }
 
 .modal-body:not(:first-child) {
@@ -231,26 +251,6 @@ code a, code a:hover {
 }
 
 @media (max-width: 767.98px) {
-    /* p {
-        font-size: 2.5rem;
-    }
-
-    code, pre {
-        font-size: 1.4rem;
-    } */
-
-    /* .navbar-brand{
-        font-size: 2.5rem;
-    } */
-
-    /* .navbar {
-        font-size: 1.5rem;
-    }
-
-    .nav-tabs {
-        font-size: 1.5rem;
-    } */
-
     #splash main {
         flex-direction: column;
         padding-bottom: 2rem;
@@ -258,30 +258,6 @@ code a, code a:hover {
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-    p {
-        font-size: 1.5rem;
-    }
-
-    code, pre {
-        font-size: 1.4rem;
-    }
-
-    .navbar-brand{
-        font-size: 2.5rem;
-    }
-
-    .navbar {
-        font-size: 1.5rem;
-    }
-
-    .nav-tabs {
-        font-size: 1.5rem;
-    }
-
-    #splash img {
-        width: 100%;
-    }
-
     #splash main {
         height: 90%;
         display: flex;
@@ -291,7 +267,5 @@ code a, code a:hover {
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
-    p {
-        font-size: 1.05rem;
-    }
+
 }

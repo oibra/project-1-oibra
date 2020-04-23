@@ -11,9 +11,11 @@
 
     <link rel="icon" href="img/favicon.png" type="image/x-icon" />
 
-    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script src="js/index.js"></script>
 </head>
 <body >
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
@@ -90,7 +92,7 @@ int Var = 6;
                             <a class="nav-link active" data-toggle="tab" href="#errors-highlighting">Error Highlighting</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="index4.html" >Errors List</a><!--should link to #errors-list-->
+                            <a class="nav-link" data-toggle="tab" href="#errors-list" >Errors List</a><!--should link to #errors-list-->
                         </li>
                     </ul>
                 </div>
@@ -163,12 +165,12 @@ int Var = 6;
                     </div>
                     <div class="tab-pane fade show active" id="errors-highlighting">
                         <div class="contatiner mt-4">
-                            <div class="container"><pre><code><span class="error" type="button" data-toggle="modal" data-target="#line1"><!--remove when it's not static--><a href="index5.html">public static final int constant = 1;</a></span>
+                            <div class="container"><pre><code><span class="error" type="button" data-toggle="modal" data-target="#line1-modal" id="line1"><!--remove when it's not static-->public static final int constant = 1;</span>
 public static void main(String[] args) {
-<span class="error" type="button" data-toggle="modal" data-target="#line3">    // this is a really long comment that should be picked up as being too long by the style checker because it's so long</span>
-<span class="error" type="button" data-toggle="modal" data-target="#line4">int Var = 6;</span>
-<span class="error" type="button" data-toggle="modal" data-target="#line5">    System.out.print("hello world\n");</span>
-<span class="error" type="button" data-toggle="modal" data-target="#line6">    System.out.println("");</span>
+<span class="error" type="button" data-toggle="modal" data-target="#line3-modal" id="line3">    // this is a really long comment that should be picked up as being too long by the style checker because it's so long</span>
+<span class="error" type="button" data-toggle="modal" data-target="#line4-modal" id="line4">int Var = 6;</span>
+<span class="error" type="button" data-toggle="modal" data-target="#line5-modal" id="line5">    System.out.print("hello world\n");</span>
+<span class="error" type="button" data-toggle="modal" data-target="#line6-modal" id="line6">    System.out.println("");</span>
 }
 </code></pre></div>
                         </div>
@@ -177,98 +179,7 @@ public static void main(String[] args) {
 
                 </div>
 
-                <div class="modal" tabindex="-1" role="dialog" id="line1">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Line 1</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <code><span class="error">public static final int constant = 1;</span></code>
-                                <p class="lead">This constant name has the wrong naming conventions.</p>
-                                <p class="suggestion">Constant names should be SCREAMING_CASED, in all uppercase letters with words separated by underscores.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" type="button">Edit & Re-check</button>
-                              </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" tabindex="-1" role="dialog" id="line3">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Line 3</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <code><span class="error">   // this is a really long comment that should be picked up as being too long by the style checker because it's so long</span></code>
-                                <p class="lead">This line is too long (over 100 characters).</p>
-                                <p class="suggestion">Lines of code should ideally max out at 80 characters, and should never exceed 100 characters in length. Lines that are too long should be broken up and wrapped to the next line.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" tabindex="-1" role="dialog" id="line4">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Line 4</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <code><span class="error">int Var = 6;</span></code>
-                                <p class="lead">This line is indented incorrectly.</p>
-                                <p class="suggestion">You should indent your program one tab further every time you open a curly brace and indent one tab less every time you close a curly brace. This line should be indented more.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" tabindex="-1" role="dialog" id="line5">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Line 5</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <code><span class="error">System.out.print("hello world\n");</span></code>
-                                <p class="lead">\n should only be used in printf.</p>
-                                <p class="suggestion">\n should only be used in printf statements, and only once at the end of the line. Otherwise, you should just use println if you want to print a full line.</p>
-                            </div>
-                            <div class="modal-body">
-                                <p class="lead">These printing statements can probably be combined.</p>
-                                <p class="suggestion">Rather than have a bunch of adjacent print statements, you should combine them into one where you can. Each full line can be combined into one println statement.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal" tabindex="-1" role="dialog" id="line6">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Line 6</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <code><span class="error">System.out.println("");</span></code>
-                                <p class="lead">A blank println should actually be blank.</p>
-                                <p class="suggestion">You should always print a blank line using System.out.println(). Printing an empty String (System.out.println("")) is considered bad style; it makes the intention less clear.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </section>
         </div>
     </div>
@@ -276,6 +187,99 @@ public static void main(String[] args) {
     <footer class="bg-primary p-3 text-light container-fluid">
         <cite class="d-block">Icon created by <a href="https://www.flaticon.com/authors/freepik" class="text-decoration-none text-light">Freepik</a> from <a href="https://www.flaticon.com" class="text-decoration-none text-light">www.flaticon.com</a></cite>
         <cite class="d-block">Images created by <a href="" class="text-decoration-none text-light">unDraw</a></cite>
-        </footer>
+    </footer>
+        <div class="modal" tabindex="-1" role="dialog" id="line1-modal">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Line 1</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <code><span class="error">public static final int constant = 1;</span></code>
+                        <p class="lead">This constant name has the wrong naming conventions.</p>
+                        <p class="suggestion">Constant names should be SCREAMING_CASED, in all uppercase letters with words separated by underscores.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary recheck-edit-btn" type="button">Edit & Re-check</button>
+                        <button class="btn btn-primary recheck-submit-btn" type="button">Re-check</button>
+                      </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" tabindex="-1" role="dialog" id="line3-modal">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Line 3</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <code><span class="error">   // this is a really long comment that should be picked up as being too long by the style checker because it's so long</span></code>
+                        <p class="lead">This line is too long (over 100 characters).</p>
+                        <p class="suggestion">Lines of code should ideally max out at 80 characters, and should never exceed 100 characters in length. Lines that are too long should be broken up and wrapped to the next line.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" tabindex="-1" role="dialog" id="line4-modal">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Line 4</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <code><span class="error">int Var = 6;</span></code>
+                        <p class="lead">This line is indented incorrectly.</p>
+                        <p class="suggestion">You should indent your program one tab further every time you open a curly brace and indent one tab less every time you close a curly brace. This line should be indented more.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" tabindex="-1" role="dialog" id="line5-modal">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Line 5</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <code><span class="error">System.out.print("hello world\n");</span></code>
+                        <p class="lead">\n should only be used in printf.</p>
+                        <p class="suggestion">\n should only be used in printf statements, and only once at the end of the line. Otherwise, you should just use println if you want to print a full line.</p>
+                    </div>
+                    <div class="modal-body">
+                        <p class="lead">These printing statements can probably be combined.</p>
+                        <p class="suggestion">Rather than have a bunch of adjacent print statements, you should combine them into one where you can. Each full line can be combined into one println statement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" tabindex="-1" role="dialog" id="line6-modal">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Line 6</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <code><span class="error">System.out.println("");</span></code>
+                        <p class="lead">A blank println should actually be blank.</p>
+                        <p class="suggestion">You should always print a blank line using System.out.println(). Printing an empty String (System.out.println("")) is considered bad style; it makes the intention less clear.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
 </html>
