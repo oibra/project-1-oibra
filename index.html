@@ -36,7 +36,7 @@
             <section class="mt-3">
                 <div class="container">
                     <h1 class="text-primary">Java Style Linter</h1>
-                    <p>This web app will function as an educational Java linter that checks the style of users’ input Java code and inform users of what the style errors are with suggestions on how to fix them. This app will be built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners.</p>
+                    <p>This web app functions as an educational Java linter that checks the style of users’ input Java code and inform users of what stylistic issues the code has with suggestions on how to fix them. This app is built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners. Be aware though, that if you are not a student in those classes, make sure that your code fits the quality guidelines of your organization and that they're consistent with the guidelines used by this tool if you want to use it.</p>
                 </div>
             </section>
             <div class="container">
@@ -84,22 +84,29 @@ int Var = 6;
             <div class="container">
                 <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" data-toggle="collapse" data-target="#lint-output"><span class="collapse-button">&nbsp;</span>Errors Found</h2>
                 <section class="collapse" id="lint-output">
-
                     <div class="alert alert-warning" role="alert">
-                        This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code.
+                        This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code. In fact, while this tool is made to catch a lot of style issues, creating a tool to catch every possible style error is nearly impossible and certainly not something I tried to do, so make sure to give your code a second look yourself.
                     </div>
-                    <div class="container">
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#">Error Highlighting</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#">Errors List</a>
-                            </li>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#">Error Highlighting</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#">Errors List</a>
+                        </li>
 
-                        </ul>
-                    </div>
+                    </ul>
                     <!--Found errors added here by javascript-->
+                    <div id="tab-content" class="tab-content">
+                        <div class="tab-pane fade" id="errors-list">
+                            <!--Found errors added here by javascript-->
+                        </div>
+                        <div class="tab-pane fade show active" id="errors-highlighting">
+                            <div class="contatiner mt-4">
+
+                            </div>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>
