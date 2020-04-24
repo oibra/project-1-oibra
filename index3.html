@@ -85,17 +85,20 @@ int Var = 6;
             <div class="container">
                 <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" data-toggle="collapse" data-target="#lint-output"><span class="collapse-button">&nbsp;</span>Errors Found</h2>
                 <section class="collapse show" id="lint-output">
-                        <div class="alert alert-warning" role="alert">
-                            This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code. In fact, while this tool is made to catch a lot of style issues, creating a tool to catch every possible style error is nearly impossible and certainly not something I tried to do, so make sure to give your code a second look yourself.
-                        </div>
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#errors-highlighting">Error Highlighting</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#errors-list" >Errors List</a><!--should link to #errors-list-->
-                            </li>
-                        </ul>
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code. In fact, while this tool is made to catch a lot of style issues, creating a tool to catch every possible style error is nearly impossible and certainly not something I tried to do, so make sure to give your code a second look yourself.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#errors-highlighting">Error Highlighting</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#errors-list" >Errors List</a><!--should link to #errors-list-->
+                        </li>
+                    </ul>
                     <div id="tab-content" class="tab-content">
                         <div class="tab-pane fade" id="errors-list">
                             <!--Found errors added here by javascript-->

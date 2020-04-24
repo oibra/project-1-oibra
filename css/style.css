@@ -123,10 +123,6 @@ code a, code a:hover {
     height: 30px;
 }
 
-/* .img-fluid {
-    height: 50%;
-} */
-
 .btn-primary {
     background-color: #6c56ec;
     color: whitesmoke;
@@ -281,9 +277,11 @@ code a, code a:hover {
         flex-direction: column;
         padding-bottom: 2rem;
         padding-top: 1rem;
+
     }
+
 }
-/*
+
 @media (min-width: 992px) and (max-width: 1199.98px) {
 
-} */
+}
