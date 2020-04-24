@@ -4,6 +4,7 @@ window.onload = () => {
     assignRecheckListeners();
     assignRecheckSubmitListeners();
     assignModalCloseListeners();
+    assignCollapseButtonToggling();
 };
 
 function assignRecheckListeners() {
@@ -79,6 +80,29 @@ function assignModalCloseListeners() {
             }
         });
     });
+}
+
+function assignCollapseButtonToggling() {
+    let togglers = document.querySelectorAll('.collapse-toggler');
+    togglers.forEach((toggler) => {
+        toggler.addEventListener('click', () => {
+            let btn = toggler.querySelector('img');
+            btn.addEventListener('mouseout', toggleOpenClosed);
+        })
+    });
+}
+
+function toggleOpenClosed(e) {
+    let btn = e.target;
+    if (btn.classList.contains('open')) {
+        btn.classList.remove('open');
+        btn.classList.add('closed');
+    } else {
+        btn.classList.add('open');
+        btn.classList.remove('closed');
+    }
+    console.log(btn.classList);
+    btn.removeEventListener('mouseout', toggleOpenClosed);
 }
 
 // returns true if the code has been fixed, false otherwise

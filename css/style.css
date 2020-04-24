@@ -146,22 +146,34 @@ code a, code a:hover {
     margin-bottom: 1.25rem;
 }
 
-.collapse-button {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    background-image: url(../img/expand_more.svg);
-    background-position: right;
-    background-repeat: no-repeat;
-    background-size: contain;
+@keyframes flip {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(180deg); }
 }
 
-.collapse-button-active {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    background-image: url(../img/expand_less.svg);
-    background-position: right;
-    background-repeat: no-repeat;
-    background-size: contain;
+@keyframes flip-reverse {
+    from { transform: rotate(180deg); }
+    to { transform: rotate(0deg); }
+}
+
+.collapse-button {
+    width: 30px;
+    height: 30px;
+}
+
+.collapse-button.open, .collapse-button.closed:hover {
+    animation-name: flip-reverse;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+}
+
+.collapse-button.open:hover, .collapse-button.closed {
+    animation-name: flip;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-direction: normal;
+    animation-iteration-count: 1;
 }
 
 .errors {

@@ -13,6 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
 </head>
 <body >
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
@@ -40,7 +41,7 @@
                 </div>
             </section>
             <div class="container">
-                <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" data-toggle="collapse" data-target="#code-form"><span class="collapse-button">&nbsp;</span>Code Input</h2>
+                <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" data-toggle="collapse" data-target="#code-form"><img class="collapse-button open" src="img/expand_more.svg"/>Code Input</h2>
                 <section class="collapse show" id="code-form">
 
                     <form action="index3.html" spellcheck="false">
@@ -82,7 +83,7 @@ int Var = 6;
                 </section>
             </div>
             <div class="container">
-                <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" data-toggle="collapse" data-target="#lint-output"><span class="collapse-button">&nbsp;</span>Errors Found</h2>
+                <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" data-toggle="collapse" data-target="#lint-output"><img class="collapse-button closed" src="img/expand_more.svg"/>Errors Found</h2>
                 <section class="collapse" id="lint-output">
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code. In fact, while this tool is made to catch a lot of style issues, creating a tool to catch every possible style error is nearly impossible and certainly not something I tried to do, so make sure to give your code a second look yourself.
