@@ -281,6 +281,12 @@ code a, code a:hover {
     background-color: rgba(112,99,236, 0.2);
 }
 
+/* footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+} */
+
 @media (max-width: 767.98px) {
     #splash main {
         flex-direction: column;
@@ -303,9 +309,15 @@ code a, code a:hover {
         padding-top: 1rem;
 
     }
-
 }
-/* 
+
+@media (min-width: 768px) {
+    #splash footer {
+        position: fixed;
+        bottom: 0;
+    }
+}
+/*
 @media (min-width: 992px) and (max-width: 1199.98px) {
 
 } */
