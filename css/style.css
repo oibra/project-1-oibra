@@ -160,19 +160,31 @@ code a, code a:hover {
     width: 30px;
     height: 30px;
 }
+.collapse-button.closed {
+    animation-name: flip;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-iteration-count: 1;
+}
 
-.collapse-button.open, .collapse-button.closed:hover {
+.collapse-button.open {
     animation-name: flip-reverse;
     animation-duration: 1s;
     animation-fill-mode: both;
     animation-iteration-count: 1;
 }
 
-.collapse-button.open:hover, .collapse-button.closed {
+.collapse-button.open:hover {
     animation-name: flip;
     animation-duration: 1s;
     animation-fill-mode: both;
-    animation-direction: normal;
+    animation-iteration-count: 1;
+}
+
+.collapse-button.closed:hover {
+    animation-name: flip-reverse;
+    animation-duration: 1s;
+    animation-fill-mode: both;
     animation-iteration-count: 1;
 }
 
@@ -293,7 +305,7 @@ code a, code a:hover {
     }
 
 }
-
+/* 
 @media (min-width: 992px) and (max-width: 1199.98px) {
 
-}
+} */
