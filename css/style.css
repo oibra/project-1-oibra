@@ -261,7 +261,6 @@ code a, code a:hover {
 
 #splash p {
     color: whitesmoke;
-    text-align: justify;
 }
 
 #splash main a, #splash footer a {
@@ -292,10 +291,6 @@ code a, code a:hover {
         flex-direction: column;
         padding-bottom: 2rem;
         padding-top: 4rem;
-    }
-
-    #splash p {
-        text-align: left;
     }
 }
 
