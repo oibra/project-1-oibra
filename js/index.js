@@ -7,6 +7,8 @@ window.onload = () => {
     assignCollapseButtonToggling();
 };
 
+// assign listeners to change code modals to edit mode when user choses to edit their code
+// within the modal
 function assignRecheckListeners() {
     let btns = document.querySelectorAll('.recheck-edit-btn');
     btns.forEach((btn) => {
@@ -23,6 +25,8 @@ function assignRecheckListeners() {
             input.value = error.textContent;
             error.parentElement.parentElement.prepend(input);
             error.parentElement.parentElement.removeChild(error.parentElement)
+
+            // reflect changes in code made in modals in the code displayed in the main site
             input.addEventListener('input', () => {
                 document.getElementById(modal.id.replace("-modal", "")).textContent = input.value;
             });
@@ -30,6 +34,7 @@ function assignRecheckListeners() {
     });
 }
 
+// assign listeners to recheck code  post-editing within modal
 function assignRecheckSubmitListeners() {
     let btns = document.querySelectorAll('.recheck-submit-btn');
     btns.forEach((btn) => {
@@ -59,6 +64,7 @@ function assignRecheckSubmitListeners() {
     });
 }
 
+// reset modals to normal upon closing
 function assignModalCloseListeners() {
     let btns = document.querySelectorAll('.modal .close');
     btns.forEach((btn) => {
@@ -82,14 +88,28 @@ function assignModalCloseListeners() {
     });
 }
 
+/// code for properly animating and changing collapse button displays ///
 function assignCollapseButtonToggling() {
     let togglers = document.querySelectorAll('.collapse-toggler');
     togglers.forEach((toggler) => {
-        toggler.addEventListener('click', () => {
-            let btn = toggler.querySelector('img');
-            btn.addEventListener('mouseout', toggleOpenClosed);
-        })
+        toggler.addEventListener('click', toggleClick);
     });
+}
+
+function toggleClick(e) {
+    let target = e.target;
+    if (e.target.classList.contains('collapse-button')) {
+        target.addEventListener('mouseout', toggleOpenClosed);
+    } else {
+        let btn = target.querySelector('img');
+        if (btn.classList.contains('open')) {
+            btn.classList.remove('open');
+            btn.classList.add('closed');
+        } else {
+            btn.classList.add('open');
+            btn.classList.remove('closed');
+        }
+    }
 }
 
 function toggleOpenClosed(e) {
@@ -101,9 +121,10 @@ function toggleOpenClosed(e) {
         btn.classList.add('open');
         btn.classList.remove('closed');
     }
-    console.log(btn.classList);
     btn.removeEventListener('mouseout', toggleOpenClosed);
 }
+/// END TOGGLE CODE ///
+
 
 // returns true if the code has been fixed, false otherwise
 function checkModal(modal) {
