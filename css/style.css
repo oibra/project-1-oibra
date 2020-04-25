@@ -311,7 +311,7 @@ code a, code a:hover {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
     #splash footer {
         position: fixed;
         bottom: 0;
