@@ -5,7 +5,37 @@ window.onload = () => {
     assignRecheckSubmitListeners();
     assignModalCloseListeners();
     assignCollapseButtonToggling();
+    document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        let fileButton = document.getElementById('file');
+        let code;
+        if (fileButton.checked) {
+            let file = document.getElementById('code-file').files[0];
+            console.log(file);
+            if (file) {
+                let reader = new FileReader();
+                reader.readAsText(file, "UTF-8");
+                reader.onload = (e) => {
+                    code = e.target.result;
+                    console.log(code);
+                    lint(code);
+                }
+                reader.onerror = (e) => {
+                    console.error("error reading file");
+                }
+            }
+        } else {
+            code = document.getElementById('code-text').value;
+            console.log(code);
+            lint(code);
+        }
+        
+    })
 };
+
+function lint(code) {
+
+}
 
 // assign listeners to change code modals to edit mode when user choses to edit their code
 // within the modal

@@ -206,19 +206,44 @@ code a, code a:hover {
     display: block;
 }
 
-.nav-tabs .nav-link, .nav-tabs .nav-item .nav-link {
+.navbar .nav-tabs {
+    border-bottom: none;
+    background-color:  transparent;
+}
+
+.navbar .nav-tabs .nav-link {
+    border-radius: .25rem;
+    color: rgba(255, 255, 255, .75);
+    border: none;
+    border-radius: 0;
+}
+
+.navbar .nav-tabs .nav-link:hover:not(.active) {
+    /* border-bottom: 1px solid rgba(255, 255, 255, .75); */
+    text-decoration: underline;
+}
+
+.navbar .nav-tabs .nav-link.active {
+    color: #fff;
+    background: none;
+    
+}
+
+main .nav-tabs .nav-link, main .nav-tabs .nav-item .nav-link {
     color: #212529;
 }
 
-.nav-tabs .nav-link:hover, .nav-tabs .nav-item .nav-link:hover {
+main .nav-tabs .nav-link:hover, main .nav-tabs .nav-item .nav-link:hover {
     background-color: rgba(112,99,236, 0.075);
 }
 
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
     color: mediumslateblue;
 }
 
-
+#splash-page.show {
+    display: flex;
+}
 
 
 .editor-modal .recheck-edit-btn {
@@ -307,10 +332,10 @@ code a, code a:hover {
 }
 
 @media (min-width: 992px) {
-    #splash footer {
+    /* #splash footer {
         position: fixed;
         bottom: 0;
-    }
+    } */
 }
 /*
 @media (min-width: 992px) and (max-width: 1199.98px) {
