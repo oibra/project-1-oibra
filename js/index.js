@@ -5,19 +5,41 @@ window.onload = () => {
     assignRecheckSubmitListeners();
     assignModalCloseListeners();
     assignCollapseButtonToggling();
+
+    document.getElementById('file').addEventListener('click', (e) => {
+        document.getElementById('code-file').disabled = false;
+        document.getElementById('code-text').disabled = true;
+        document.getElementById('code-file').addEventListener('input', (e) => {
+            if (document.getElementById('code-file').files) {
+                document.getElementById('submit').disabled = false;
+            } else {
+                document.getElementById('submit').disabled = true;
+            }
+        });
+    });
+    document.getElementById('text').addEventListener('click', (e) => {
+        document.getElementById('code-file').disabled = true;
+        document.getElementById('code-text').disabled = false;
+        document.getElementById('code-text').addEventListener('input', (e) => {
+            if (document.getElementById('code-text').value) {
+                document.getElementById('submit').disabled = false;
+            } else {
+                document.getElementById('submit').disabled = true;
+            }
+        });
+    });
+
     document.querySelector('form').addEventListener('submit', (e) => {
         e.preventDefault();
         let fileButton = document.getElementById('file');
         let code;
         if (fileButton.checked) {
             let file = document.getElementById('code-file').files[0];
-            console.log(file);
             if (file) {
                 let reader = new FileReader();
                 reader.readAsText(file, "UTF-8");
                 reader.onload = (e) => {
                     code = e.target.result;
-                    console.log(code);
                     lint(code);
                 }
                 reader.onerror = (e) => {
@@ -26,7 +48,6 @@ window.onload = () => {
             }
         } else {
             code = document.getElementById('code-text').value;
-            console.log(code);
             lint(code);
         }
         
@@ -34,7 +55,8 @@ window.onload = () => {
 };
 
 function lint(code) {
-
+    let lines = code.split(/\r?\n/);
+    console.log(lines);
 }
 
 // assign listeners to change code modals to edit mode when user choses to edit their code
