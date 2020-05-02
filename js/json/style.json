@@ -1,0 +1,70 @@
+{
+    "indentation": {
+        "title": "This line is indented incorrectly",
+        "message": {
+            "over": "This line is overindented. You should indent your program one tab further every time you open a curly brace and indent one tab less every time you close a curly brace. This line should be indented more.",
+            "under": "This line is underindented. You should indent your program one tab further every time you open a curly brace and indent one tab less every time you close a curly brace. This line should be indented more."
+        }
+    },
+    "long_lines": {
+        "title": "This line is too long (over 100 characters)",
+        "message": "Lines of code should ideally max out at 80 characters, and should never exceed 100 characters in length. Lines that are too long should be broken up and wrapped to the next line."
+    },
+    "naming_conventions": {
+        "title": "This name has the wrong naming conventions.",
+        "message": {
+            "screaming": "Constant names should be SCREAMING_CASED, in all uppercase letters with words separated by underscores.",
+            "pascal": "",
+            "camel": ""
+        }
+    },
+    "printing": {
+        "backslash_n": {
+            "title": "\\n should only be used in printf.",
+            "message": "\\n should only be used in printf statements, and only once at the end of the line. Otherwise, you should just use println if you want to print a full line."
+        },
+        "blank": {
+            "title": "A blank println should actually be blank",
+            "messgae": "You should always print a blank line using System.out.println(). Printing an empty String (System.out.println(\"\")) is considered bad style; it makes the intention less clear."
+        }
+    },
+    "empty": {
+        "title": "",
+        "message": ""
+    },
+    "boolean_zen": {
+        "equals_true": "rather than testing if a boolean x is equal to true, you should just use x itself as a condition",
+        "equals_false": "rather tjam testing if a boolean x is equal to false, you should just use !x itself as a condition"
+    },
+    "scanners": {
+        "global": "When a Scanner is declared in global scope of a static class , it is still a global variable. You should declare it in a main method and pass it as a parameter to methods that use it."
+    },
+    "one_per_line": "You should limit your code to one statement per line.",
+    "constants": "something something declare them correctly",
+    "forbidden": {
+        "break": "break is a forbidden feature. You are not allowed to use it in CSE 14X.",
+        "continue": "continue is a forbidden feature. You are not allowed to use it in CSE 14X.",
+        "try/catch": "try/catch is a forbidden feature. You are not allowed to use it in CSE 14X.",
+        "var": "var is a forbidden feature. You are not allowed to use it in CSE 14X.",
+        "toArray": "toArray is a forbidden feature. You are not allowed to use it in CSE 14X.",
+        "string": {
+            "builder": "StringBuilder is a forbidden feature. You are not allowed to use it in CSE 14X.",
+            "buffer": "StringBuffer is a forbidden feature. You are not allowed to use it in CSE 14X.",
+            "joiner": "StringJoiner is a forbidden feature. You are not allowed to use it in CSE 14X.",
+            "tokenizer": "StringTokenizer is a forbidden feature. You are not allowed to use it in CSE 14X.",
+            "toCharArray": "String.toCharArray is a forbidden feature. You are not allowed to use it in CSE 14X.",
+            "join": "String.join is a forbidden feature. You are not allowed to use it in CSE 14X.",
+            "matches": "String.matches is a forbidden feature. You are not allowed to use it in CSE 14X."
+        },
+        "arrays": {
+            "asList": "Arrays.asList is a forbidden feature. You are not allowed to use it in CSE 14X.",
+            "copyOf": "Arrays.copyOf",
+            "copyOfRange": "Arrays.copyOfRange is a forbidden feature. You are not allowed to use it in CSE 14X.",
+            "sort": "Arrays.sort is a forbidden feature. You are not allowed to use it in CSE 14X."
+        },
+        "collections": {
+            "copy": "Collections.copy is a forbidden feature. You are not allowed to use it in CSE 14X.",
+            "sort": "Collections.sort is a forbidden feature. You are not allowed to use it in CSE 14X."
+        }
+    }
+}
