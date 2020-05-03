@@ -27,8 +27,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav ml-auto nav-tabs">
-                <li class=" mr-2 "><a class="nav-link active" data-toggle="tab" href="#splash-page">About</a></li>
-                <li class=" mr-2 "><a class="nav-link" data-toggle="tab" href="#main-page">Style Checker</a></li>
+                <li class=" mr-2 "><a class="nav-link active" data-toggle="tab" href="#splash-page" id="splash-link">About</a></li>
+                <li class=" mr-2 "><a class="nav-link" data-toggle="tab" href="#main-page" id="main-link">Style Checker</a></li>
                 <li class=" mr-2"><a class="nav-link" href="https://github.com/info340c-sp20/project-1-oibra">Codebase</a></li>
             </ul>
         </div>
@@ -74,27 +74,20 @@
                                 </div>
                             </div>
                         </fieldset>
-                        <div class="form-group mb-0 row align-items-center">
+                        <div class="form-group mb-0 row align-items-center" id="file-group">
                             <label for="code-file" class="text-primary col-sm-2 col-form-label"><strong>Input code as file</strong></label>
                             <input type="file" name="code-file" id="code-file" class="form-control-file col-sm-10"/>
                         </div>
-                        <div class="form-group row">
+                        <div class="form-group row d-none" id="text-group">
                             <label for="code-text" class="text-primary col-sm-2 col-form-label"><strong>Input code as text</strong></label>
                             <div class="col-sm-10">
-                                <textarea name="code-text" id="code-text" class="form-control form-control-sm mb-1 " rows="10" disabled>
-public static final int constant = 1;
-public static void main(String[] args) {
-    // this is a really long comment that should be picked up as being too long by the style checker because it's so long
-int Var = 6;
-    System.out.print("hello world\n");
-    System.out.println("");
-}</textarea>
+                                <textarea name="code-text" id="code-text" class="form-control form-control-sm mb-1 " rows="10"></textarea>
                             </div>
                         </div>
                         <div class="form-group row align-items-center">
                             <label for="tab-size" class="col-sm-2 text-primary col-form-label"><strong>Tab Size (in spaces)</strong></label> <div class="container justify-content-start col"><input type="number" id="tab-size" name="tab-size" required="required" value="3" class="form-control"/></div>
                         </div>
-                        <button type="submit" class="btn btn-primary mb-4" name="submit" id="submit">Analyze Code</button>
+                        <button type="submit" class="btn btn-primary mb-4" name="submit" id="submit" disabled>Analyze Code</button>
                     </form>
                 </section>
             </div>
@@ -109,10 +102,10 @@ int Var = 6;
                     </div>
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#">Error Highlighting</a>
+                            <a class="nav-link active" data-toggle="tab" href="#errors-highlighting">Error Highlighting</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#">Errors List</a>
+                            <a class="nav-link" data-toggle="tab" href="#errors-list">Errors List</a>
                         </li>
                     </ul>
                     <!--Found errors added here by javascript-->
@@ -122,7 +115,7 @@ int Var = 6;
                         </div>
                         <div class="tab-pane fade show active" id="errors-highlighting">
                             <div class="contatiner mt-4">
-
+                                <pre><code></code></pre>
                             </div>
                         </div>
                     </div>
@@ -135,5 +128,14 @@ int Var = 6;
         <cite>Icon created by <a href="https://www.flaticon.com/authors/freepik" class="text-decoration-none text-light">Freepik</a> from <a href="https://www.flaticon.com" class="text-decoration-none text-light">www.flaticon.com</a>. Images created by <a href="" class="text-decoration-none text-light">unDraw</a>.</cite>
         <p class="mb-0">Project created by <a href="https://students.washington.edu/oibra" class="text-decoration-none text-light">Omar Ibrahim</a>. <a class="text-decoration-none text-light" href="mailto:oibra@uw.edu">Contact Me</a>.</p>
     </footer>
+    <!-- Load JavaScript libraries here -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+  <!-- Automatically provides/replaces `Promise` if missing or broken. -->
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
+
+    <!-- Minified version of `es6-promise-auto` below. -->
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 </body>
 </html>

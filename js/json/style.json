@@ -1,9 +1,12 @@
 {
     "indentation": {
-        "title": "This line is indented incorrectly",
-        "message": {
-            "over": "This line is overindented. You should indent your program one tab further every time you open a curly brace and indent one tab less every time you close a curly brace. This line should be indented more.",
-            "under": "This line is underindented. You should indent your program one tab further every time you open a curly brace and indent one tab less every time you close a curly brace. This line should be indented more."
+        "over": {
+            "title": "This line is indented incorrectly",
+            "message": "This line is overindented. You should indent your program one tab further every time you open a curly brace and indent one tab less every time you close a curly brace. This line should be indented more."
+        },
+        "under": {
+            "title": "This line is indented incorrectly",
+            "message": "This line is underindented. You should indent your program one tab further every time you open a curly brace and indent one tab less every time you close a curly brace. This line should be indented more."
         }
     },
     "long_lines": {
