@@ -100,6 +100,13 @@ code a, code a:hover {
     line-height: 2;
 }
 
+.btn-primary:disabled, .btn-primary:disabled:hover {
+    background-color: #6c56ec;
+    color: whitesmoke;
+    border: 2px solid #6c56ec;
+    cursor: default;
+}
+
 .lead {
     margin-top: .5rem;
 }
@@ -280,19 +287,19 @@ main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
     animation-duration: 1s;
 }
 
-#splash main {
+#splash-page {
     height: 100%;
 }
 
-#splash main > div {
+#splash-page > div {
     flex-basis: 50%;
 }
 
-#splash p {
+#splash-page {
     color: whitesmoke;
 }
 
-#splash main a, #splash footer a {
+#splash-page a {
     text-decoration: underline;
 }
 
@@ -316,7 +323,7 @@ main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
 } */
 
 @media (max-width: 767.98px) {
-    #splash main {
+    #splash-page {
         flex-direction: column;
         padding-bottom: 2rem;
         padding-top: 4rem;
@@ -324,7 +331,7 @@ main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-    #splash main {
+    #splash-page {
         height: 90%;
         display: flex;
         align-items: center;

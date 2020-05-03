@@ -1,9 +1,7 @@
 'use strict';
 const MAX_LENGTH = 100;
 window.onload = () => {
-    assignRecheckListeners();
-    assignRecheckSubmitListeners();
-    assignModalCloseListeners();
+    
     assignCollapseButtonToggling();
 
     document.getElementById('splash-link').addEventListener('click', (e) => {
@@ -172,8 +170,7 @@ function lint(code, tabSize, style) {
 
         if (line.includes('{')) {
             indentLevel++;
-        }
-        
+        }     
     }
     for (let key in Object.keys(errorsByType)) {
         let type = Object.keys(errorsByType)[key];
@@ -188,7 +185,9 @@ function lint(code, tabSize, style) {
         }
         document.getElementById('errors-list').append(container);
     }
-    
+    assignRecheckListeners();
+    assignRecheckSubmitListeners();
+    assignModalCloseListeners();
 }
 
 function formatError(type) {
