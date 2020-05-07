@@ -12,17 +12,17 @@ window.onload = () => {
     
     assignCollapseButtonToggling();
 
-    document.getElementById('splash-link').addEventListener('click', (e) => {
+    document.getElementById('splash-link').addEventListener('click', () => {
         document.querySelector('body').classList.remove('bg-white');
         document.querySelector('body').classList.add('bg-primary');
     });
 
-    document.getElementById('main-link').addEventListener('click', (e) => {
+    document.getElementById('main-link').addEventListener('click', () => {
         document.querySelector('body').classList.add('bg-white');
         document.querySelector('body').classList.remove('bg-primary');
     });
 
-    document.getElementById('file').addEventListener('click', (e) => {
+    document.getElementById('file').addEventListener('click', () => {
         document.getElementById('file-group').classList.remove('d-none');
         document.getElementById('text-group').classList.add('d-none');
         
@@ -33,7 +33,7 @@ window.onload = () => {
         }
     });
 
-    document.getElementById('text').addEventListener('click', (e) => {
+    document.getElementById('text').addEventListener('click', () => {
         document.getElementById('text-group').classList.remove('d-none');
         document.getElementById('file-group').classList.add('d-none');
 
@@ -44,7 +44,7 @@ window.onload = () => {
         }
     });
 
-    document.getElementById('code-file').addEventListener('input', (e) => {
+    document.getElementById('code-file').addEventListener('input', () => {
         if (document.getElementById('code-file').files) {
             document.getElementById('submit').disabled = false;
         } else {
@@ -52,7 +52,7 @@ window.onload = () => {
         }
     });
 
-    document.getElementById('code-text').addEventListener('input', (e) => {
+    document.getElementById('code-text').addEventListener('input', () => {
         if (document.getElementById('code-text').value) {
             document.getElementById('submit').disabled = false;
         } else {
@@ -84,7 +84,7 @@ window.onload = () => {
                         reader.onload = (e) => { 
                             lint(e.target.result, tabSize, json);
                         }
-                        reader.onerror = (e) => {
+                        reader.onerror = () => {
                             console.error("error reading file");
                         }
                     } else {
