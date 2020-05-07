@@ -82,8 +82,6 @@ code a, code a:hover {
     line-height: 2;
 }
 
-
-
 .lead {
     margin-top: .5rem;
 }
@@ -134,13 +132,6 @@ code a, code a:hover {
 
 .form-check-inline {
     display: inline;
-}
-
-.title {
-    display: inline-block;
-    vertical-align: baseline;
-    margin: 1rem;
-    margin-bottom: 1.25rem;
 }
 
 @keyframes flip {
@@ -198,7 +189,6 @@ code a, code a:hover {
 
 .errors:not(:last-child) {
     border-bottom: 1px solid #6c56ec;
-
 }
 
 .card {
@@ -235,8 +225,6 @@ main .nav-tabs .nav-link:hover, main .nav-tabs .nav-item .nav-link:hover {
 main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
     color: #6c56ec;
 }
-
-
 
 .navbar .nav-tabs .nav-link:hover:not(.active) {
     text-decoration: underline;
@@ -299,12 +287,9 @@ form label:not(.form-check-label), form legend {
     text-decoration: underline;
 }
 
-
-
 #splash-page.show {
     display: flex;
 }
-
 
 .editor-modal .recheck-edit-btn {
     display: none;
@@ -330,7 +315,7 @@ form label:not(.form-check-label), form legend {
     }
 }
 
-.navbar-brand img:hover {
+.navbrand-img:hover {
     animation-name: wobble;
     animation-iteration-count: 1;
     animation-duration: 1s;
@@ -394,7 +379,3 @@ form label:not(.form-check-label), form legend {
     }
 
 }
-/*
-@media (min-width: 992px) and (max-width: 1199.98px) {
-
-} */
