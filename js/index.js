@@ -104,7 +104,7 @@ function lint(code, tabSize, style) {
     emptyStruct = false;
     scanners = 0;
     inClass = false;
-
+    console.log(inClass);
     let codeBlock = document.querySelector('#errors-highlighting code');
     let lines = code.split(/\r?\n/);
     let errorsByType = {};
