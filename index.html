@@ -14,7 +14,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="js/index.js"></script>
+    
 </head>
 <body class="bg-primary">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
@@ -34,111 +34,122 @@
         </div>
     </nav>
     <div class="tab-content">
-    <main class=" align-items-stretch align-middle pb-0  pt-5 tab-pane fade show active bg-primary" id="splash-page">
-        <div class="p-xs-0 p-md-5 ml-4 mr-4 mr-lg-2 d-flex flex-column justify-content-around splash-img">
-            <img src="img/splash2.svg" alt="a programmer siiting at a computer" class="img-fluid mb-3 mb-md-0 glitch"/>
-            <p class="pt-md-2 text-light">
-                I've been a TA for UW CSE 14X (Intro CS1 &amp; 2 at UW) for the past two years (I'm not currently), and in that time I've seen what many students struggle with in the class. I'm also on <a class="text-light" href="https://www.reddit.com/r/udub/">r/udub</a>, so I've seen what students complain the most about in the class too. The most common complaint/warning about the 14X series is the harsh internal grading on style. I always felt like we give a lot of resources to students on writing "well-styled" (by our standards) code, but students' sentiments towards the courses would suggest otherwise, and I like to do as much as I can to support students as I can. None of the information presented in this application is a secret, but hopefully puts it into a format that can be more helpful to students than it is currently.
-            </p>
-        </div>
-        <div class="pl-md-5 pr-md-5 pb-md-5 pd-lg-5 ml-4 ml-lg-2 mr-4 d-flex flex-column-reverse flex-lg-column justify-content-around splash-img">
-            <p class="pt-md-2 text-light">
-                This web app functions as an educational Java linter that checks the style of users’ input Java code and inform users of what stylistic issues the code has with suggestions on how to fix them. This app is built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners. Be aware though, that if you are not a student in those classes, make sure that your code fits the quality guidelines of your organization and that they're consistent with the guidelines used by this tool if you want to use it. The project proposal can be viewed <a class="text-light" href="https://info340c-sp20.github.io/project-1-oibra/proposal.html">here</a>.
-            </p>
-            <img src="img/splash.svg" alt="a programmer confronting code in the wild" class="img-fluid mb-3 mb-md-0"/>
-        </div>
-    </main>
-    <main class="bg-white tab-pane fade pb-5" id="main-page">
-        <div class="container">
-            <section class="mt-3">
-                <div class="container">
-                    <h1 class="text-primary">Java Style Linter</h1>
-                    <p>This web app functions as an educational Java linter that checks the style of users’ input Java code and inform users of what stylistic issues the code has with suggestions on how to fix them. This app is built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners. Be aware though, that if you are not a student in those classes, make sure that your code fits the quality guidelines of your organization and that they're consistent with the guidelines used by this tool if you want to use it.</p>
-                </div>
-            </section>
+        <main class=" align-items-stretch align-middle pb-0  pt-5 tab-pane fade show active bg-primary" id="splash-page">
+            <div class="p-xs-0 p-md-5 ml-4 mr-4 mr-lg-2 d-flex flex-column justify-content-around splash-img">
+                <img src="img/splash2.svg" alt="a programmer siiting at a computer" class="img-fluid mb-3 mb-md-0 glitch"/>
+                <p class="pt-md-2 text-light">
+                    I've been a TA for UW CSE 14X (Intro CS1 &amp; 2 at UW) for the past two years (I'm not currently), and in that time I've seen what many students struggle with in the class. I'm also on <a class="text-light" href="https://www.reddit.com/r/udub/">r/udub</a>, so I've seen what students complain the most about in the class too. The most common complaint/warning about the 14X series is the harsh internal grading on style. I always felt like we give a lot of resources to students on writing "well-styled" (by our standards) code, but students' sentiments towards the courses would suggest otherwise, and I like to do as much as I can to support students as I can. None of the information presented in this application is a secret, but hopefully puts it into a format that can be more helpful to students than it is currently.
+                </p>
+            </div>
+            <div class="pl-md-5 pr-md-5 pb-md-5 pd-lg-5 ml-4 ml-lg-2 mr-4 d-flex flex-column-reverse flex-lg-column justify-content-around splash-img">
+                <p class="pt-md-2 text-light">
+                    This web app functions as an educational Java linter that checks the style of users’ input Java code and inform users of what stylistic issues the code has with suggestions on how to fix them. This app is built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners. Be aware though, that if you are not a student in those classes, make sure that your code fits the quality guidelines of your organization and that they're consistent with the guidelines used by this tool if you want to use it. The project proposal can be viewed <a class="text-light" href="https://info340c-sp20.github.io/project-1-oibra/proposal.html">here</a>.
+                </p>
+                <img src="img/splash.svg" alt="a programmer confronting code in the wild" class="img-fluid mb-3 mb-md-0"/>
+            </div>
+        </main>
+        <main class="bg-white tab-pane fade pb-5" id="main-page">
             <div class="container">
-                <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" role="button" data-toggle="collapse" data-target="#code-form">
-                    <img class="collapse-button open" src="img/expand_more.svg" alt="collapse button"/>
-                    Code Input
-                </h2>
-                <section class="collapse show" id="code-form">
-
-                    <form action="./js/index.js" method="POST" spellcheck="false">
-                        <fieldset class="form-group">
-                            <div class="row align-items-center">
-                                <legend class="col-form-label col-sm-2 pt-0 text-primary"><strong>Code Input Format</strong></legend>
-                                <div class="col-sm-10">
-                                    <div class="form-group form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="input-source" value="file" id="file" checked="checked" /><label class="form-check-label" for="file">File Input</label>
-                                    </div>
-                                    <div class="form-group form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="input-source" value="text" id="text" /><label class="form-check-label" for="text">Text Entry</label>
+                <section class="mt-3">
+                    <div class="container">
+                        <h1 class="text-primary">Java Style Linter</h1>
+                        <p>This web app functions as an educational Java linter that checks the style of users’ input Java code and inform users of what stylistic issues the code has with suggestions on how to fix them. This app is built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners. Be aware though, that if you are not a student in those classes, make sure that your code fits the quality guidelines of your organization and that they're consistent with the guidelines used by this tool if you want to use it.</p>
+                    </div>
+                </section>
+                <div class="container">
+                    <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" role="button" data-toggle="collapse" data-target="#code-form">
+                        <img class="collapse-button open" src="img/expand_more.svg" alt="collapse button"/>
+                        Code Input
+                    </h2>
+                    <section class="collapse show" id="code-form">
+                        <form action="./js/index.js" method="POST" spellcheck="false">
+                            <fieldset class="form-group">
+                                <div class="row align-items-center">
+                                    <legend class="col-form-label col-sm-2 pt-0 text-primary"><strong>Code Input Format</strong></legend>
+                                    <div class="col-sm-10">
+                                        <div class="form-group form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="input-source" value="file" id="file" checked="checked" />
+                                            <label class="form-check-label" for="file">File Input</label>
+                                        </div>
+                                        <div class="form-group form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="input-source" value="text" id="text" />
+                                            <label class="form-check-label" for="text">Text Entry</label>
+                                        </div>
                                     </div>
                                 </div>
+                            </fieldset>
+                            <div class="form-group mb-0 row align-items-center" id="file-group">
+                                <label for="code-file" class="text-primary col-sm-2 col-form-label"><strong>Input code as file</strong></label>
+                                <input type="file" name="code-file" id="code-file" class="form-control-file col-sm-10"/>
                             </div>
-                        </fieldset>
-                        <div class="form-group mb-0 row align-items-center" id="file-group">
-                            <label for="code-file" class="text-primary col-sm-2 col-form-label"><strong>Input code as file</strong></label>
-                            <input type="file" name="code-file" id="code-file" class="form-control-file col-sm-10"/>
+                            <div class="form-group row d-none" id="text-group">
+                                <label for="code-text" class="text-primary col-sm-2 col-form-label"><strong>Input code as text</strong></label>
+                                <div class="col-sm-10">
+                                    <textarea name="code-text" id="code-text" class="form-control form-control-sm mb-1 " rows="10"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center">
+                                <label for="tab-size" class="col-sm-2 text-primary col-form-label"><strong>Tab Size (in spaces)</strong></label>
+                                <div class="container justify-content-start col">
+                                    <input type="number" id="tab-size" name="tab-size" required="required" value="3" class="form-control"/>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-4" name="submit" id="submit" disabled>Analyze Code</button>
+                        </form>
+                    </section>
+                </div>
+                <div class="container">
+                    <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" role="button" data-toggle="collapse" data-target="#lint-output">
+                        <img class="collapse-button closed" src="img/expand_more.svg" alt="collapse button"/>
+                        Errors Found
+                    </h2>
+                    <section class="collapse" id="lint-output">
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code. In fact, while this tool is made to catch a lot of style issues, creating a tool to catch every possible style error is nearly impossible and certainly not something I tried to do, so make sure to give your code a second look yourself.
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="form-group row d-none" id="text-group">
-                            <label for="code-text" class="text-primary col-sm-2 col-form-label"><strong>Input code as text</strong></label>
-                            <div class="col-sm-10">
-                                <textarea name="code-text" id="code-text" class="form-control form-control-sm mb-1 " rows="10"></textarea>
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#errors-highlighting">Error Highlighting</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#errors-list">Errors List</a>
+                            </li>
+                        </ul>
+                        <!--Found errors added here by javascript-->
+                        <div id="tab-content" class="tab-content">
+                            <div class="tab-pane fade" id="errors-list">
+                            </div>
+                            <div class="tab-pane fade show active" id="errors-highlighting">
+                                <div class="contatiner mt-4">
+                                    <pre><code></code></pre>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group row align-items-center">
-                            <label for="tab-size" class="col-sm-2 text-primary col-form-label"><strong>Tab Size (in spaces)</strong></label> <div class="container justify-content-start col"><input type="number" id="tab-size" name="tab-size" required="required" value="3" class="form-control"/></div>
-                        </div>
-                        <button type="submit" class="btn btn-primary mb-4" name="submit" id="submit" disabled>Analyze Code</button>
-                    </form>
-                </section>
+                    </section>
+                </div>
             </div>
-            <div class="container">
-                <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" role="button" data-toggle="collapse" data-target="#lint-output"><img class="collapse-button closed" src="img/expand_more.svg" alt="collapse button"/>Errors Found</h2>
-                <section class="collapse" id="lint-output">
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code. In fact, while this tool is made to catch a lot of style issues, creating a tool to catch every possible style error is nearly impossible and certainly not something I tried to do, so make sure to give your code a second look yourself.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <ul class="nav nav-tabs">
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#errors-highlighting">Error Highlighting</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#errors-list">Errors List</a>
-                        </li>
-                    </ul>
-                    <!--Found errors added here by javascript-->
-                    <div id="tab-content" class="tab-content">
-                        <div class="tab-pane fade" id="errors-list">
-                            <!--Found errors added here by javascript-->
-                        </div>
-                        <div class="tab-pane fade show active" id="errors-highlighting">
-                            <div class="contatiner mt-4">
-                                <pre><code></code></pre>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </main>
-</div>
+        </main>
+    </div>
     <footer class="footer mt-auto bg-primary p-3 text-light container-fluid">
         <cite>Icon created by <a href="https://www.flaticon.com/authors/freepik" class="text-decoration-none text-light">Freepik</a> from <a href="https://www.flaticon.com" class="text-decoration-none text-light">www.flaticon.com</a>. Images created by <a href="" class="text-decoration-none text-light">unDraw</a>.</cite>
         <p class="mb-0">Project created by <a href="https://students.washington.edu/oibra" class="text-decoration-none text-light">Omar Ibrahim</a>. <a class="text-decoration-none text-light" href="mailto:oibra@uw.edu">Contact Me</a>.</p>
     </footer>
+
     <!-- Load JavaScript libraries here -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
-  <!-- Automatically provides/replaces `Promise` if missing or broken. -->
+    <!-- fetch libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+    <!-- Automatically provides/replaces `Promise` if missing or broken. -->
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.js"></script>
 
     <!-- Minified version of `es6-promise-auto` below. -->
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+    <!-- main JS -->
+    <script src="js/index.js"></script>
 </body>
 </html>
