@@ -91,7 +91,7 @@ code a, code a:hover {
 
 .error {
     background-color: rgba(112,99,236, 0.075);
-    padding: 4px 6px 4px 0px;
+    padding: 4px 6px 4px 6px;
     color: mediumslateblue;
     border-radius: 0px 4px 4px 0px;
 }

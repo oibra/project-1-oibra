@@ -5,7 +5,7 @@
     <meta name="author" content="Omar Ibrahim" />
     <meta name="description" content="a java style linter for intro java programmers to teach them how to write with good java style* (ish)." />
     <meta charset="UTF8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -57,7 +57,10 @@
                 </div>
             </section>
             <div class="container">
-                <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" data-toggle="collapse" data-target="#code-form"><img class="collapse-button open" src="img/expand_more.svg" alt="collapse button"/>Code Input</h2>
+                <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" role="button" data-toggle="collapse" data-target="#code-form">
+                    <img class="collapse-button open" src="img/expand_more.svg" alt="collapse button"/>
+                    Code Input
+                </h2>
                 <section class="collapse show" id="code-form">
 
                     <form action="./js/index.js" method="POST" spellcheck="false">
@@ -92,7 +95,7 @@
                 </section>
             </div>
             <div class="container">
-                <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" data-toggle="collapse" data-target="#lint-output"><img class="collapse-button closed" src="img/expand_more.svg" alt="collapse button"/>Errors Found</h2>
+                <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" role="button" data-toggle="collapse" data-target="#lint-output"><img class="collapse-button closed" src="img/expand_more.svg" alt="collapse button"/>Errors Found</h2>
                 <section class="collapse" id="lint-output">
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code. In fact, while this tool is made to catch a lot of style issues, creating a tool to catch every possible style error is nearly impossible and certainly not something I tried to do, so make sure to give your code a second look yourself.

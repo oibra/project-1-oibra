@@ -1,5 +1,13 @@
 'use strict';
 const MAX_LENGTH = 100;
+const eqTrue = /(.*)==( *)true(.*)/g;
+const eqFalse = /(.*)==( *)false(.*)/g;
+const scan = /(.*)new Scanner\(System\.in\)(.)*/g;
+
+let emptyStruct = false;
+let scanners = 0;
+let inClass = false;
+
 window.onload = () => {
     
     assignCollapseButtonToggling();
@@ -69,8 +77,20 @@ window.onload = () => {
                     return response.json();
                 })
                 .then((json) => {
-                    let code = getCode(fileButton.checked);
-                    lint(code, tabSize, json);
+                    if (fileButton.checked) {
+                        let file = document.getElementById('code-file').files[0];
+                        let reader = new FileReader();
+                        reader.readAsText(file, "UTF-8");
+                        reader.onload = (e) => { 
+                            lint(e.target.result, tabSize, json);
+                        }
+                        reader.onerror = (e) => {
+                            console.error("error reading file");
+                        }
+                    } else {
+                        lint(document.getElementById('code-text').value, tabSize, json);
+                    }
+                    
                 })
                 .catch((err) => {
                     console.error(err);
@@ -80,38 +100,42 @@ window.onload = () => {
     })
 };
 
-function getCode(inputFormat) {
-    if (inputFormat) {
-        let file = document.getElementById('code-file').files[0];
-        let reader = new FileReader();
-        reader.readAsText(file, "UTF-8");
-        reader.onload = (e) => {
-            return e.target.result;
-        }
-        reader.onerror = (e) => {
-            console.error("error reading file");
-        }
-    } else {
-        return document.getElementById('code-text').value;
-    }
-}
-
 function lint(code, tabSize, style) {
+    emptyStruct = false;
+    scanners = 0;
+    inClass = false;
+
     let codeBlock = document.querySelector('#errors-highlighting code');
     let lines = code.split(/\r?\n/);
     let errorsByType = {};
     let indentLevel = 0;
     for(let l in lines) {
-        let line = lines[l];
+        let line = lines[l];  
         let lineNum = parseInt(l) + 1;
-        if (line.includes('}')) {
-            indentLevel--;
-        }
         let lLog = {
             "line": lineNum,
             "code": line,
             "errors": []
-        };
+        }
+
+        if (line.includes("}")) {
+            indentLevel--;
+            if (indentLevel == 0) {
+                inClass = false;
+            }
+            if (emptyStruct) {
+                lLog["errors"].push(style["empty_struct"]);
+                if (!errorsByType["empty_struct"]) {
+                    errorsByType["empty_struct"] = [];
+                }
+                errorsByType["empty_struct"].push({
+                    "line": lineNum,
+                    "code": line,
+                    "annotation": style["empty_struct"]
+                });
+            }
+        }
+        
 
         // check line length
         if (line.length > MAX_LENGTH) {
@@ -151,9 +175,54 @@ function lint(code, tabSize, style) {
                     "annotation": style["indentation"]["over"]
                 });
             }
-            
+
+            // check naming conventions
+            // if (line.matches("(public|private)? (static)? [a-zA-Z]+( +)[a-zA-Z0-9_]+( +)=(.*)") || (line.matches("(public|private)? (static)? [a-zA-Z]+( +)[a-zA-Z0-9_]+;"))) {
+
+            // }
         }
 
+        // check basic boolean zen
+        if (line.match(eqTrue)) {
+            if (!errorsByType["boolean_zen"]) {
+                errorsByType["boolean_zen"] = [];
+            }
+            lLog["errors"].push(style["boolean_zen"]["equals_true"]);
+            errorsByType["boolean_zen"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["boolean_zen"]["equals_true"]
+            });
+        }
+        if (line.match(eqFalse)) {
+            if (!errorsByType["boolean_zen"]) {
+                errorsByType["boolean_zen"] = [];
+            }
+            lLog["errors"].push(style["boolean_zen"]["equals_false"]);
+            errorsByType["boolean_zen"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["boolean_zen"]["equals_false"]
+            });
+        }
+
+        // check for Scanners
+        if (line.match(scan)) {
+            scanners++;
+        }
+        if (scanners > 1) {
+            if (!errorsByType["scanners"]) {
+                errorsByType["scanners"] = [];
+            }
+            lLog["errors"].push(style["scanners"]);
+            errorsByType["scanners"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["scanners"]
+            });
+        }
+
+        // create display code line
         let span = document.createElement('span');
         span.textContent = line;
         if (lLog["errors"].length) {
@@ -167,9 +236,14 @@ function lint(code, tabSize, style) {
         }
         codeBlock.append(span);
         codeBlock.append("\n");
-
+        if (line.includes("class")) {
+            inClass = true;
+        }
         if (line.includes('{')) {
             indentLevel++;
+            emptyStruct = true;
+        } else {
+            emptyStruct = false;
         }     
     }
     for (let key in Object.keys(errorsByType)) {

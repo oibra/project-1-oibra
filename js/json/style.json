@@ -31,16 +31,25 @@
             "messgae": "You should always print a blank line using System.out.println(). Printing an empty String (System.out.println(\"\")) is considered bad style; it makes the intention less clear."
         }
     },
-    "empty": {
-        "title": "",
-        "message": ""
+    "empty_struct": {
+        "title": "There's no need for this structure",
+        "message": "insert message here"
     },
     "boolean_zen": {
-        "equals_true": "rather than testing if a boolean x is equal to true, you should just use x itself as a condition",
-        "equals_false": "rather tjam testing if a boolean x is equal to false, you should just use !x itself as a condition"
+    
+        "equals_true": {
+            "title": "You should never test booleans for equality",
+            "message": "rather than testing if a boolean x is equal to true, you should just use x itself as a condition"
+        },
+        "equals_false": {
+            "title": "You should never test booleans for equality",
+            "message": "rather than testing if a boolean x is equal to false, you should just use !x itself as a condition"
+        }
+        
     },
     "scanners": {
-        "global": "When a Scanner is declared in global scope of a static class , it is still a global variable. You should declare it in a main method and pass it as a parameter to methods that use it."
+        "title": "There should be one Scanner per source",
+        "message": "insert message here"
     },
     "one_per_line": "You should limit your code to one statement per line.",
     "constants": "something something declare them correctly",
