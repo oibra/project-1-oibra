@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
 
-/* @keyframes pulse {
-    0% {margin-top: 0%;}
-    50% {margin-top: 2%;}
-    100% {margin-top: 0%;}
-} */
-
 html {
     height: 100%;
 }
@@ -16,7 +10,7 @@ body, html {
     min-height: 100%;
 }
 
-body:not(#splash) {
+body {
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -71,28 +65,14 @@ code a, code a:hover {
     margin-top: 1.5rem;
 }
 
-/* .splash-img {
-    animation-name: pulse;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-}
-
-.splash-img:nth-child(2) {
-    animation-delay: 2s;
-} */
-
 .bg-primary {
     background-color: #6c56ec !important;
-}
-
-.text-primary {
-    color: #6c56ec !important;
 }
 
 .error {
     background-color: rgba(112,99,236, 0.075);
     padding: 4px 6px 4px 6px;
-    color: mediumslateblue;
+    color: #6c56ec;
     border-radius: 0px 4px 4px 0px;
 }
 
@@ -129,9 +109,11 @@ code a, code a:hover {
     border-top: 1px solid #dee2e6;
 }
 
-.navbar-brand img {
+.navbrand-img {
     width: 30px;
     height: 30px;
+    display: inline-block;
+    margin-top: -.25rem;
 }
 
 .btn-primary {
@@ -141,9 +123,9 @@ code a, code a:hover {
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-    border: 2px solid mediumslateblue;
+    border: 2px solid #6c56ec;
     background-color: white;
-    color: mediumslateblue;
+    color: #6c56ec;
 }
 
 .form-check-inline {
@@ -165,6 +147,12 @@ code a, code a:hover {
 @keyframes flip-reverse {
     from { transform: rotate(180deg); }
     to { transform: rotate(0deg); }
+}
+
+.collapse-toggler {
+    padding: .5rem;
+    color: white;
+    background-color: #6c56ec;
 }
 
 .collapse-button {
@@ -205,7 +193,7 @@ code a, code a:hover {
 }
 
 .errors:not(:last-child) {
-    border-bottom: 1px solid mediumslateblue;
+    border-bottom: 1px solid #6c56ec;
 
 }
 
@@ -230,14 +218,68 @@ code a, code a:hover {
 }
 
 .navbar .nav-tabs .nav-link:hover:not(.active) {
-    /* border-bottom: 1px solid rgba(255, 255, 255, .75); */
     text-decoration: underline;
 }
 
 .navbar .nav-tabs .nav-link.active {
-    color: #fff;
+    color: whitesmoke;
     background: none;
     
+}
+
+.navbar-collapse.collapse .nav, .navbar-collapse.collapsing .nav {
+    flex-direction: column;
+}
+
+.splash-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+.splash-text, .splash-link {
+    color: whitesmoke;
+}
+
+h1 {
+    color: #6c56ec;
+}
+
+#splash-page {
+    padding-top: 0;
+    padding-bottom: 0;
+    align-items: stretch;
+}
+
+#main-page {
+    background-color: white;
+    padding-bottom: 3rem;
+}
+
+nav .nav-item {
+    margin-right: .5rem;
+}
+
+form label:not(.form-check-label), form legend {
+    color: #6c56ec;
+}
+
+footer {
+    margin-top: auto;
+    padding: 1rem;
+    color: whitesmoke;
+}
+
+.footer-link {
+    color: #cbd3da;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #cbd3da;
+    text-decoration: underline;
 }
 
 main .nav-tabs .nav-link, main .nav-tabs .nav-item .nav-link {
@@ -249,7 +291,7 @@ main .nav-tabs .nav-link:hover, main .nav-tabs .nav-item .nav-link:hover {
 }
 
 main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
-    color: mediumslateblue;
+    color: #6c56ec;
 }
 
 #splash-page.show {
@@ -316,12 +358,6 @@ main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
     background-color: rgba(112,99,236, 0.2);
 }
 
-/* footer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-} */
-
 @media (max-width: 767.98px) {
     #splash-page {
         flex-direction: column;
@@ -342,11 +378,22 @@ main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
     }
 }
 
+@media (max-width: 991.98px) {
+    .splash-text {
+        padding-top: 2rem;
+    }
+
+    .splash-box {
+        margin-left: 3rem;
+        margin-right: 3rem;
+    }
+}
+
 @media (min-width: 992px) {
-    /* #splash footer {
-        position: fixed;
-        bottom: 0;
-    } */
+    .navbar-collapse.collapse .nav {
+        flex-direction: row;
+    }
+
 }
 /*
 @media (min-width: 992px) and (max-width: 1199.98px) {

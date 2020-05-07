@@ -3,7 +3,7 @@
 <head>
     <title>Java Style Linter</title>
     <meta name="author" content="Omar Ibrahim" />
-    <meta name="description" content="a java style linter for intro java programmers to teach them how to write with good java style* (ish)." />
+    <meta name="description" content="a java style linter for intro java programmers to teach them how to write with good java style* *(ish)." />
     <meta charset="UTF8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
@@ -19,7 +19,7 @@
 <body class="bg-primary">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
         <a class="navbar-brand" href="index.html">
-            <img src="img/favicon.png" class="d-inline-block align-top" alt="lint icon">
+            <img src="img/favicon.png" class="navbrand-img" alt="lint icon">
             Java Style Linter
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,37 +27,33 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav ml-auto nav-tabs">
-                <li class=" mr-2 "><a class="nav-link active" data-toggle="tab" href="#splash-page" id="splash-link">About</a></li>
-                <li class=" mr-2 "><a class="nav-link" data-toggle="tab" href="#main-page" id="main-link">Style Checker</a></li>
-                <li class=" mr-2"><a class="nav-link" href="https://github.com/info340c-sp20/project-1-oibra">Codebase</a></li>
+                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#splash-page" id="splash-link">About</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#main-page" id="main-link">Style Checker</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/info340c-sp20/project-1-oibra">Codebase</a></li>
             </ul>
         </div>
     </nav>
     <div class="tab-content">
-        <main class=" align-items-stretch align-middle pb-0  pt-5 tab-pane fade show active bg-primary" id="splash-page">
-            <div class="p-xs-0 p-md-5 ml-4 mr-4 mr-lg-2 d-flex flex-column justify-content-around splash-img">
-                <img src="img/splash2.svg" alt="a programmer siiting at a computer" class="img-fluid mb-3 mb-md-0 glitch"/>
-                <p class="pt-md-2 text-light">
-                    I've been a TA for UW CSE 14X (Intro CS1 &amp; 2 at UW) for the past two years (I'm not currently), and in that time I've seen what many students struggle with in the class. I'm also on <a class="text-light" href="https://www.reddit.com/r/udub/">r/udub</a>, so I've seen what students complain the most about in the class too. The most common complaint/warning about the 14X series is the harsh internal grading on style. I always felt like we give a lot of resources to students on writing "well-styled" (by our standards) code, but students' sentiments towards the courses would suggest otherwise, and I like to do as much as I can to support students as I can. None of the information presented in this application is a secret, but hopefully puts it into a format that can be more helpful to students than it is currently.
-                </p>
+        <main class="tab-pane fade show active bg-primary" id="splash-page">
+            <div class="p-xs-0 p-md-5 mr-lg-2 splash-box">
+                <img src="img/splash2.svg" alt="a programmer siiting at a computer" class="img-fluid mb-3 mb-md-0"/>
+                <p class="splash-text">I've been a TA for UW CSE 14X (Intro CS1 &amp; 2 at UW) for the past two years (I'm not currently), and in that time I've seen what many students struggle with in the class. I'm also on <a class="splash-link" href="https://www.reddit.com/r/udub/">r/udub</a>, so I've seen what students complain the most about in the class too. The most common complaint/warning about the 14X series is the harsh internal grading on style. I always felt like we give a lot of resources to students on writing "well-styled" (by our standards) code, but students' sentiments towards the courses would suggest otherwise, and I like to do as much as I can to support students as I can. None of the information presented in this application is a secret, but hopefully puts it into a format that can be more helpful to students than it is currently.</p>
             </div>
-            <div class="pl-md-5 pr-md-5 pb-md-5 pd-lg-5 ml-4 ml-lg-2 mr-4 d-flex flex-column-reverse flex-lg-column justify-content-around splash-img">
-                <p class="pt-md-2 text-light">
-                    This web app functions as an educational Java linter that checks the style of users’ input Java code and inform users of what stylistic issues the code has with suggestions on how to fix them. This app is built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners. Be aware though, that if you are not a student in those classes, make sure that your code fits the quality guidelines of your organization and that they're consistent with the guidelines used by this tool if you want to use it. The project proposal can be viewed <a class="text-light" href="https://info340c-sp20.github.io/project-1-oibra/proposal.html">here</a>.
-                </p>
+            <div class="pl-md-5 pr-md-5 pb-md-5 pd-lg-5 ml-lg-2 flex-column-reverse flex-lg-column splash-box">
+                <p class="splash-text">This web app functions as an educational Java linter that checks the style of users’ input Java code and inform users of what stylistic issues the code has with suggestions on how to fix them. This app is built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners. Be aware though, that if you are not a student in those classes, make sure that your code fits the quality guidelines of your organization and that they're consistent with the guidelines used by this tool if you want to use it. The project proposal can be viewed <a class="splash-link" href="https://info340c-sp20.github.io/project-1-oibra/proposal.html">here</a>.</p>
                 <img src="img/splash.svg" alt="a programmer confronting code in the wild" class="img-fluid mb-3 mb-md-0"/>
             </div>
         </main>
-        <main class="bg-white tab-pane fade pb-5" id="main-page">
+        <main class="tab-pane fade" id="main-page">
             <div class="container">
                 <section class="mt-3">
                     <div class="container">
-                        <h1 class="text-primary">Java Style Linter</h1>
+                        <h1>Java Style Linter</h1>
                         <p>This web app functions as an educational Java linter that checks the style of users’ input Java code and inform users of what stylistic issues the code has with suggestions on how to fix them. This app is built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners. Be aware though, that if you are not a student in those classes, make sure that your code fits the quality guidelines of your organization and that they're consistent with the guidelines used by this tool if you want to use it.</p>
                     </div>
                 </section>
                 <div class="container">
-                    <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" role="button" data-toggle="collapse" data-target="#code-form">
+                    <h2 class="collapse-toggler" type="button" role="button" data-toggle="collapse" data-target="#code-form">
                         <img class="collapse-button open" src="img/expand_more.svg" alt="collapse button"/>
                         Code Input
                     </h2>
@@ -65,7 +61,7 @@
                         <form action="./js/index.js" method="POST" spellcheck="false">
                             <fieldset class="form-group">
                                 <div class="row align-items-center">
-                                    <legend class="col-form-label col-sm-2 pt-0 text-primary"><strong>Code Input Format</strong></legend>
+                                    <legend class="col-form-label col-sm-2 pt-0"><strong>Code Input Format</strong></legend>
                                     <div class="col-sm-10">
                                         <div class="form-group form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="input-source" value="file" id="file" checked="checked" />
@@ -79,17 +75,17 @@
                                 </div>
                             </fieldset>
                             <div class="form-group mb-0 row align-items-center" id="file-group">
-                                <label for="code-file" class="text-primary col-sm-2 col-form-label"><strong>Input code as file</strong></label>
+                                <label for="code-file" class="col-sm-2 col-form-label"><strong>Input code as file</strong></label>
                                 <input type="file" name="code-file" id="code-file" class="form-control-file col-sm-10"/>
                             </div>
                             <div class="form-group row d-none" id="text-group">
-                                <label for="code-text" class="text-primary col-sm-2 col-form-label"><strong>Input code as text</strong></label>
+                                <label for="code-text" class="col-sm-2 col-form-label"><strong>Input code as text</strong></label>
                                 <div class="col-sm-10">
                                     <textarea name="code-text" id="code-text" class="form-control form-control-sm mb-1 " rows="10"></textarea>
                                 </div>
                             </div>
                             <div class="form-group row align-items-center">
-                                <label for="tab-size" class="col-sm-2 text-primary col-form-label"><strong>Tab Size (in spaces)</strong></label>
+                                <label for="tab-size" class="col-sm-2 col-form-label"><strong>Tab Size (in spaces)</strong></label>
                                 <div class="container justify-content-start col">
                                     <input type="number" id="tab-size" name="tab-size" required="required" value="3" class="form-control"/>
                                 </div>
@@ -99,7 +95,7 @@
                     </section>
                 </div>
                 <div class="container">
-                    <h2 class="collapse-toggler p-2 bg-primary text-light" type="button" role="button" data-toggle="collapse" data-target="#lint-output">
+                    <h2 class="collapse-toggler" type="button" role="button" data-toggle="collapse" data-target="#lint-output">
                         <img class="collapse-button closed" src="img/expand_more.svg" alt="collapse button"/>
                         Errors Found
                     </h2>
@@ -133,9 +129,9 @@
             </div>
         </main>
     </div>
-    <footer class="footer mt-auto bg-primary p-3 text-light container-fluid">
-        <cite>Icon created by <a href="https://www.flaticon.com/authors/freepik" class="text-decoration-none text-light">Freepik</a> from <a href="https://www.flaticon.com" class="text-decoration-none text-light">www.flaticon.com</a>. Images created by <a href="" class="text-decoration-none text-light">unDraw</a>.</cite>
-        <p class="mb-0">Project created by <a href="https://students.washington.edu/oibra" class="text-decoration-none text-light">Omar Ibrahim</a>. <a class="text-decoration-none text-light" href="mailto:oibra@uw.edu">Contact Me</a>.</p>
+    <footer class="footer bg-primary container-fluid">
+        <cite>Icon created by <a href="https://www.flaticon.com/authors/freepik" class="footer-link">Freepik</a> from <a href="https://www.flaticon.com" class="footer-link">www.flaticon.com</a>. Images created by <a href="undraw.co" class="footer-link">unDraw</a>.</cite>
+        <p class="mb-0">Project created by <a href="https://students.washington.edu/oibra" class="footer-link">Omar Ibrahim</a>. <a class="footer-link" href="mailto:oibra@uw.edu">Contact Me</a>.</p>
     </footer>
 
     <!-- Load JavaScript libraries here -->
