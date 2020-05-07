@@ -19,6 +19,9 @@ body {
 footer {
     align-self: flex-end;
     margin-top: auto;
+    padding: 1rem;
+    color: whitesmoke;
+    
 }
 
 h2 {
@@ -80,12 +83,6 @@ code a, code a:hover {
     line-height: 2;
 }
 
-.btn-primary:disabled, .btn-primary:disabled:hover {
-    background-color: #6c56ec;
-    color: whitesmoke;
-    border: 2px solid #6c56ec;
-    cursor: default;
-}
 
 .lead {
     margin-top: .5rem;
@@ -126,6 +123,13 @@ code a, code a:hover {
     border: 2px solid #6c56ec;
     background-color: white;
     color: #6c56ec;
+}
+
+.btn-primary:disabled, .btn-primary:disabled:hover {
+    background-color: #6c56ec;
+    color: whitesmoke;
+    border: 2px solid #6c56ec;
+    cursor: default;
 }
 
 .form-check-inline {
@@ -205,27 +209,7 @@ code a, code a:hover {
     display: block;
 }
 
-.navbar .nav-tabs {
-    border-bottom: none;
-    background-color:  transparent;
-}
 
-.navbar .nav-tabs .nav-link {
-    border-radius: .25rem;
-    color: rgba(255, 255, 255, .75);
-    border: none;
-    border-radius: 0;
-}
-
-.navbar .nav-tabs .nav-link:hover:not(.active) {
-    text-decoration: underline;
-}
-
-.navbar .nav-tabs .nav-link.active {
-    color: whitesmoke;
-    background: none;
-    
-}
 
 .navbar-collapse.collapse .nav, .navbar-collapse.collapsing .nav {
     flex-direction: column;
@@ -251,6 +235,8 @@ h1 {
     padding-top: 0;
     padding-bottom: 0;
     align-items: stretch;
+    height: 100%;
+    color: whitesmoke;
 }
 
 #main-page {
@@ -266,11 +252,7 @@ form label:not(.form-check-label), form legend {
     color: #6c56ec;
 }
 
-footer {
-    margin-top: auto;
-    padding: 1rem;
-    color: whitesmoke;
-}
+
 
 .footer-link {
     color: #cbd3da;
@@ -282,7 +264,18 @@ footer {
     text-decoration: underline;
 }
 
-main .nav-tabs .nav-link, main .nav-tabs .nav-item .nav-link {
+main .nav-tabs .nav-link {
+    color: #212529;
+}
+
+.navbar .nav-tabs .nav-link {
+    /* border-radius: .25rem; */
+    color: rgba(255, 255, 255, .75);
+    border: none;
+    border-radius: 0;
+}
+
+main .nav-tabs .nav-item .nav-link {
     color: #212529;
 }
 
@@ -292,6 +285,23 @@ main .nav-tabs .nav-link:hover, main .nav-tabs .nav-item .nav-link:hover {
 
 main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
     color: #6c56ec;
+}
+
+.navbar .nav-tabs {
+    border-bottom: none;
+    background-color:  transparent;
+}
+
+
+
+.navbar .nav-tabs .nav-link:hover:not(.active) {
+    text-decoration: underline;
+}
+
+.navbar .nav-tabs .nav-link.active {
+    color: whitesmoke;
+    background: none;
+    
 }
 
 #splash-page.show {
@@ -329,16 +339,10 @@ main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
     animation-duration: 1s;
 }
 
-#splash-page {
-    height: 100%;
-}
+
 
 #splash-page > div {
     flex-basis: 50%;
-}
-
-#splash-page {
-    color: whitesmoke;
 }
 
 #splash-page a {
