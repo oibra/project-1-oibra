@@ -10,17 +10,52 @@
         }
     },
     "long_lines": {
+        "type": "long_lines",
         "title": "This line is too long (over 100 characters)",
         "message": "Lines of code should ideally max out at 80 characters, and should never exceed 100 characters in length. Lines that are too long should be broken up and wrapped to the next line."
     },
     "naming_conventions": {
-        "title": "This name has the wrong naming conventions.",
-        "message": {
-            "screaming": "Constant names should be SCREAMING_CASED, in all uppercase letters with words separated by underscores.",
-            "pascal": "",
-            "camel": ""
+        "screaming": {
+            "type": "naming_conventions",
+            "title": "This name has the wrong naming conventions.",
+            "message": "Constant names should be SCREAMING_CASED, in all uppercase letters with words separated by underscores."
+        },
+        "pascal": {
+            "type": "naming_conventions",
+            "title": "This name has the wrong naming conventions.",
+            "message": "Class names should be PascalCased, a subset of camel casing where the first letter of the first word is also uppercased."
+        },
+        "camel": {
+            "type": "naming_conventions",
+            "title": "This name has the wrong naming conventions.",
+            "message": "Method & variable names should be camelCased, a convention where the first letter of every word after the first is uppercased."
         }
     },
+    "empty_struct": {
+        "title": "There's no need for this structure",
+        "message": "insert message here"
+    },
+    "boolean_zen": {   
+        "equals_true": {
+            "type": "boolean_zen",
+            "title": "You should never test booleans for equality",
+            "message": "rather than testing if a boolean x is equal to true, you should just use x itself as a condition"
+        },
+        "equals_false": {
+            "type": "boolean_zen",
+            "title": "You should never test booleans for equality",
+            "message": "rather than testing if a boolean x is equal to false, you should just use !x itself as a condition"
+        }
+    },
+    "scanners": {
+        "title": "There should be one Scanner per source",
+        "message": "insert message here"
+    },
+
+
+    
+
+
     "printing": {
         "backslash_n": {
             "title": "\\n should only be used in printf.",
@@ -30,26 +65,6 @@
             "title": "A blank println should actually be blank",
             "messgae": "You should always print a blank line using System.out.println(). Printing an empty String (System.out.println(\"\")) is considered bad style; it makes the intention less clear."
         }
-    },
-    "empty_struct": {
-        "title": "There's no need for this structure",
-        "message": "insert message here"
-    },
-    "boolean_zen": {
-    
-        "equals_true": {
-            "title": "You should never test booleans for equality",
-            "message": "rather than testing if a boolean x is equal to true, you should just use x itself as a condition"
-        },
-        "equals_false": {
-            "title": "You should never test booleans for equality",
-            "message": "rather than testing if a boolean x is equal to false, you should just use !x itself as a condition"
-        }
-        
-    },
-    "scanners": {
-        "title": "There should be one Scanner per source",
-        "message": "insert message here"
     },
     "one_per_line": "You should limit your code to one statement per line.",
     "constants": "something something declare them correctly",

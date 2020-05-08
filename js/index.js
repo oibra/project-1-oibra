@@ -8,6 +8,9 @@ let emptyStruct = false;
 let scanners = 0;
 let inClass = false;
 
+let lineErrors = [{}];
+let tabSize;
+
 window.onload = () => {
     
     assignCollapseButtonToggling();
@@ -62,7 +65,7 @@ window.onload = () => {
 
     document.querySelector('form').addEventListener('submit', (e) => {
         e.preventDefault();
-        let tabSize = document.getElementById('tab-size').value;
+        tabSize = document.getElementById('tab-size').value;
         let fileButton = document.getElementById('file');
         document.getElementById('errors-list').innerHTML = '';
         document.querySelector('#errors-highlighting code').innerHTML = '';
@@ -82,13 +85,13 @@ window.onload = () => {
                         let reader = new FileReader();
                         reader.readAsText(file, "UTF-8");
                         reader.onload = (e) => { 
-                            lint(e.target.result, tabSize, json);
+                            lint(e.target.result, json);
                         }
                         reader.onerror = () => {
                             console.error("error reading file");
                         }
                     } else {
-                        lint(document.getElementById('code-text').value, tabSize, json);
+                        lint(document.getElementById('code-text').value, json);
                     }
                     
                 })
@@ -96,15 +99,26 @@ window.onload = () => {
                     console.error(err);
                 })
         
-        
+        document.querySelector('h2').classList.add('collapsed');
+        document.getElementById('code-form').classList.remove('collapse');
+        document.getElementById('code-form').classList.add('collapsing');
+        document.getElementById('code-form').classList.remove('show');
+        document.getElementById('code-form').classList.add('collapse');
+        document.getElementById('code-form').classList.remove('collapsing');
+        document.getElementById('lint-output').classList.add('show');
+        let togglers = document.querySelectorAll('h2 img');
+        togglers[0].classList.remove('open');
+        togglers[0].classList.add('closed');
+        togglers[1].classList.remove('closed');
+        togglers[1].classList.add('open');
     })
 };
 
-function lint(code, tabSize, style) {
+function lint(code, style) {
+    lineErrors = [{}];
     emptyStruct = false;
     scanners = 0;
     inClass = false;
-    console.log(inClass);
     let codeBlock = document.querySelector('#errors-highlighting code');
     let lines = code.split(/\r?\n/);
     let errorsByType = {};
@@ -134,11 +148,10 @@ function lint(code, tabSize, style) {
                     "annotation": style["empty_struct"]
                 });
             }
-        }
-        
+        }   
 
         // check line length
-        if (line.length > MAX_LENGTH) {
+        if (checkLineLength(line)) {
             lLog["errors"].push(style["long_lines"]);
             if (!errorsByType["long_lines"]) {
                 errorsByType["long_lines"] = [];
@@ -151,16 +164,12 @@ function lint(code, tabSize, style) {
         }
 
         // check indentation
-        let correctIndentation = "";
-        for (let i = 0; i < indentLevel * tabSize; i++) {
-            correctIndentation += " ";
-        }
-        correctIndentation += line.trim();
-        if (correctIndentation != line) {
+        let indentCheck = checkIndentation(line, indentLevel);
+        if (indentCheck) {
             if (!errorsByType["indentation"]) {
                 errorsByType["indentation"] = [];
             }
-            if (correctIndentation.length > line.length) {
+            if (indentCheck == 2) {
                 lLog["errors"].push(style["indentation"]["under"]);
                 errorsByType["indentation"].push({
                     "line": lineNum,
@@ -175,15 +184,10 @@ function lint(code, tabSize, style) {
                     "annotation": style["indentation"]["over"]
                 });
             }
-
-            // check naming conventions
-            // if (line.matches("(public|private)? (static)? [a-zA-Z]+( +)[a-zA-Z0-9_]+( +)=(.*)") || (line.matches("(public|private)? (static)? [a-zA-Z]+( +)[a-zA-Z0-9_]+;"))) {
-
-            // }
         }
 
         // check basic boolean zen
-        if (line.match(eqTrue)) {
+        if (checkZenTrue(line)) {
             if (!errorsByType["boolean_zen"]) {
                 errorsByType["boolean_zen"] = [];
             }
@@ -194,7 +198,7 @@ function lint(code, tabSize, style) {
                 "annotation": style["boolean_zen"]["equals_true"]
             });
         }
-        if (line.match(eqFalse)) {
+        if (checkZenFalse(line)) {
             if (!errorsByType["boolean_zen"]) {
                 errorsByType["boolean_zen"] = [];
             }
@@ -222,7 +226,33 @@ function lint(code, tabSize, style) {
             });
         }
 
-        // create display code line
+        // check constant naming conventions
+        if (checkScreamingCase(line)) {
+            if (!errorsByType["naming_conventions"]) {
+                errorsByType["naming_conventions"] = [];
+            }
+            lLog["errors"].push(style["naming_conventions"]["screaming"]);
+            errorsByType["naming_conventions"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["naming_conventions"]["screaming"]
+            });
+        }
+
+        // check class naming conventions
+        if (checkPascalCase(line)) {
+            if (!errorsByType["naming_conventions"]) {
+                errorsByType["naming_conventions"] = [];
+            }
+            lLog["errors"].push(style["naming_conventions"]["pascal"]);
+            errorsByType["naming_conventions"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["naming_conventions"]["pascal"]
+            })
+        } 
+
+        // create display code line and modal
         let span = document.createElement('span');
         span.textContent = line;
         if (lLog["errors"].length) {
@@ -230,12 +260,13 @@ function lint(code, tabSize, style) {
             span.id = 'line' + lineNum;
             span.setAttribute('type', 'button');
             span.setAttribute('data-toggle', 'modal');
-            span.setAttribute('data-target', '#line' + lineNum + '-modal');
-            
+            span.setAttribute('data-target', '#line' + lineNum + '-modal'); 
             createModal(lLog, line);
         }
         codeBlock.append(span);
         codeBlock.append("\n");
+
+        lineErrors.push(lLog);
         if (line.includes("class")) {
             inClass = true;
         }
@@ -262,6 +293,55 @@ function lint(code, tabSize, style) {
     assignRecheckListeners();
     assignRecheckSubmitListeners();
     assignModalCloseListeners();
+}
+
+function checkLineLength(line) {
+    return line.length > MAX_LENGTH;
+}
+
+function checkIndentation(line, indentLevel) {
+    let correctIndentation = "";
+    for (let i = 0; i < indentLevel * tabSize; i++) {
+        correctIndentation += " ";
+    }
+    correctIndentation += line.trim();
+    if (correctIndentation.length > line.length) {
+        return 2;
+    } else if (correctIndentation.length < line.length) {
+        return 1;
+    }
+    return 0;
+}
+
+function checkZenTrue(line) {
+    return line.match(eqTrue);
+}
+
+function checkZenFalse(line) {
+    return line.match(eqFalse);
+}
+
+function checkScreamingCase(line) {
+    let splitLine = line.split(/[\s\t\[\]]+/);
+    if (line.includes("final")) {
+        let name = splitLine[splitLine.indexOf('final') + 2];
+        return name !== name.toUpperCase();
+    }
+    return false;
+}
+
+function checkPascalCase(line) {
+    let splitLine = line.split(/[\s\t\[\]]+/);
+    if (line.includes('class')) {
+        let name;
+        if(line.includes('public') || line.includes('private') || line.includes('protected')) {
+            name = splitLine[2];
+        } else {
+            name = splitLine[1];
+        }
+        return name === name.toUpperCase() || name.charAt(0).toUpperCase !== name.charAt(0);
+    }
+    return false;
 }
 
 function formatError(type) {
@@ -311,7 +391,6 @@ function createCard(typeErrors, e, type) {
 
 function createModal(lLog, line) {
     let body = document.querySelector('body');    
-
     let modalContent = document.createElement('div');
     modalContent.classList.add('modal-content');
     let modalHeader = document.createElement('div');
@@ -330,18 +409,23 @@ function createModal(lLog, line) {
     close.append(x);
     modalHeader.append(close);
     modalContent.append(modalHeader);
+    let modalBody = document.createElement('div');
+    modalBody.classList.add('modal-body');
+    let code = document.createElement('code');
+    let s = document.createElement('span');
+    s.classList.add('error');
+    s.textContent = line;
+    code.append(s);
+    // let pre = document.createElement('pre');
+    // pre.append(code);
+    // code = pre;
+    modalBody.append(code);
+    modalContent.append(modalBody);
+
     for (let e in lLog["errors"]) {
         let error = lLog["errors"][e];
         let modalBody = document.createElement('div');
         modalBody.classList.add('modal-body');
-        if (e == 0) {
-            let code = document.createElement('code');
-            let s = document.createElement('span');
-            s.classList.add('error');
-            s.textContent = line;
-            code.append(s);
-            modalBody.append(code);
-        }
         let lead = document.createElement('p');
         lead.classList.add('lead');
         lead.textContent = error.title;
@@ -349,6 +433,9 @@ function createModal(lLog, line) {
         let p = document.createElement('p');
         p.textContent = error.message;
         modalBody.append(p);
+        if (error.type) {
+            modalBody.setAttribute('error-type', error.type);
+        }
         modalContent.append(modalBody);
     }
     let modalFoooter = document.createElement('div');
@@ -416,18 +503,23 @@ function assignRecheckSubmitListeners() {
     btns.forEach((btn) => {
         btn.addEventListener('click', () => {
             let modal = btn.parentElement.parentElement.parentElement.parentElement;
-            let fixed = checkModal(modal);
+            let issues = checkModal(modal);
             let alert = document.createElement('div');
             alert.classList.add("alert");
             alert.role = "alert";
-            if (fixed) {
-                alert.textContent = "Issue fixed!";
-                alert.classList.add("alert-success");
-            } else {
-                alert.textContent = "Issue not fixed :(";
+            if (issues) {
+                alert.textContent = issues;
                 alert.classList.add("alert-danger");
+            } else {
+                alert.textContent = "Issue(s) fixed!";
+                alert.classList.add("alert-success");
+                document.getElementById(modal.id.replace('-modal', '')).classList.remove('error');
+                modal.querySelector('.close').addEventListener('click', () => {
+                    modal.remove();
+                });
+                modal.querySelectorAll('.btn').forEach((btn) => btn.remove());
             }
-            btn.parentElement.prepend(alert);
+            modal.querySelector('.modal-footer').prepend(alert);
             let error = document.createElement('span');
             error.classList.add('error');
             error.textContent = modal.querySelector('input').value;
@@ -455,11 +547,10 @@ function assignModalCloseListeners() {
                 modal.querySelector('.modal-body').prepend(code);
                 modal.querySelector('.modal-body').removeChild(modal.querySelector('input'))
                 modal.classList.remove('editor-modal');
-            } else {
-                if (modal.querySelector('alert')) {
-                    modal.querySelector('modal-footer').removeChild(modal.querySelector('.alert'));
-                }
             }
+            if (modal.querySelector('.alert')) {
+                modal.querySelector('.alert').remove();
+            }  
         });
     });
 }
@@ -504,6 +595,39 @@ function toggleOpenClosed(e) {
 
 // returns true if the code has been fixed, false otherwise
 function checkModal(modal) {
-    console.log(modal);
-    return false;
+    let line = modal.querySelector('input').value;
+    let errors = modal.querySelectorAll('.modal-body');
+    let issues = "";
+    let uncheckable = false;
+    errors.forEach((error) => {
+        //let error = errors[e];
+        if (error.getAttribute("error-type")) {
+            let fixed = false;
+            let type = error.getAttribute('error-type');
+            switch(type) {
+                case "naming_conventions":
+                    console.log("checking naming conventions");
+                    fixed = checkPascalCase(line) && checkScreamingCase(line);
+                    break;
+                case "long_lines":
+                    console.log("checking long lines");
+                    console.log(line);
+                    fixed = checkLineLength(line);
+                    break;
+                case "boolean_zen":
+                    console.log("checking boolean zen");
+                    fixed = checkZenTrue(line) && checkZenFalse(line);
+                    break;
+            }
+            if (!fixed) {
+                error.remove();
+            } else if (!uncheckable) {
+                issues = "One or more issues not fixed";
+            }
+        } else {
+            issues = "This line has issues that need in-code context to recheck.";
+            uncheckable = true;
+        }
+    });
+    return issues;
 }
