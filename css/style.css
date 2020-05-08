@@ -287,7 +287,7 @@ form label:not(.form-check-label), form legend {
     text-decoration: underline;
 }
 
-#splash-page.show {
+#splash-page.show, #splash-page.active {
     display: flex;
 }
 
