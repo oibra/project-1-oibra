@@ -250,7 +250,235 @@ function lint(code, style) {
                 "code": line,
                 "annotation": style["naming_conventions"]["pascal"]
             })
-        } 
+        }
+
+        if (checkBreak(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["break"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["break"]
+            })
+        }
+
+        if (checkContinue(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["continue"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["continue"]
+            })
+        }
+
+        if (checkTryCatch(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["try/catch"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["try/catch"]
+            })
+        }
+
+        if (checkVar(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["var"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["var"]
+            })
+        }
+
+        if (checkToArray(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["toArray"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["toArray"]
+            })
+        }
+
+        if (checkStringBuilder(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["string"]["builder"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["string"]["builder"]
+            })
+        }
+
+        if (checkStringBuffer(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["string"]["buffer"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["string"]["buffer"]
+            })
+        }
+
+        if (checkStringJoiner(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["string"]["joiner"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["string"]["joiner"]
+            })
+        }
+
+        if (checkStringTokenizer(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["string"]["tokenizer"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["string"]["tokenizer"]
+            })
+        }
+
+        if (checkStringToCharArray(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["string"]["charArray"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["string"]["charArray"]
+            })
+        }
+
+        if (checkStringJoin(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["string"]["join"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["string"]["join"]
+            })
+        }
+
+        if (checkStringMatches(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["string"]["matches"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["string"]["matches"]
+            })
+        }
+
+        if (checkArraysAsList(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["arrays"]["asList"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["arrays"]["asList"]
+            })
+        }
+
+        if (checkArraysCopyOf(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["arrays"]["copyOf"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["arrays"]["copyOf"]
+            })
+        }
+
+        if (checkArraysCopyOfRange(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["arrays"]["copyOfRange"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["arrays"]["copyOfRange"]
+            })
+        }
+
+        if (checkArraysSort(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["arrays"]["asList"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["arrays"]["asList"]
+            })
+        }
+
+        if (checkCollectionsCopy(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["collections"]["copy"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["collections"]["copy"]
+            })
+        }
+
+        if (checkCollectionsSort(line)) {
+            if (!errorsByType["forbidden"]) {
+                errorsByType["forbidden"] = [];
+            }
+            lLog["errors"].push(style["forbidden"]["collections"]["sort"]);
+            errorsByType["forbidden"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["forbidden"]["collections"]["sort"]
+            })
+        }
+
+        if(checkMultiStatement(line)) {
+            if (!errorsByType["multiple_statements_per_line"]) {
+                errorsByType["multiple_statements_per_line"] = [];
+            }
+            lLog["errors"].push(style["multiple_statements_per_line"]);
+            errorsByType["multiple_statements_per_line"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["multiple_statements_per_line"]
+            })
+        }
 
         // create display code line and modal
         let span = document.createElement('span');
@@ -295,8 +523,84 @@ function lint(code, style) {
     assignModalCloseListeners();
 }
 
+function checkBreak(line) {
+    return line.includes("break;");
+}
+
+function checkContinue(line) {
+    return line.includes("continue;");
+}
+
+function checkTryCatch(line) {
+    return line.includes("catch");
+}
+
+function checkVar(line) {
+    return line.includes("var");
+}
+
+function checkToArray(line) {
+    return line.includes(".toArray");
+}
+
+function checkStringBuilder(line) {
+    return line.includes("StringBuilder");
+}
+
+function checkStringBuffer(line) {
+    return line.includes("StringBuffer");
+}
+
+function checkStringJoiner(line) {
+    return line.includes("StringJoiner");
+}
+
+function checkStringTokenizer(line) {
+    return line.includes("StringTokenizer");
+}
+
+function checkStringToCharArray(line) {
+    return line.includes("String.toCharArray");
+}
+
+function checkStringJoin(line) {
+    return line.includes("String.join");
+}
+
+function checkStringMatches(line) {
+    return line.includes("String.matches");
+}
+
+function checkArraysAsList(line) {
+    return line.includes("Arrays.asList");
+}
+
+function checkArraysCopyOf(line) {
+    return line.includes("Arrays.copyOf");
+}
+
+function checkArraysCopyOfRange(line) {
+    return line.includes("Arrays.copyOfRange");
+}
+
+function checkArraysSort(line) {
+    return line.includes("Arrays.sort");
+}
+
+function checkCollectionsCopy(line) {
+    return line.includes("Collections.copy");
+}
+
+function checkCollectionsSort(line) {
+    return line.includes("Collections.sort");
+}
+
 function checkLineLength(line) {
     return line.length > MAX_LENGTH;
+}
+
+function checkMultiStatement(line) {
+    return line.split(";").length > 1 && !line.includes("for");
 }
 
 function checkIndentation(line, indentLevel) {
@@ -606,17 +910,25 @@ function checkModal(modal) {
             let type = error.getAttribute('error-type');
             switch(type) {
                 case "naming_conventions":
-                    console.log("checking naming conventions");
                     fixed = checkPascalCase(line) && checkScreamingCase(line);
                     break;
                 case "long_lines":
-                    console.log("checking long lines");
                     console.log(line);
                     fixed = checkLineLength(line);
                     break;
                 case "boolean_zen":
-                    console.log("checking boolean zen");
                     fixed = checkZenTrue(line) && checkZenFalse(line);
+                    break;
+                case "forbidden":
+                    fixed = checkBreak(line) && checkContinue(line) && checkTryCatch(line) &&
+                            checkVar(line) && checkToArray(line);
+                    fixed &= checkStringBuilder(line) && checkStringBuffer(line) && checkStringJoiner(line) && 
+                            checkStringTokenizer(line) && checkStringToCharArray(line) && checkStringJoin(line) && 
+                            checkStringMatches(line);
+                    fixed &= checkArraysAsList(line) && checkArraysCopyOf(list) && 
+                            checkArraysCopyOfRange(list) && checkArraysSort(line);
+                    fixed &= checkCollectionsCopy(list) && checkCollectionsSort(list);
+                    
                     break;
             }
             if (!fixed) {

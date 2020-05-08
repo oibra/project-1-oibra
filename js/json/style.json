@@ -51,8 +51,108 @@
         "title": "There should be one Scanner per source",
         "message": "insert message here"
     },
-
-
+    "forbidden": {
+        "break": {
+            "type": "forbidden",
+            "title": "Forbidden Feature",
+            "message": "break is a forbidden feature. You are not allowed to use it in CSE 14X."
+        },
+        "continue": {
+            "type": "forbidden",
+            "title": "Forbidden Feature",
+            "message": "continue is a forbidden feature. You are not allowed to use it in CSE 14X."
+        },
+        "try/catch": {
+            "type": "forbidden",
+            "title": "Forbidden Feature",
+            "message": "try/catch is a forbidden feature. You are not allowed to use it in CSE 14X."
+        },
+        "var": {
+            "type": "forbidden",
+            "title": "Forbidden Feature",
+            "message": "var is a forbidden feature. You are not allowed to use it in CSE 14X."
+        },
+        "toArray": {
+            "type": "forbidden",
+            "title": "Forbidden Feature",
+            "message": "toArray is a forbidden feature. You are not allowed to use it in CSE 14X."
+        },
+        "string": {
+            "builder": {
+                "type": "forbidden",
+                "title": "Forbidden Feature",
+                "message": "StringBuilder is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "buffer": {
+                "type": "forbidden",
+                "title": "Forbidden Feature",
+                "message": "StringBuffer is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "joiner": {
+                "type": "forbidden",
+                "title": "Forbidden Feature",
+                "message": "StringJoiner is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "tokenizer": {
+                "type": "forbidden",
+                "title": "Forbidden Feature",
+                "message": "StringTokenizer is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "charArray": {
+                "type": "forbidden",
+                "title": "Forbidden Feature",
+                "message": "String.toCharArray() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "join": {
+                "type": "forbidden",
+                "title": "Forbidden Feature",
+                "message": "String.join() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "matches": {
+                "type": "forbidden",
+                "title": "Forbidden Feature",
+                "message": "String.matches() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            }
+        },
+        "arrays": {
+            "asList": {
+                "type": "forbidden",
+                "title": "Forbidden Feature",
+                "message": "Arrays.asList() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "copyOf": {
+                "type": "forbidden",
+                "title": "Forbidden Feature",
+                "message": "Arrays.copyOf() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "copyOfRange": {
+                "type": "forbidden",
+                "title": "Forbidden Feature",
+                "message": "Arrays.copyOfRange() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "sort": {
+                "type": "forbidden",
+                "title": "Forbidden Feature",
+                "message": "Arrays.sort() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            }
+        },
+        "collections": {
+            "copy": {
+                "type": "forbidden",
+                "title": "Forbidden Feature",
+                "message": "Collections.copy() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "sort": {
+                "type": "forbidden",
+                "title": "Forbidden Feature",
+                "message": "Collections.sort() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            }
+        }
+    },
+    "multiple_statements_per_line": {
+        "title": "There is more than one statement on this line",
+        "message": "You should limit your code to one statement per line."
+    },
     
 
 
@@ -66,32 +166,5 @@
             "messgae": "You should always print a blank line using System.out.println(). Printing an empty String (System.out.println(\"\")) is considered bad style; it makes the intention less clear."
         }
     },
-    "one_per_line": "You should limit your code to one statement per line.",
-    "constants": "something something declare them correctly",
-    "forbidden": {
-        "break": "break is a forbidden feature. You are not allowed to use it in CSE 14X.",
-        "continue": "continue is a forbidden feature. You are not allowed to use it in CSE 14X.",
-        "try/catch": "try/catch is a forbidden feature. You are not allowed to use it in CSE 14X.",
-        "var": "var is a forbidden feature. You are not allowed to use it in CSE 14X.",
-        "toArray": "toArray is a forbidden feature. You are not allowed to use it in CSE 14X.",
-        "string": {
-            "builder": "StringBuilder is a forbidden feature. You are not allowed to use it in CSE 14X.",
-            "buffer": "StringBuffer is a forbidden feature. You are not allowed to use it in CSE 14X.",
-            "joiner": "StringJoiner is a forbidden feature. You are not allowed to use it in CSE 14X.",
-            "tokenizer": "StringTokenizer is a forbidden feature. You are not allowed to use it in CSE 14X.",
-            "toCharArray": "String.toCharArray is a forbidden feature. You are not allowed to use it in CSE 14X.",
-            "join": "String.join is a forbidden feature. You are not allowed to use it in CSE 14X.",
-            "matches": "String.matches is a forbidden feature. You are not allowed to use it in CSE 14X."
-        },
-        "arrays": {
-            "asList": "Arrays.asList is a forbidden feature. You are not allowed to use it in CSE 14X.",
-            "copyOf": "Arrays.copyOf",
-            "copyOfRange": "Arrays.copyOfRange is a forbidden feature. You are not allowed to use it in CSE 14X.",
-            "sort": "Arrays.sort is a forbidden feature. You are not allowed to use it in CSE 14X."
-        },
-        "collections": {
-            "copy": "Collections.copy is a forbidden feature. You are not allowed to use it in CSE 14X.",
-            "sort": "Collections.sort is a forbidden feature. You are not allowed to use it in CSE 14X."
-        }
-    }
+    "constants": "something something declare them correctly"
 }
