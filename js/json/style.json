@@ -153,18 +153,19 @@
         "title": "There is more than one statement on this line",
         "message": "You should limit your code to one statement per line."
     },
-    
-
-
-    "printing": {
+    "printing_problems": {
         "backslash_n": {
+            "type": "printing_problems",
             "title": "\\n should only be used in printf.",
             "message": "\\n should only be used in printf statements, and only once at the end of the line. Otherwise, you should just use println if you want to print a full line."
         },
         "blank": {
+            "type": "printing_problems",
             "title": "A blank println should actually be blank",
-            "messgae": "You should always print a blank line using System.out.println(). Printing an empty String (System.out.println(\"\")) is considered bad style; it makes the intention less clear."
+            "message": "You should always print a blank line using System.out.println(). Printing an empty String (System.out.println(\"\")) is considered bad style; it makes the intention less clear."
         }
     },
+
+
     "constants": "something something declare them correctly"
 }

@@ -480,6 +480,18 @@ function lint(code, style) {
             })
         }
 
+        if (checkBlankPrintlns(line)) {
+            if (!errorsByType["printing_problems"]) {
+                errorsByType["printing_problems"] = [];
+            }
+            lLog["errors"].push(style["printing_problems"]["blank"]);
+            errorsByType["printing_problems"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["printing_problems"]["blank"]
+            })
+        }
+
         // create display code line and modal
         let span = document.createElement('span');
         span.textContent = line;
@@ -600,7 +612,11 @@ function checkLineLength(line) {
 }
 
 function checkMultiStatement(line) {
-    return line.split(";").length > 1 && !line.includes("for");
+    return line.split(";").length > 2 && !line.includes("for");
+}
+
+function checkBlankPrintlns(line) {
+    return line.match(/System\.out\.println\("[ ]*"\)/g);
 }
 
 function checkIndentation(line, indentLevel) {
@@ -903,8 +919,8 @@ function checkModal(modal) {
     let errors = modal.querySelectorAll('.modal-body');
     let issues = "";
     let uncheckable = false;
-    errors.forEach((error) => {
-        //let error = errors[e];
+    for (let i = 1; i < errors.length; i++) {
+        let error = errors[i];
         if (error.getAttribute("error-type")) {
             let fixed = false;
             let type = error.getAttribute('error-type');
@@ -928,7 +944,9 @@ function checkModal(modal) {
                     fixed &= checkArraysAsList(line) && checkArraysCopyOf(list) && 
                             checkArraysCopyOfRange(list) && checkArraysSort(line);
                     fixed &= checkCollectionsCopy(list) && checkCollectionsSort(list);
-                    
+                    break;
+                case "printing_problems":
+                    fixed = checkBlankPrintlns(line);
                     break;
             }
             if (!fixed) {
@@ -940,6 +958,6 @@ function checkModal(modal) {
             issues = "This line has issues that need in-code context to recheck.";
             uncheckable = true;
         }
-    });
+    }
     return issues;
 }

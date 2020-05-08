@@ -343,7 +343,7 @@ form label:not(.form-check-label), form legend {
 }
 
 .modal-body:nth-child(2) {
-    padding-bottom: 0;
+    padding-bottom: 0.5rem;
 }
 
 .modal-body:nth-child(2), .modal-body:nth-child(3) {
