@@ -6,7 +6,11 @@ const scan = /(.*)new Scanner\(System\.in\)(.)*/g;
 
 let emptyStruct = false;
 let scanners = 0;
-let inClass = false;
+
+const state = {
+    lineErrors: [{}],
+    errorsByType: {}
+}
 
 let lineErrors = [{}];
 let tabSize;
@@ -118,25 +122,25 @@ function lint(code, style) {
     lineErrors = [{}];
     emptyStruct = false;
     scanners = 0;
-    inClass = false;
     let codeBlock = document.querySelector('#errors-highlighting code');
     let lines = code.split(/\r?\n/);
     let errorsByType = {};
     let indentLevel = 0;
     for(let l in lines) {
-        let line = lines[l];  
+        let line = lines[l]; 
+        
         let lineNum = parseInt(l) + 1;
         let lLog = {
             "line": lineNum,
             "code": line,
             "errors": []
         }
+        if (!line.match(/^[ \t]*$/)) {
+            
+        
 
         if (line.includes("}")) {
             indentLevel--;
-            if (indentLevel == 0) {
-                inClass = false;
-            }
             if (emptyStruct) {
                 lLog["errors"].push(style["empty_struct"]);
                 if (!errorsByType["empty_struct"]) {
@@ -185,6 +189,13 @@ function lint(code, style) {
                 });
             }
         }
+
+        if (line.includes('{')) {
+            indentLevel++;
+            emptyStruct = true;
+        } else {
+            emptyStruct = false;
+        } 
 
         // check basic boolean zen
         if (checkZenTrue(line)) {
@@ -492,6 +503,19 @@ function lint(code, style) {
             })
         }
 
+        if (checkBackslashN(line)) {
+            if (!errorsByType["printing_problems"]) {
+                errorsByType["printing_problems"] = [];
+            }
+            lLog["errors"].push(style["printing_problems"]["backslash_n"]);
+            errorsByType["printing_problems"].push({
+                "line": lineNum,
+                "code": line,
+                "annotation": style["printing_problems"]["backslash_n"]
+            })
+        }
+    }
+
         // create display code line and modal
         let span = document.createElement('span');
         span.textContent = line;
@@ -507,15 +531,8 @@ function lint(code, style) {
         codeBlock.append("\n");
 
         lineErrors.push(lLog);
-        if (line.includes("class")) {
-            inClass = true;
-        }
-        if (line.includes('{')) {
-            indentLevel++;
-            emptyStruct = true;
-        } else {
-            emptyStruct = false;
-        }     
+
+            
     }
     for (let key in Object.keys(errorsByType)) {
         let type = Object.keys(errorsByType)[key];
@@ -619,12 +636,19 @@ function checkBlankPrintlns(line) {
     return line.match(/System\.out\.println\("[ ]*"\)/g);
 }
 
+function checkBackslashN(line) {
+    return line.includes("\\n") && !line.includes("printf");
+}
+
 function checkIndentation(line, indentLevel) {
     let correctIndentation = "";
     for (let i = 0; i < indentLevel * tabSize; i++) {
         correctIndentation += " ";
     }
     correctIndentation += line.trim();
+    while (line.charAt(line.length - 1) == ' ') {
+        line = line.substring(0, line.length - 1);
+    }
     if (correctIndentation.length > line.length) {
         return 2;
     } else if (correctIndentation.length < line.length) {
@@ -642,7 +666,7 @@ function checkZenFalse(line) {
 }
 
 function checkScreamingCase(line) {
-    let splitLine = line.split(/[\s\t\[\]]+/);
+    let splitLine = line.split(/[\s\t[\]]+/);
     if (line.includes("final")) {
         let name = splitLine[splitLine.indexOf('final') + 2];
         return name !== name.toUpperCase();
@@ -659,7 +683,7 @@ function checkPascalCase(line) {
         } else {
             name = splitLine[1];
         }
-        return name === name.toUpperCase() || name.charAt(0).toUpperCase !== name.charAt(0);
+        return name === name.toUpperCase() || name.charAt(0).toUpperCase() !== name.charAt(0);
     }
     return false;
 }
@@ -941,9 +965,9 @@ function checkModal(modal) {
                     fixed &= checkStringBuilder(line) && checkStringBuffer(line) && checkStringJoiner(line) && 
                             checkStringTokenizer(line) && checkStringToCharArray(line) && checkStringJoin(line) && 
                             checkStringMatches(line);
-                    fixed &= checkArraysAsList(line) && checkArraysCopyOf(list) && 
-                            checkArraysCopyOfRange(list) && checkArraysSort(line);
-                    fixed &= checkCollectionsCopy(list) && checkCollectionsSort(list);
+                    fixed &= checkArraysAsList(line) && checkArraysCopyOf(line) && 
+                            checkArraysCopyOfRange(line) && checkArraysSort(line);
+                    fixed &= checkCollectionsCopy(line) && checkCollectionsSort(line);
                     break;
                 case "printing_problems":
                     fixed = checkBlankPrintlns(line);

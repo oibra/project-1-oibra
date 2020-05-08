@@ -164,8 +164,5 @@
             "title": "A blank println should actually be blank",
             "message": "You should always print a blank line using System.out.println(). Printing an empty String (System.out.println(\"\")) is considered bad style; it makes the intention less clear."
         }
-    },
-
-
-    "constants": "something something declare them correctly"
+    }
 }
