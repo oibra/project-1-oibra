@@ -748,7 +748,6 @@ function assignRecheckSubmitListeners() {
                     delete state.errorsByType[type];
                 }
             }
-            console.log(state);
             renderErrors(false);
         });
     });
