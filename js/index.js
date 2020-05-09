@@ -237,7 +237,6 @@ function checkModal(modal) {
                     e = checkPascalCase(line) && checkScreamingCase(line);
                     break;
                 case "long_lines":
-                    console.log(line);
                     e = checkLineLength(line);
                     break;
                 case "boolean_zen":
@@ -719,7 +718,6 @@ function assignRecheckSubmitListeners() {
             modal.classList.remove('editor-modal');
 
             let lineNum = parseInt(modal.id.replace("line", "").replace("-modal", ""));
-            console.log(state.lineErrors[lineNum - 1].errors.length);
             let errorNum = state.lineErrors[lineNum - 1].errors.length;
             state.lineErrors[lineNum - 1].code = error.textContent;
             for (let i = 0; i < errorNum; i++) {
