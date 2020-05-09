@@ -3,190 +3,163 @@ const MAX_LENGTH = 100;
 const eqTrue = /(.*)==( *)true(.*)/g;
 const eqFalse = /(.*)==( *)false(.*)/g;
 const scan = /(.*)new Scanner\(System\.in\)(.)*/g;
-
-let emptyStruct = false;
-let scanners = 0;
-
 const state = {
-    lineErrors: [{}],
+    lineErrors: [],
     errorsByType: {}
 }
 
-let lineErrors = [{}];
 let tabSize;
+let style;
 
-window.onload = () => {
-    
+window.onload = () => {     
     assignCollapseButtonToggling();
+    assignLinkListeners();
+    assignValidation();    
 
+    document.querySelector('form').addEventListener('submit', submitForm);
+};
+
+// assign event listeners to change main display for each page
+function assignLinkListeners() {
+    let body = document.querySelector('body');
     document.getElementById('splash-link').addEventListener('click', () => {
-        document.querySelector('body').classList.remove('bg-white');
-        document.querySelector('body').classList.add('bg-primary');
+        body.classList.remove('bg-white');
+        body.classList.add('bg-primary');
     });
 
     document.getElementById('main-link').addEventListener('click', () => {
-        document.querySelector('body').classList.add('bg-white');
-        document.querySelector('body').classList.remove('bg-primary');
+        body.classList.add('bg-white');
+        body.classList.remove('bg-primary');
     });
+}
 
+// assign extra validation for code form
+function assignValidation() {
+    let submit = document.getElementById('submit');
     document.getElementById('file').addEventListener('click', () => {
         document.getElementById('file-group').classList.remove('d-none');
         document.getElementById('text-group').classList.add('d-none');
         
-        if (document.getElementById('code-file').files) {
-            document.getElementById('submit').disabled = false;
+        if (document.getElementById('code-file').files.length) {
+            submit.disabled = false;
         } else {
-            document.getElementById('submit').disabled = true;
+            submit.disabled = true;
         }
     });
-
     document.getElementById('text').addEventListener('click', () => {
         document.getElementById('text-group').classList.remove('d-none');
         document.getElementById('file-group').classList.add('d-none');
 
         if (document.getElementById('code-text').value) {
-            document.getElementById('submit').disabled = false;
+            submit.disabled = false;
         } else {
-            document.getElementById('submit').disabled = true;
+            submit.disabled = true;
         }
     });
-
     document.getElementById('code-file').addEventListener('input', () => {
-        if (document.getElementById('code-file').files) {
-            document.getElementById('submit').disabled = false;
+        if (document.getElementById('code-file').files.length) {
+            submit.disabled = false;
         } else {
-            document.getElementById('submit').disabled = true;
+            submit.disabled = true;
         }
     });
-
     document.getElementById('code-text').addEventListener('input', () => {
         if (document.getElementById('code-text').value) {
-            document.getElementById('submit').disabled = false;
+            submit.disabled = false;
         } else {
-            document.getElementById('submit').disabled = true;
+            submit.disabled = true;
         }
     });
+}
 
-    document.querySelector('form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        tabSize = document.getElementById('tab-size').value;
-        let fileButton = document.getElementById('file');
-        document.getElementById('errors-list').innerHTML = '';
-        document.querySelector('#errors-highlighting code').innerHTML = '';
-        let modals = document.querySelectorAll('.modal');
-        if (modals.length > 0) {
-            for (let i = 0; i < modals.length; i++){
-                modals[i].remove();
-            }
-        }
-        fetch('js/json/style.json')
-                .then((response) => {
-                    return response.json();
-                })
-                .then((json) => {
-                    if (fileButton.checked) {
-                        let file = document.getElementById('code-file').files[0];
-                        let reader = new FileReader();
-                        reader.readAsText(file, "UTF-8");
-                        reader.onload = (e) => { 
-                            lint(e.target.result, json);
-                        }
-                        reader.onerror = () => {
-                            console.error("error reading file");
-                        }
-                    } else {
-                        lint(document.getElementById('code-text').value, json);
+// submit code form and lint input code
+// event is the event that triggers this
+function submitForm(event) {
+    event.preventDefault();
+    tabSize = document.getElementById('tab-size').value;
+    let fileButton = document.getElementById('file');
+    fetch('js/json/style.json')
+            .then((response) => {
+                return response.json();
+            })
+            .then((json) => {
+                style = json;
+                if (fileButton.checked) {
+                    let file = document.getElementById('code-file').files[0];
+                    let reader = new FileReader();
+                    reader.readAsText(file, "UTF-8");
+                    reader.onload = (e) => { 
+                        lint(e.target.result);
                     }
-                    
-                })
-                .catch((err) => {
-                    console.error(err);
-                })
-        
-        document.querySelector('h2').classList.add('collapsed');
-        document.getElementById('code-form').classList.remove('collapse');
-        document.getElementById('code-form').classList.add('collapsing');
-        document.getElementById('code-form').classList.remove('show');
-        document.getElementById('code-form').classList.add('collapse');
-        document.getElementById('code-form').classList.remove('collapsing');
-        document.getElementById('lint-output').classList.add('show');
-        let togglers = document.querySelectorAll('h2 img');
-        togglers[0].classList.remove('open');
-        togglers[0].classList.add('closed');
-        togglers[1].classList.remove('closed');
-        togglers[1].classList.add('open');
-    })
-};
+                    reader.onerror = () => {
+                        console.error("error reading file");
+                    }
+                } else {
+                    lint(document.getElementById('code-text').value);
+                }
+                
+            })
+            .catch((err) => {
+                console.error(err);
+            })
+    
+    document.querySelector('h2').classList.add('collapsed');
+    document.getElementById('code-form').classList.remove('collapse');
+    document.getElementById('code-form').classList.add('collapsing');
+    document.getElementById('code-form').classList.remove('show');
+    document.getElementById('code-form').classList.add('collapse');
+    document.getElementById('code-form').classList.remove('collapsing');
+    document.getElementById('lint-output').classList.add('show');
+    let togglers = document.querySelectorAll('h2 img');
+    togglers[0].classList.remove('open');
+    togglers[0].classList.add('closed');
+    togglers[1].classList.remove('closed');
+    togglers[1].classList.add('open');
+}
 
-function lint(code, style) {
-    lineErrors = [{}];
-    emptyStruct = false;
-    scanners = 0;
-    let codeBlock = document.querySelector('#errors-highlighting code');
-    let lines = code.split(/\r?\n/);
-    let errorsByType = {};
+// lint code for errors. split input code into lines, check each line for issues
+// and update state with all found errors (using descriptions from input style json), 
+// and then render errors on page
+function lint(code) {
+    state.lineErrors = [];
+    state.errorsByType = {};
+    
+    let emptyStruct = false;
+    let scanners = 0;
+    let lines = code.split(/\r?\n/);  
     let indentLevel = 0;
+
     for(let l in lines) {
-        let line = lines[l]; 
-        
+        let line = lines[l];  
         let lineNum = parseInt(l) + 1;
         let lLog = {
             "line": lineNum,
             "code": line,
             "errors": []
         }
-        if (!line.match(/^[ \t]*$/)) {
-            
-        
+        state.lineErrors.push(lLog);
 
+        if (line.match(/^[ \t]*$/)) {
+            continue;
+        }
         if (line.includes("}")) {
             indentLevel--;
+            // check if this } ends an empty control structure
             if (emptyStruct) {
-                lLog["errors"].push(style["empty_struct"]);
-                if (!errorsByType["empty_struct"]) {
-                    errorsByType["empty_struct"] = [];
-                }
-                errorsByType["empty_struct"].push({
-                    "line": lineNum,
-                    "code": line,
-                    "annotation": style["empty_struct"]
-                });
+                updateErrors(lineNum, "empty_struct");
             }
         }   
-
         // check line length
         if (checkLineLength(line)) {
-            lLog["errors"].push(style["long_lines"]);
-            if (!errorsByType["long_lines"]) {
-                errorsByType["long_lines"] = [];
-            }
-            errorsByType["long_lines"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["long_lines"]
-            });
+            updateErrors(lineNum, "long_lines");
         }
-
         // check indentation
         let indentCheck = checkIndentation(line, indentLevel);
         if (indentCheck) {
-            if (!errorsByType["indentation"]) {
-                errorsByType["indentation"] = [];
-            }
             if (indentCheck == 2) {
-                lLog["errors"].push(style["indentation"]["under"]);
-                errorsByType["indentation"].push({
-                    "line": lineNum,
-                    "code": line,
-                    "annotation": style["indentation"]["under"]
-                });
+                updateErrors(lineNum, "indentation", "under");
             } else {
-                lLog["errors"].push(style["indentation"]["over"]);
-                errorsByType["indentation"].push({
-                    "line": lineNum,
-                    "code": line,
-                    "annotation": style["indentation"]["over"]
-                });
+                updateErrors(lineNum, "indentation", "over");
             }
         }
 
@@ -199,357 +172,305 @@ function lint(code, style) {
 
         // check basic boolean zen
         if (checkZenTrue(line)) {
-            if (!errorsByType["boolean_zen"]) {
-                errorsByType["boolean_zen"] = [];
-            }
-            lLog["errors"].push(style["boolean_zen"]["equals_true"]);
-            errorsByType["boolean_zen"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["boolean_zen"]["equals_true"]
-            });
+            updateErrors(lineNum, "boolean_zen", "equals_true");
         }
         if (checkZenFalse(line)) {
-            if (!errorsByType["boolean_zen"]) {
-                errorsByType["boolean_zen"] = [];
-            }
-            lLog["errors"].push(style["boolean_zen"]["equals_false"]);
-            errorsByType["boolean_zen"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["boolean_zen"]["equals_false"]
-            });
+            updateErrors(lineNum, "boolean_zen", "equals_false");
         }
 
-        // check for Scanners
+        // check for multiple Scanners
         if (line.match(scan)) {
             scanners++;
         }
         if (scanners > 1) {
-            if (!errorsByType["scanners"]) {
-                errorsByType["scanners"] = [];
-            }
-            lLog["errors"].push(style["scanners"]);
-            errorsByType["scanners"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["scanners"]
-            });
+            updateErrors(lineNum, "scanners");
         }
 
         // check constant naming conventions
         if (checkScreamingCase(line)) {
-            if (!errorsByType["naming_conventions"]) {
-                errorsByType["naming_conventions"] = [];
-            }
-            lLog["errors"].push(style["naming_conventions"]["screaming"]);
-            errorsByType["naming_conventions"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["naming_conventions"]["screaming"]
-            });
+            updateErrors(lineNum, "naming_conventions", "screaming");
         }
 
         // check class naming conventions
         if (checkPascalCase(line)) {
-            if (!errorsByType["naming_conventions"]) {
-                errorsByType["naming_conventions"] = [];
-            }
-            lLog["errors"].push(style["naming_conventions"]["pascal"]);
-            errorsByType["naming_conventions"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["naming_conventions"]["pascal"]
-            })
+            updateErrors(lineNum, "naming_conventions", "pascal");
         }
 
+        // check for use of 14X forbidden features
         if (checkBreak(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["break"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["break"]
-            })
+            updateErrors(lineNum, "forbidden_features", "break");
         }
-
         if (checkContinue(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["continue"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["continue"]
-            })
+            updateErrors(lineNum, "forbidden_features", "continue");
         }
-
         if (checkTryCatch(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["try/catch"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["try/catch"]
-            })
+            updateErrors(lineNum, "forbidden_features", "try/catch");
         }
-
         if (checkVar(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["var"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["var"]
-            })
+            updateErrors(lineNum, "forbidden_features", "var");
         }
-
         if (checkToArray(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["toArray"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["toArray"]
-            })
+            updateErrors(lineNum, "forbidden_features", "toArray");
         }
-
         if (checkStringBuilder(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["string"]["builder"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["string"]["builder"]
-            })
+            updateErrors(lineNum, "forbidden_features", "string", "builder");
         }
-
         if (checkStringBuffer(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["string"]["buffer"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["string"]["buffer"]
-            })
+            updateErrors(lineNum, "forbidden_features", "string", "buffer");
         }
-
         if (checkStringJoiner(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["string"]["joiner"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["string"]["joiner"]
-            })
+            updateErrors(lineNum, "forbidden_features", "string", "joiner");
         }
-
         if (checkStringTokenizer(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["string"]["tokenizer"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["string"]["tokenizer"]
-            })
+            updateErrors(lineNum, "forbidden_features", "string", "tokenizer");
         }
-
         if (checkStringToCharArray(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["string"]["charArray"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["string"]["charArray"]
-            })
+            updateErrors(lineNum, "forbidden_features", "string", "toCharArray");
         }
-
         if (checkStringJoin(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["string"]["join"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["string"]["join"]
-            })
+            updateErrors(lineNum, "forbidden_features", "string", "join");
         }
-
         if (checkStringMatches(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["string"]["matches"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["string"]["matches"]
-            })
+            updateErrors(lineNum, "forbidden_features", "string", "matches");
         }
-
         if (checkArraysAsList(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["arrays"]["asList"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["arrays"]["asList"]
-            })
+            updateErrors(lineNum, "forbidden_features", "arrays", "asList");
         }
-
         if (checkArraysCopyOf(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["arrays"]["copyOf"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["arrays"]["copyOf"]
-            })
+            updateErrors(lineNum, "forbidden_features", "arrays", "copyOf");
         }
-
         if (checkArraysCopyOfRange(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["arrays"]["copyOfRange"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["arrays"]["copyOfRange"]
-            })
+            updateErrors(lineNum, "forbidden_features", "arrays", "copyOfRange");
         }
-
         if (checkArraysSort(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["arrays"]["asList"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["arrays"]["asList"]
-            })
+            updateErrors(lineNum, "forbidden_features", "arrays", "sort");
         }
-
         if (checkCollectionsCopy(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["collections"]["copy"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["collections"]["copy"]
-            })
+            updateErrors(lineNum, "forbidden_features", "collections", "copy");
         }
-
         if (checkCollectionsSort(line)) {
-            if (!errorsByType["forbidden"]) {
-                errorsByType["forbidden"] = [];
-            }
-            lLog["errors"].push(style["forbidden"]["collections"]["sort"]);
-            errorsByType["forbidden"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["forbidden"]["collections"]["sort"]
-            })
+            updateErrors(lineNum, "forbidden_features", "arrays", "sort");
         }
 
+        // check for multiple statements on one line
         if(checkMultiStatement(line)) {
-            if (!errorsByType["multiple_statements_per_line"]) {
-                errorsByType["multiple_statements_per_line"] = [];
-            }
-            lLog["errors"].push(style["multiple_statements_per_line"]);
-            errorsByType["multiple_statements_per_line"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["multiple_statements_per_line"]
-            })
+            updateErrors(lineNum, "multiple_statements_per_line");
         }
 
+        // check for 'prinitng problems'
         if (checkBlankPrintlns(line)) {
-            if (!errorsByType["printing_problems"]) {
-                errorsByType["printing_problems"] = [];
-            }
-            lLog["errors"].push(style["printing_problems"]["blank"]);
-            errorsByType["printing_problems"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["printing_problems"]["blank"]
-            })
+            updateErrors(lineNum, "printing_problems", "blank");
         }
-
         if (checkBackslashN(line)) {
-            if (!errorsByType["printing_problems"]) {
-                errorsByType["printing_problems"] = [];
+            updateErrors(lineNum, "printing_problems", "backslash_n");
+        }                  
+    }
+    renderErrors(true);
+    
+}
+
+function updateErrors(lineNum, category, subCategory, subSubCategory) {  
+    if (!state.errorsByType[category]) {
+        state.errorsByType[category] = [];
+    }
+    let error = {
+        "line": lineNum,
+        "code": state.lineErrors[lineNum]
+    }
+    if (subCategory) {
+        if (subSubCategory) {
+            error["annotation"] = style[category][subCategory][subSubCategory];
+            state.lineErrors[lineNum - 1]["errors"].push(style[category][subCategory][subSubCategory]);
+        } else {
+            error["annotation"] = style[category][subCategory];
+            state.lineErrors[lineNum - 1]["errors"].push(style[category][subCategory]);
+        }
+    } else {
+        error["annotation"] = style[category];
+        state.lineErrors[lineNum - 1]["errors"].push(style[category]);
+    }
+    state.errorsByType[category].push(error);
+}
+
+function renderErrors(createModals) {  
+    document.getElementById('errors-list').innerHTML = '';
+    document.querySelector('#errors-highlighting code').innerHTML = '';
+    if (createModals) {
+        let modals = document.querySelectorAll('.modal');
+        if (modals.length > 0) {
+            for (let i = 0; i < modals.length; i++){
+                modals[i].remove();
             }
-            lLog["errors"].push(style["printing_problems"]["backslash_n"]);
-            errorsByType["printing_problems"].push({
-                "line": lineNum,
-                "code": line,
-                "annotation": style["printing_problems"]["backslash_n"]
-            })
         }
     }
-
-        // create display code line and modal
-        let span = document.createElement('span');
-        span.textContent = line;
-        if (lLog["errors"].length) {
-            span.classList.add('error');
-            span.id = 'line' + lineNum;
-            span.setAttribute('type', 'button');
-            span.setAttribute('data-toggle', 'modal');
-            span.setAttribute('data-target', '#line' + lineNum + '-modal'); 
-            createModal(lLog, line);
-        }
-        codeBlock.append(span);
-        codeBlock.append("\n");
-
-        lineErrors.push(lLog);
-
-            
+    for (let i = 0; i < state.lineErrors.length; i++) {
+        renderLine(state.lineErrors[i], createModals);
     }
-    for (let key in Object.keys(errorsByType)) {
-        let type = Object.keys(errorsByType)[key];
+    renderErrorList();
+    assignRecheckListeners();
+    assignRecheckSubmitListeners();
+    assignModalCloseListeners();
+}
+
+
+
+function renderLine(errors, createModal) {
+    let codeBlock = document.querySelector('#errors-highlighting code');
+    let lineNum = errors.line;
+    let line = errors.code;
+    let span = document.createElement('span');
+    span.textContent = line;
+    if (errors.errors.length) {
+        span.classList.add('error');
+        span.id = 'line' + lineNum;
+        span.setAttribute('type', 'button');
+        span.setAttribute('data-toggle', 'modal');
+        span.setAttribute('data-target', '#line' + lineNum + '-modal'); 
+        if(createModal) {
+            renderModal(errors);
+        }  
+    }
+    codeBlock.append(span);
+    codeBlock.append("\n");
+}
+
+function renderErrorList() {
+    for (let key in Object.keys(state.errorsByType)) {
+        let type = Object.keys(state.errorsByType)[key];
         let container = document.createElement('div');
         container.classList.add('errors');
         let h3 = document.createElement ('h3');
         h3.textContent = formatError(type);
         container.append(h3);
-        for (let e in errorsByType[type]) {
-            let card = createCard(errorsByType[type], e, type)
-            container.append(card);
+        for (let e in state.errorsByType[type]) {
+            container.append(renderCard(state.errorsByType[type], e, type));
         }
         document.getElementById('errors-list').append(container);
     }
-    assignRecheckListeners();
-    assignRecheckSubmitListeners();
-    assignModalCloseListeners();
+}
+
+function renderModal(errors) {  
+    let modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+
+    modalContent.append(createModalHeader(errors));
+    modalContent.append(createCodeBody(errors));
+    for (let e in errors.errors) {     
+        modalContent.append(createModalBody(errors.errors[e]));
+    }
+    modalContent.append(createModalFooter());  
+
+    let modalDialog = document.createElement('div');
+    modalDialog.classList.add('modal-dialog');
+    modalDialog.classList.add('modal-dialog-centered');
+    modalDialog.classList.add('modal-lg');
+    modalDialog.setAttribute('role', 'document');
+    modalDialog.append(modalContent);   
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+    modal.id = 'line' + errors.line + '-modal';
+    modal.setAttribute('tabindex', '-1');
+    modal.setAttribute('role', 'dialog');
+    modal.append(modalDialog);
+    document.querySelector('body').append(modal);
+}
+
+function renderCard(typeErrors, e, type) {
+    let card = document.createElement('div');
+    card.classList.add('card');
+    let cardHeader = document.createElement('div');
+    cardHeader.classList.add('card-header');
+    cardHeader.textContent = "Line " + typeErrors[e].line;
+    card.append(cardHeader);
+    let cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+    let code = document.createElement('code');
+    let s = document.createElement('span');
+    s.classList.add('error');
+    s.textContent = typeErrors[e].code;
+    code.append(s);
+    if (type == "long_lines" || type == "indentation") {
+        let pre = document.createElement('pre');
+        pre.append(code);
+        code = pre;
+    }
+    cardBody.append(code);
+    let lead = document.createElement('p');
+    lead.classList.add('lead');
+    lead.textContent = typeErrors[e].annotation.title;
+    cardBody.append(lead);
+    let p = document.createElement('p');
+    p.textContent = typeErrors[e].annotation.message;
+    cardBody.append(p);
+    card.append(cardBody);
+    return card;
+}
+
+function createModalHeader(errors) {
+    let modalHeader = document.createElement('div');
+    modalHeader.classList.add('modal-header');
+    let modalTitle = document.createElement('h5');
+    modalTitle.classList.add('modal-title');
+    modalTitle.textContent = "Line " + errors.line;
+    modalHeader.append(modalTitle);
+    let close = document.createElement('button');
+    close.classList.add('close');
+    close.setAttribute('data-dismiss', 'modal');
+    close.setAttribute('aria-label', 'Close');
+    let x = document.createElement('span');
+    x.setAttribute('aria-hidden', 'true');
+    x.innerHTML = "&times;";
+    close.append(x);
+    modalHeader.append(close);
+    return modalHeader;
+}
+
+function createCodeBody(errors) {
+    let modalBody = document.createElement('div');
+    modalBody.classList.add('modal-body');
+    let code = document.createElement('code');
+    let s = document.createElement('span');
+    s.classList.add('error');
+    s.textContent = errors.code;
+    code.append(s);
+    modalBody.append(code);
+    return modalBody;
+}
+
+function createModalBody(error) {
+    let modalBody = document.createElement('div');
+    modalBody.classList.add('modal-body');
+    let lead = document.createElement('p');
+    lead.classList.add('lead');
+    lead.textContent = error.title;
+    modalBody.append(lead);
+    let p = document.createElement('p');
+    p.textContent = error.message;
+    modalBody.append(p);
+    if (error.type) {
+        modalBody.setAttribute('error-type', error.type);
+    }
+    return modalBody;
+}
+
+function createModalFooter() {
+    let modalFoooter = document.createElement('div');
+    modalFoooter.classList.add('modal-footer');
+    let editBtn = document.createElement('button');
+    editBtn.classList.add('btn');
+    editBtn.classList.add('btn-primary');
+    editBtn.classList.add('recheck-edit-btn');
+    editBtn.setAttribute('type', 'button');
+    editBtn.textContent = "Edit & Re-check";
+    modalFoooter.append(editBtn);
+    let submitBtn = document.createElement('button');
+    submitBtn.classList.add('btn');
+    submitBtn.classList.add('btn-primary');
+    submitBtn.classList.add('recheck-submit-btn');
+    submitBtn.setAttribute('type', 'button');
+    submitBtn.textContent = "Re-check";
+    modalFoooter.append(submitBtn);
+    return modalFoooter;
 }
 
 function checkBreak(line) {
@@ -702,118 +623,6 @@ function formatError(type) {
     return format;
 }
 
-function createCard(typeErrors, e, type) {
-    let card = document.createElement('div');
-    card.classList.add('card');
-    let cardHeader = document.createElement('div');
-    cardHeader.classList.add('card-header');
-    cardHeader.textContent = "Line " + typeErrors[e].line;
-    card.append(cardHeader);
-    let cardBody = document.createElement('div');
-    cardBody.classList.add('card-body');
-    let code = document.createElement('code');
-    let s = document.createElement('span');
-    s.classList.add('error');
-    s.textContent = typeErrors[e].code;
-    code.append(s);
-    if (type == "long_lines" || type == "indentation") {
-        let pre = document.createElement('pre');
-        pre.append(code);
-        code = pre;
-    }
-    cardBody.append(code);
-    let lead = document.createElement('p');
-    lead.classList.add('lead');
-    lead.textContent = typeErrors[e].annotation.title;
-    cardBody.append(lead);
-    let p = document.createElement('p');
-    p.textContent = typeErrors[e].annotation.message;
-    cardBody.append(p);
-    card.append(cardBody);
-    return card;
-}
-
-function createModal(lLog, line) {
-    let body = document.querySelector('body');    
-    let modalContent = document.createElement('div');
-    modalContent.classList.add('modal-content');
-    let modalHeader = document.createElement('div');
-    modalHeader.classList.add('modal-header');
-    let modalTitle = document.createElement('h5');
-    modalTitle.classList.add('modal-title');
-    modalTitle.textContent = "Line " + lLog["line"];
-    modalHeader.append(modalTitle);
-    let close = document.createElement('button');
-    close.classList.add('close');
-    close.setAttribute('data-dismiss', 'modal');
-    close.setAttribute('aria-label', 'Close');
-    let x = document.createElement('span');
-    x.setAttribute('aria-hidden', 'true');
-    x.innerHTML = "&times;";
-    close.append(x);
-    modalHeader.append(close);
-    modalContent.append(modalHeader);
-    let modalBody = document.createElement('div');
-    modalBody.classList.add('modal-body');
-    let code = document.createElement('code');
-    let s = document.createElement('span');
-    s.classList.add('error');
-    s.textContent = line;
-    code.append(s);
-    // let pre = document.createElement('pre');
-    // pre.append(code);
-    // code = pre;
-    modalBody.append(code);
-    modalContent.append(modalBody);
-
-    for (let e in lLog["errors"]) {
-        let error = lLog["errors"][e];
-        let modalBody = document.createElement('div');
-        modalBody.classList.add('modal-body');
-        let lead = document.createElement('p');
-        lead.classList.add('lead');
-        lead.textContent = error.title;
-        modalBody.append(lead);
-        let p = document.createElement('p');
-        p.textContent = error.message;
-        modalBody.append(p);
-        if (error.type) {
-            modalBody.setAttribute('error-type', error.type);
-        }
-        modalContent.append(modalBody);
-    }
-    let modalFoooter = document.createElement('div');
-    modalFoooter.classList.add('modal-footer');
-    let editBtn = document.createElement('button');
-    editBtn.classList.add('btn');
-    editBtn.classList.add('btn-primary');
-    editBtn.classList.add('recheck-edit-btn');
-    editBtn.setAttribute('type', 'button');
-    editBtn.textContent = "Edit & Re-check";
-    modalFoooter.append(editBtn);
-    let submitBtn = document.createElement('button');
-    submitBtn.classList.add('btn');
-    submitBtn.classList.add('btn-primary');
-    submitBtn.classList.add('recheck-submit-btn');
-    submitBtn.setAttribute('type', 'button');
-    submitBtn.textContent = "Re-check";
-    modalFoooter.append(submitBtn);
-    modalContent.append(modalFoooter);  
-    let modalDialog = document.createElement('div');
-    modalDialog.classList.add('modal-dialog');
-    modalDialog.classList.add('modal-dialog-centered');
-    modalDialog.classList.add('modal-lg');
-    modalDialog.setAttribute('role', 'document');
-    modalDialog.append(modalContent);   
-    let modal = document.createElement('div');
-    modal.classList.add('modal');
-    modal.id = 'line' + lLog["line"] + '-modal';
-    modal.setAttribute('tabindex', '-1');
-    modal.setAttribute('role', 'dialog');
-    modal.append(modalDialog);
-    body.append(modal);
-}
-
 // assign listeners to change code modals to edit mode when user choses to edit their code
 // within the modal
 function assignRecheckListeners() {
@@ -834,9 +643,9 @@ function assignRecheckListeners() {
             error.parentElement.parentElement.removeChild(error.parentElement)
 
             // reflect changes in code made in modals in the code displayed in the main site
-            input.addEventListener('input', () => {
-                document.getElementById(modal.id.replace("-modal", "")).textContent = input.value;
-            });
+            // input.addEventListener('input', () => {
+            //     document.getElementById(modal.id.replace("-modal", "")).textContent = input.value;
+            // });
         });
     });
 }
@@ -870,8 +679,20 @@ function assignRecheckSubmitListeners() {
             let code = document.createElement('code');
             code.append(error);
             modal.querySelector('.modal-body').prepend(code);
-            modal.querySelector('.modal-body').removeChild(modal.querySelector('input'))
+            modal.querySelector('.modal-body').removeChild(modal.querySelector('input'));
             modal.classList.remove('editor-modal');
+
+            let lineNum = parseInt(modal.id.replace("line", "").replace("-modal", ""));
+            state.lineErrors[lineNum - 1].code = error.textContent;
+            for (let key in Object.keys(state.errorsByType)) {
+                let type = Object.keys(state.errorsByType)[key];
+                for (let e in state.errorsByType[type]) {
+                    if (state.errorsByType[type][e].line == lineNum) {
+                        state.errorsByType[type][e].code = error.textContent;
+                    }
+                }
+            }
+            renderErrors(false);
         });
     });
 }
@@ -959,7 +780,7 @@ function checkModal(modal) {
                 case "boolean_zen":
                     fixed = checkZenTrue(line) && checkZenFalse(line);
                     break;
-                case "forbidden":
+                case "forbidden_features":
                     fixed = checkBreak(line) && checkContinue(line) && checkTryCatch(line) &&
                             checkVar(line) && checkToArray(line);
                     fixed &= checkStringBuilder(line) && checkStringBuffer(line) && checkStringJoiner(line) && 
