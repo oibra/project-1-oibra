@@ -77,6 +77,7 @@ function lint(code) {
     let scanners = 0;
     let lines = code.split(/\r?\n/);  
     let indentLevel = 0;
+    let multiComment = false;
 
     for(let l in lines) {
         let line = lines[l];  
@@ -118,101 +119,122 @@ function lint(code) {
         } else {
             emptyStruct = false;
         } 
-
-        // check basic boolean zen
-        if (checkZenTrue(line)) {
-            updateErrors(lineNum, "boolean_zen", "equals_true");
+        let singleComment = false;
+        if (line.trim().startsWith("//")) {
+            singleComment = true;
         }
-        if (checkZenFalse(line)) {
-            updateErrors(lineNum, "boolean_zen", "equals_false");
-        }
-
-        // check for multiple Scanners
-        if (line.match(scan)) {
-            scanners++;
-        }
-        if (scanners > 1) {
-            updateErrors(lineNum, "scanners");
+        if (!singleComment && !multiComment && line.includes("/*")) {
+            multiComment = true;
+            if (line.indexOf("*/") > line.indexOf("/*")) {
+                line = line.substring(0, line.indexOf("/*")) + " " + line.substring(line.indexOf("*/") + 1);
+                multiComment = false;
+            } else {
+                line = line.substring(0, line.indexOf("/*"))
+            }
+            
         }
 
-        // check constant naming conventions
-        if (checkScreamingCase(line)) {
-            updateErrors(lineNum, "naming_conventions", "screaming");
+        if (multiComment && line.includes("*/")) {
+            multiComment = false;
+            line = line.substring(line.indexOf("*/") + 1);
         }
 
-        // check class naming conventions
-        if (checkPascalCase(line)) {
-            updateErrors(lineNum, "naming_conventions", "pascal");
-        }
+        if (!singleComment && !multiComment) {
+            // check basic boolean zen
+            if (checkZenTrue(line)) {
+                updateErrors(lineNum, "boolean_zen", "equals_true");
+            }
+            if (checkZenFalse(line)) {
+                updateErrors(lineNum, "boolean_zen", "equals_false");
+            }
 
-        // check for use of 14X forbidden features
-        if (checkBreak(line)) {
-            updateErrors(lineNum, "forbidden_features", "break");
-        }
-        if (checkContinue(line)) {
-            updateErrors(lineNum, "forbidden_features", "continue");
-        }
-        if (checkTryCatch(line)) {
-            updateErrors(lineNum, "forbidden_features", "try/catch");
-        }
-        if (checkVar(line)) {
-            updateErrors(lineNum, "forbidden_features", "var");
-        }
-        if (checkToArray(line)) {
-            updateErrors(lineNum, "forbidden_features", "toArray");
-        }
-        if (checkStringBuilder(line)) {
-            updateErrors(lineNum, "forbidden_features", "string", "builder");
-        }
-        if (checkStringBuffer(line)) {
-            updateErrors(lineNum, "forbidden_features", "string", "buffer");
-        }
-        if (checkStringJoiner(line)) {
-            updateErrors(lineNum, "forbidden_features", "string", "joiner");
-        }
-        if (checkStringTokenizer(line)) {
-            updateErrors(lineNum, "forbidden_features", "string", "tokenizer");
-        }
-        if (checkStringToCharArray(line)) {
-            updateErrors(lineNum, "forbidden_features", "string", "toCharArray");
-        }
-        if (checkStringJoin(line)) {
-            updateErrors(lineNum, "forbidden_features", "string", "join");
-        }
-        if (checkStringMatches(line)) {
-            updateErrors(lineNum, "forbidden_features", "string", "matches");
-        }
-        if (checkArraysAsList(line)) {
-            updateErrors(lineNum, "forbidden_features", "arrays", "asList");
-        }
-        if (checkArraysCopyOf(line)) {
-            updateErrors(lineNum, "forbidden_features", "arrays", "copyOf");
-        }
-        if (checkArraysCopyOfRange(line)) {
-            updateErrors(lineNum, "forbidden_features", "arrays", "copyOfRange");
-        }
-        if (checkArraysSort(line)) {
-            updateErrors(lineNum, "forbidden_features", "arrays", "sort");
-        }
-        if (checkCollectionsCopy(line)) {
-            updateErrors(lineNum, "forbidden_features", "collections", "copy");
-        }
-        if (checkCollectionsSort(line)) {
-            updateErrors(lineNum, "forbidden_features", "arrays", "sort");
-        }
+            // check for multiple Scanners
+            if (line.match(scan)) {
+                scanners++;
+            }
+            if (scanners > 1) {
+                updateErrors(lineNum, "scanners");
+            }
 
-        // check for multiple statements on one line
-        if(checkMultiStatement(line)) {
-            updateErrors(lineNum, "multiple_statements_per_line");
-        }
+            // check constant naming conventions
+            if (checkScreamingCase(line)) {
+                updateErrors(lineNum, "naming_conventions", "screaming");
+            }
 
-        // check for 'prinitng problems'
-        if (checkBlankPrintlns(line)) {
-            updateErrors(lineNum, "printing_problems", "blank");
-        }
-        if (checkBackslashN(line)) {
-            updateErrors(lineNum, "printing_problems", "backslash_n");
-        }                  
+            // check class naming conventions
+            if (checkPascalCase(line)) {
+                updateErrors(lineNum, "naming_conventions", "pascal");
+            }
+
+            // check for use of 14X forbidden features
+            if (checkBreak(line)) {
+                updateErrors(lineNum, "forbidden_features", "break");
+            }
+            if (checkContinue(line)) {
+                updateErrors(lineNum, "forbidden_features", "continue");
+            }
+            if (checkTryCatch(line)) {
+                updateErrors(lineNum, "forbidden_features", "try/catch");
+            }
+            if (checkVar(line)) {
+                updateErrors(lineNum, "forbidden_features", "var");
+            }
+            if (checkToArray(line)) {
+                updateErrors(lineNum, "forbidden_features", "toArray");
+            }
+            if (checkStringBuilder(line)) {
+                updateErrors(lineNum, "forbidden_features", "string", "builder");
+            }
+            if (checkStringBuffer(line)) {
+                updateErrors(lineNum, "forbidden_features", "string", "buffer");
+            }
+            if (checkStringJoiner(line)) {
+                updateErrors(lineNum, "forbidden_features", "string", "joiner");
+            }
+            if (checkStringTokenizer(line)) {
+                updateErrors(lineNum, "forbidden_features", "string", "tokenizer");
+            }
+            if (checkStringToCharArray(line)) {
+                updateErrors(lineNum, "forbidden_features", "string", "toCharArray");
+            }
+            if (checkStringJoin(line)) {
+                updateErrors(lineNum, "forbidden_features", "string", "join");
+            }
+            if (checkStringMatches(line)) {
+                updateErrors(lineNum, "forbidden_features", "string", "matches");
+            }
+            if (checkArraysAsList(line)) {
+                updateErrors(lineNum, "forbidden_features", "arrays", "asList");
+            }
+            if (checkArraysCopyOf(line)) {
+                updateErrors(lineNum, "forbidden_features", "arrays", "copyOf");
+            }
+            if (checkArraysCopyOfRange(line)) {
+                updateErrors(lineNum, "forbidden_features", "arrays", "copyOfRange");
+            }
+            if (checkArraysSort(line)) {
+                updateErrors(lineNum, "forbidden_features", "arrays", "sort");
+            }
+            if (checkCollectionsCopy(line)) {
+                updateErrors(lineNum, "forbidden_features", "collections", "copy");
+            }
+            if (checkCollectionsSort(line)) {
+                updateErrors(lineNum, "forbidden_features", "arrays", "sort");
+            }
+
+            // check for multiple statements on one line
+            if(checkMultiStatement(line)) {
+                updateErrors(lineNum, "multiple_statements_per_line");
+            }
+
+            // check for 'prinitng problems'
+            if (checkBlankPrintlns(line)) {
+                updateErrors(lineNum, "printing_problems", "blank");
+            }
+            if (checkBackslashN(line)) {
+                updateErrors(lineNum, "printing_problems", "backslash_n");
+            }   
+        }               
     }
     renderErrors(true);
     
@@ -223,7 +245,7 @@ function checkModal(modal) {
     let line = modal.querySelector('input').value;
     let errors = modal.querySelectorAll('.modal-body');
     let issues = {
-        fixed_errors: [],
+        fixedErrors: [],
         uncheckable: false,
         fixed: true
     };
@@ -257,7 +279,7 @@ function checkModal(modal) {
                     break;
             }
             if (!e) {
-                issues.fixed_errors.push(error)
+                issues.fixedErrors.push(error)
             } else {
                 issues.fixed = false;
             }
@@ -632,7 +654,7 @@ function checkZenFalse(line) {
 /* check for incorrect naming conventions */
 function checkScreamingCase(line) {
     let splitLine = line.split(/[\s\t[\]]+/);
-    if (line.includes("final")) {
+    if (line.includes("final") && line.includes("=")) {
         let name = splitLine[splitLine.indexOf('final') + 2];
         return name !== name.toUpperCase();
     }
@@ -640,7 +662,7 @@ function checkScreamingCase(line) {
 }
 
 function checkPascalCase(line) {
-    let splitLine = line.split(/[\s\t\[\]]+/);
+    let splitLine = line.split(/[\s\t[\])]+/);
     if (line.includes('class')) {
         let name;
         if(line.includes('public') || line.includes('private') || line.includes('protected')) {
@@ -721,9 +743,9 @@ function assignRecheckSubmitListeners() {
             let errorNum = state.lineErrors[lineNum - 1].errors.length;
             state.lineErrors[lineNum - 1].code = error.textContent;
             for (let i = 0; i < errorNum; i++) {
-                for (let j = 0; j < issues.fixed_errors.length; j++) {
+                for (let j = 0; j < issues.fixedErrors.length; j++) {
                     if (state.lineErrors[lineNum - 1].errors[i].message == 
-                            issues.fixed_errors[j].querySelector('p:not(.lead)').textContent) {
+                            issues.fixedErrors[j].querySelector('p:not(.lead)').textContent) {
                         state.lineErrors[lineNum-1].errors.splice(i, 1);
                     }
                 }
@@ -734,9 +756,9 @@ function assignRecheckSubmitListeners() {
                 for (let e in state.errorsByType[type]) {
                     if (state.errorsByType[type][e].line == lineNum) {
                         state.errorsByType[type][e].code = error.textContent;
-                        for (let j = 0; j < issues.fixed_errors.length; j++) {
+                        for (let j = 0; j < issues.fixedErrors.length; j++) {
                             if (state.errorsByType[type][e].annotation.message == 
-                                    issues.fixed_errors[j].querySelector('p:not(.lead)').textContent) {
+                                    issues.fixedErrors[j].querySelector('p:not(.lead)').textContent) {
                                 state.errorsByType[type].splice(e, 1);
                             }
                         }
