@@ -275,7 +275,7 @@ function updateErrors(lineNum, category, subCategory, subSubCategory) {
     }
     let error = {
         "line": lineNum,
-        "code": state.lineErrors[lineNum]
+        "code": state.lineErrors[lineNum - 1].code
     }
     if (subCategory) {
         if (subSubCategory) {
