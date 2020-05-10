@@ -403,7 +403,7 @@ form label:not(.form-check-label), form legend {
 
 @media (min-width: 992px) {
     #splash-page.show, #splash-page.active {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .navbar-collapse.collapse .nav {
@@ -414,4 +414,10 @@ form label:not(.form-check-label), form legend {
         padding: 3rem;
     }
 
+}
+
+@media (min-width: 1200px) {
+    #splash-page.show, #splash-page.active {
+        font-size: 1rem;
+    }
 }
