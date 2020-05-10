@@ -23,7 +23,7 @@
         "pascal": {
             "type": "naming_conventions",
             "title": "This name has the wrong naming conventions.",
-            "message": "Class names should be PascalCased, a subset of camel casing where the first letter of the first word is also uppercased."
+            "message": "Class names should be PascalCased, a subset of camel casing where the first letter of every word is uppercased."
         },
         "camel": {
             "type": "naming_conventions",
