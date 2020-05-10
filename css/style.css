@@ -256,6 +256,10 @@ main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
     color: ghostwhite;
 }
 
+.splash-link:hover {
+    color: #cbd3da;
+}
+
 h1 {
     color: #6c56ec;
 }
