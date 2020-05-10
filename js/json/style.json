@@ -33,7 +33,7 @@
     },
     "empty_struct": {
         "title": "There's no need for this structure",
-        "message": "insert message here"
+        "message": "This structure seems to be empty, and therefore you don't need it in your code. You should remove it."
     },
     "boolean_zen": {   
         "equals_true": {
@@ -49,7 +49,7 @@
     },
     "scanners": {
         "title": "There should be one Scanner per source",
-        "message": "insert message here"
+        "message": "It's best practice to only have one Scanner hooked up to console input, and pass that Scanner around to anywhere that needs it."
     },
     "forbidden_features": {
         "break": {
