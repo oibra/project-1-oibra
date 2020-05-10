@@ -105,7 +105,7 @@ function lint(code) {
         }
         // check indentation
         let indentCheck = checkIndentation(line, indentLevel);
-        if (indentCheck) {
+        if (indentCheck && !multiComment) {
             if (indentCheck == 2) {
                 updateErrors(lineNum, "indentation", "under");
             } else {
@@ -544,7 +544,7 @@ function checkTryCatch(line) {
 }
 
 function checkVar(line) {
-    return line.includes("var");
+    return line.match(/^[ \t]*var /g);
 }
 
 function checkToArray(line) {
@@ -663,14 +663,22 @@ function checkScreamingCase(line) {
 
 function checkPascalCase(line) {
     let splitLine = line.split(/[\s\t[\])]+/);
-    if (line.includes('class')) {
+    if (line.includes('class ')) {
         let name;
         if(line.includes('public') || line.includes('private') || line.includes('protected')) {
-            name = splitLine[2];
+            if (line.includes('final')) {
+                name = splitLine[3];
+            } else {
+                name = splitLine[2];
+            }
         } else {
-            name = splitLine[1];
+            if (line.includes('final')) {
+                name = splitLine[2];
+            } else {
+                name = splitLine[1];
+            }
         }
-        return name === name.toUpperCase() || name.charAt(0).toUpperCase() !== name.charAt(0) || name.includes("_");
+        return (name === name.toUpperCase() && name.length > 1) || name.charAt(0).toUpperCase() !== name.charAt(0) || name.includes("_");
     }
     return false;
 }
@@ -716,7 +724,7 @@ function assignRecheckSubmitListeners() {
             alert.role = "alert";
             if (!issues.fixed) {
                 if (issues.uncheckable) {
-                    alert.textContent = "This line of code has issues that need larger code context to fix.";
+                    alert.textContent = "This line of code has issues that need larger code context to fix. Please resubmit the code form with fixed code.";
                 } else {
                     alert.textContent = "This line of code still has one or more issues.";
                 }
@@ -767,6 +775,10 @@ function assignRecheckSubmitListeners() {
                 if (state.errorsByType[type].length == 0) {
                     delete state.errorsByType[type];
                 }
+            }
+
+            for (let i = 0; i < issues.fixedErrors.length; i++) {
+                issues.fixedErrors[i].remove();
             }
             renderErrors(false);
         });

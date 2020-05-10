@@ -20,7 +20,7 @@ footer {
     align-self: flex-end;
     margin-top: auto;
     padding: 1rem;
-    color: whitesmoke;
+    color: ghostwhite;
 }
 
 h2 {
@@ -30,15 +30,15 @@ h2 {
 }
 
 h3 {
-    color: mediumslateblue;
+    color: #6c56ec;
     font-size: 1.5em;
 }
 
-textarea {
+textarea.form-control {
     width: 100%;
     height: 20rem;
     font-family: 'Source Code Pro', monospace;
-    background-color: whitesmoke;
+    background-color: ghostwhite;
 }
 
 code, pre {
@@ -50,12 +50,12 @@ code, pre {
 
 .form-control:focus {
     background-color: white;
-    border-color: mediumslateblue;
+    border-color: #6c56ec;
     box-shadow: 0 0 0 .2rem rgba(123,104,238,.25);
 }
 
 input[type="file"]:before {
-    color: mediumslateblue;
+    color: #6c56ec;
 }
 
 code a, code a:hover {
@@ -68,7 +68,7 @@ code a, code a:hover {
 }
 
 .bg-primary {
-    background-color: #6c56ec !important;
+    background-color: /*#6248fa*/ #6c56ec !important;
 }
 
 .error {
@@ -91,7 +91,7 @@ code a, code a:hover {
 }
 
 .card-header, .modal-header, .modal-footer {
-    background-color: #f8f7fe;
+    background-color: ghostwhite;
 }
 
 .modal-footer {
@@ -117,7 +117,7 @@ code a, code a:hover {
 
 .btn-primary {
     background-color: #6c56ec;
-    color: whitesmoke;
+    color: ghostwhite;
     border: 2px solid #6c56ec;
 }
 
@@ -129,7 +129,7 @@ code a, code a:hover {
 
 .btn-primary:disabled, .btn-primary:disabled:hover {
     background-color: #6c56ec;
-    color: whitesmoke;
+    color: ghostwhite;
     border: 2px solid #6c56ec;
     cursor: default;
 }
@@ -223,7 +223,7 @@ main .nav-tabs .nav-link {
 }
 
 main .nav-tabs .nav-link:hover, main .nav-tabs .nav-item .nav-link:hover {
-    background-color: rgba(112,99,236, 0.075);
+    background-color: ghostwhite;
 }
 
 main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
@@ -235,7 +235,7 @@ main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
 }
 
 .navbar .nav-tabs .nav-link.active {
-    color: whitesmoke;
+    color: ghostwhite;
     background: none;
     
 }
@@ -253,7 +253,7 @@ main .nav-tabs .nav-item.show .nav-link, main .nav-tabs .nav-link.active {
 }
 
 .splash-text, .splash-link {
-    color: whitesmoke;
+    color: ghostwhite;
 }
 
 h1 {
@@ -265,7 +265,7 @@ h1 {
     padding-bottom: 0;
     align-items: stretch;
     height: 100%;
-    color: whitesmoke;
+    color: ghostwhite;
 }
 
 #main-page {
@@ -282,7 +282,7 @@ form label:not(.form-check-label), form legend {
 }
 
 .footer-link {
-    color: #cbd3da;
+    color: ghostwhite/*#cbd3da*/;
     text-decoration: none;
 }
 
@@ -293,6 +293,12 @@ form label:not(.form-check-label), form legend {
 
 #splash-page.show, #splash-page.active {
     display: flex;
+}
+
+.alert-info {
+    background-color: #e7e3fc;
+    color: #1b0d71;
+    border-color: #e7e3fc;
 }
 
 .editor-modal .recheck-edit-btn {
