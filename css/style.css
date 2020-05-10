@@ -366,6 +366,10 @@ form label:not(.form-check-label), form legend {
         padding-bottom: 2rem;
         padding-top: 4rem;
     }
+
+    footer span {
+        display: block;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
@@ -376,6 +380,12 @@ form label:not(.form-check-label), form legend {
         flex-direction: column;
         padding-bottom: 2rem;
         padding-top: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .splash-box {
+        padding: 3rem;
+        padding-bottom: 0;
     }
 }
 
@@ -387,12 +397,21 @@ form label:not(.form-check-label), form legend {
     .splash-box {
         margin-left: 3rem;
         margin-right: 3rem;
+        
     }
 }
 
 @media (min-width: 992px) {
+    #splash-page.show, #splash-page.active {
+        font-size: 1.2rem;
+    }
+
     .navbar-collapse.collapse .nav {
         flex-direction: row;
+    }
+
+    .splash-box {
+        padding: 3rem;
     }
 
 }
