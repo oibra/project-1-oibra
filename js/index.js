@@ -11,6 +11,7 @@ const state = {
 
 let tabSize;
 let style;
+let inClass;
 
 window.onload = () => {     
     assignCollapseButtonToggling();
@@ -94,10 +95,6 @@ function lint(code) {
         }
         if (line.includes("}")) {
             indentLevel--;
-            // check if this } ends an empty control structure
-            if (emptyStruct) {
-                updateErrors(lineNum, "empty_struct");
-            }
         }   
         // check line length
         if (checkLineLength(line)) {
@@ -115,10 +112,8 @@ function lint(code) {
 
         if (line.includes('{')) {
             indentLevel++;
-            emptyStruct = true;
-        } else {
-            emptyStruct = false;
-        } 
+            inClass = false;            
+        }
         let singleComment = false;
         if (line.trim().startsWith("//")) {
             singleComment = true;
@@ -140,6 +135,14 @@ function lint(code) {
         }
 
         if (!singleComment && !multiComment) {
+            if (line.includes(' class ')) {
+                inClass = true;    
+            }
+
+            if (inClass) {
+                
+            }
+
             // check basic boolean zen
             if (checkZenTrue(line)) {
                 updateErrors(lineNum, "boolean_zen", "equals_true");
@@ -147,6 +150,11 @@ function lint(code) {
             if (checkZenFalse(line)) {
                 updateErrors(lineNum, "boolean_zen", "equals_false");
             }
+
+            // check for empty structures
+            if (line.includes("}") && emptyStruct) {
+                updateErrors(lineNum, "empty_struct");
+            }   
 
             // check for multiple Scanners
             if (line.match(scan)) {
@@ -164,6 +172,10 @@ function lint(code) {
             // check class naming conventions
             if (checkPascalCase(line)) {
                 updateErrors(lineNum, "naming_conventions", "pascal");
+            }
+
+            if (checkCamelCase(line)) {
+                updateErrors(lineNum, "naming_conventions", "camel")
             }
 
             // check for use of 14X forbidden features
@@ -234,7 +246,12 @@ function lint(code) {
             if (checkBackslashN(line)) {
                 updateErrors(lineNum, "printing_problems", "backslash_n");
             }   
-        }               
+        }
+        if (line.includes('{')) {
+            emptyStruct = true;
+        } else {
+            emptyStruct = false;
+        }                
     }
     renderErrors(true);
     
@@ -679,6 +696,29 @@ function checkPascalCase(line) {
             }
         }
         return (name === name.toUpperCase() && name.length > 1) || name.charAt(0).toUpperCase() !== name.charAt(0) || name.includes("_");
+    }
+    return false;
+}
+
+function checkCamelCase(line) {
+    let splitLine = line.split(/[\s\t[\]\(\)]+/);
+    if (!line.includes('final')) {
+        let name;
+        if (splitLine.length == 2 && splitLine[0] != "++" && splitLine[1] != "++" && splitLine[1].includes(';')) {
+           name = splitLine[1];
+           return name === name.toUpperCase() || name.charAt(0).toLowerCase() !== name.charAt(0) || name.includes("_");
+        } else if (splitLine.indexOf("=") > 1) {
+            name = splitLine[splitLine.indexOf("=") - 1];
+            return name === name.toUpperCase() || name.charAt(0).toLowerCase() !== name.charAt(0) || name.includes("_");
+        } else if (line.includes('public') || line.includes('private') || line.includes('protected')) {
+            if (line.includes("static")) {
+                name = splitLine[3];
+            } else {
+                name = splitLine[2];
+            }
+            return name === name.toUpperCase() || name.charAt(0).toLowerCase() !== name.charAt(0) || name.includes("_");
+        }
+        
     }
     return false;
 }
