@@ -28,7 +28,7 @@
         "camel": {
             "type": "naming_conventions",
             "title": "This name has the wrong naming conventions.",
-            "message": "Method & variable names should be camelCased, a convention where the first letter of every word after the first is uppercased."
+            "message": "Method & variable names should be camelCased, a convention where the first letter of every word after the first is uppercased (you can ignore this message if this is a constructor)."
         }
     },
     "empty_struct": {
@@ -50,6 +50,10 @@
     "scanners": {
         "title": "There should be one Scanner per source",
         "message": "It's best practice to only have one Scanner hooked up to console input, and pass that Scanner around to anywhere that needs it."
+    },
+    "private_fields": {
+        "title": "Fields should be private",
+        "message": "The fields of your objects should always be declared private. This ensures that no client of your object will be able to directly change the state of your object in a way that you haven’t allowed them to."
     },
     "forbidden_features": {
         "break": {

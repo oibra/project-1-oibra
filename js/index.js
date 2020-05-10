@@ -135,12 +135,14 @@ function lint(code) {
         }
 
         if (!singleComment && !multiComment) {
-            if (line.includes(' class ')) {
+            if (line.includes('class ')) {
                 inClass = true;    
             }
 
             if (inClass) {
-                
+                if (checkPrivateFields(line)) {
+                    updateErrors(lineNum, "private_fields");
+                }
             }
 
             // check basic boolean zen
@@ -641,6 +643,10 @@ function checkBackslashN(line) {
     return line.includes("\\n") && !line.includes("printf");
 }
 
+function checkPrivateFields(line) {
+    return !line.includes('final') && line.includes(';') && !line.trim().startsWith('private');
+}
+
 // check indentation of line
 function checkIndentation(line, indentLevel) {
     let correctIndentation = "";
@@ -701,10 +707,11 @@ function checkPascalCase(line) {
 }
 
 function checkCamelCase(line) {
+    line = line.trim();
     let splitLine = line.split(/[\s\t[\]\(\)]+/);
-    if (!line.includes('final')) {
+    if (!line.includes('final') && !line.includes('class ')) {
         let name;
-        if (splitLine.length == 2 && splitLine[0] != "++" && splitLine[1] != "++" && splitLine[1].includes(';')) {
+        if (splitLine.length == 2 && !line.includes('return') && splitLine[0] != "++" && splitLine[1] != "++" && splitLine[1].includes(';')) {
            name = splitLine[1];
            return name === name.toUpperCase() || name.charAt(0).toLowerCase() !== name.charAt(0) || name.includes("_");
         } else if (splitLine.indexOf("=") > 1) {
