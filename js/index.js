@@ -708,7 +708,7 @@ function checkPascalCase(line) {
 
 function checkCamelCase(line) {
     line = line.trim();
-    let splitLine = line.split(/[\s\t[\]\(\)]+/);
+    let splitLine = line.split(/[\s\t[\]()]+/);
     if (!line.includes('final') && !line.includes('class ')) {
         let name;
         if (splitLine.length == 2 && !line.includes('return') && splitLine[0] != "++" && splitLine[1] != "++" && splitLine[1].includes(';')) {
@@ -750,11 +750,6 @@ function assignRecheckListeners() {
             input.value = error.textContent;
             error.parentElement.parentElement.prepend(input);
             error.parentElement.parentElement.removeChild(error.parentElement)
-
-            // reflect changes in code made in modals in the code displayed in the main site
-            // input.addEventListener('input', () => {
-            //     document.getElementById(modal.id.replace("-modal", "")).textContent = input.value;
-            // });
         });
     });
 }
