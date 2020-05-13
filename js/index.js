@@ -15,7 +15,6 @@ let inClass;
 
 window.onload = () => {     
     assignCollapseButtonToggling();
-    // assignLinkListeners();
     assignValidation();    
 
     document.querySelector('form').addEventListener('submit', submitForm);
@@ -847,20 +846,6 @@ function assignModalCloseListeners() {
                 modal.querySelector('.alert').remove();
             }  
         });
-    });
-}
-
-// assign event listeners to change main display for each page
-function assignLinkListeners() {
-    let body = document.querySelector('body');
-    document.getElementById('splash-link').addEventListener('click', () => {
-        body.classList.remove('bg-white');
-        body.classList.add('bg-primary');
-    });
-
-    document.getElementById('main-link').addEventListener('click', () => {
-        body.classList.add('bg-white');
-        body.classList.remove('bg-primary');
     });
 }
 
