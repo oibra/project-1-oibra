@@ -16,9 +16,9 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </head>
-<body class="bg-primary">
+<body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="./">
             <img src="img/favicon.png" class="navbrand-img" alt="lint icon">
             Java Style Linter
         </a>
@@ -27,111 +27,99 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav ml-auto nav-tabs">
-                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#splash-page" id="splash-link">About</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#main-page" id="main-link">Style Checker</a></li>
+                <li class="nav-item"><a class="nav-link " href="splash.html" id="splash-link">About</a></li>
+                <li class="nav-item"><a class="nav-link active" href="#" id="main-link">Style Checker</a></li>
                 <li class="nav-item"><a class="nav-link" href="https://github.com/info340c-sp20/project-1-oibra">Codebase</a></li>
             </ul>
         </div>
     </nav>
-    <div class="tab-content">
-        <main class="tab-pane fade show active bg-primary" id="splash-page">
-            <div class="p-xs-0 mr-lg-2 splash-box">
-                <img src="img/splash2.svg" alt="a programmer siiting at a computer" class="img-fluid mb-3 mb-md-0"/>
-                <p class="splash-text">I've been a TA for intro CS at UW for the past two years, and I've seen what many students struggle with in the class. I also see what students complain about on <a class="splash-link" href="https://www.reddit.com/r/udub/">r/udub</a>. The most common complaint/warning about the 14X series is the harsh internal grading on style. I made this tool as a potentional way to alleviate that. None of the information presented in this application is a secret, but hopefully puts it into a format that can be more helpful to students than it is currently.</p>
-            </div>
-            <div class="p-xs-0 ml-lg-2  flex-column-reverse flex-lg-column splash-box">
-                <p class="splash-text">This is an educational Java linter that finds sytylistic issues in input Java code. This app is built around the <a href="https://staff.washington.edu/oibra/style-guide/" class="splash-link">style guidelines for UW CSE 14X</a> (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners. Be aware if you are not a student in those classes, you should only use this tool to the extent that it's consistent with the guidelines of your organization.</p>
-                <img src="img/splash.svg" alt="a programmer confronting code in the wild" class="img-fluid mb-3 mb-md-0"/>
-            </div>
-        </main>
-        <main class="tab-pane fade" id="main-page">
+    <main id="main-page">
+        <div class="container">
+            <section class="mt-3">
+                <div class="container">
+                    <h1>Java Style Linter</h1>
+                    <p>This web app functions as an educational Java linter that checks the style of users’ input Java code and inform users of what stylistic issues the code has with suggestions on how to fix them. This app is built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners. Be aware though, that if you are not a student in those classes, make sure that your code fits the quality guidelines of your organization and that they're consistent with the guidelines used by this tool if you want to use it.</p>
+                    <div class="alert alert-warning">
+                        This tool is designed to work on compiling code. If the input code wouldn't compile, I make no guarantees about the accuracy of the results.
+                    </div>
+                </div>
+            </section>
             <div class="container">
-                <section class="mt-3">
-                    <div class="container">
-                        <h1>Java Style Linter</h1>
-                        <p>This web app functions as an educational Java linter that checks the style of users’ input Java code and inform users of what stylistic issues the code has with suggestions on how to fix them. This app is built around the style guidelines for UW CSE 14X (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners. Be aware though, that if you are not a student in those classes, make sure that your code fits the quality guidelines of your organization and that they're consistent with the guidelines used by this tool if you want to use it.</p>
-                        <div class="alert alert-warning">
-                            This tool is designed to work on compiling code. If the input code wouldn't compile, I make no guarantees about the accuracy of the results.
+                <h2 class="collapse-toggler" type="button" role="button" data-toggle="collapse" data-target="#code-form">
+                    <img class="collapse-button open" src="img/expand_more.svg" alt="collapse button"/>
+                    Code Input
+                </h2>
+                <section class="collapse show" id="code-form">
+                    <form action="./js/index.js" method="POST" spellcheck="false">
+                        <fieldset class="form-group">
+                            <div class="row align-items-center">
+                                <legend class="col-form-label col-sm-2 pt-0"><strong>Code Input Format</strong></legend>
+                                <div class="col-sm-10">
+                                    <div class="form-group form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="input-source" value="file" id="file" checked="checked" />
+                                        <label class="form-check-label" for="file">File Input</label>
+                                    </div>
+                                    <div class="form-group form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="input-source" value="text" id="text" />
+                                        <label class="form-check-label" for="text">Text Entry</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="form-group mb-0 row align-items-center" id="file-group">
+                            <label for="code-file" class="col-sm-2 col-form-label"><strong>Input code as file</strong></label>
+                            <input type="file" name="code-file" id="code-file" class="form-control-file col-sm-10"/>
+                        </div>
+                        <div class="form-group row d-none" id="text-group">
+                            <label for="code-text" class="col-sm-2 col-form-label"><strong>Input code as text</strong></label>
+                            <div class="col-sm-10">
+                                <textarea name="code-text" id="code-text" class="form-control form-control-sm mb-1 " rows="10"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row align-items-center">
+                            <label for="tab-size" class="col-sm-2 col-form-label"><strong>Tab Size</strong></label>
+                            <div class="container justify-content-start col">
+                                <input type="number" id="tab-size" name="tab-size" required="required" value="3" class="form-control col-6"/>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-4" name="submit" id="submit" disabled>Analyze Code</button>
+                    </form>
+                </section>
+            </div>
+            <div class="container">
+                <h2 class="collapse-toggler" type="button" role="button" data-toggle="collapse" data-target="#lint-output">
+                    <img class="collapse-button closed" src="img/expand_more.svg" alt="collapse button"/>
+                    Errors Found
+                </h2>
+                <section class="collapse" id="lint-output">
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code. In fact, while this tool is made to catch a lot of style issues, creating a tool to catch every possible style error is incredibly difficult and certainly not something I tried to do, so make sure to give your code a second look yourself.
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#errors-highlighting">Error Highlighting</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#errors-list">Errors List</a>
+                        </li>
+                    </ul>
+                    <!--Found errors added here by javascript-->
+                    <div id="tab-content" class="tab-content">
+                        <div class="tab-pane fade" id="errors-list">
+                        </div>
+                        <div class="tab-pane fade show active" id="errors-highlighting">
+                            <div class="contatiner mt-4">
+                                <div class="alert alert-info" role="alert">
+                                    Click on an error to see more information!
+                                </div>
+                                <pre><code></code></pre>
+                            </div>
                         </div>
                     </div>
                 </section>
-                <div class="container">
-                    <h2 class="collapse-toggler" type="button" role="button" data-toggle="collapse" data-target="#code-form">
-                        <img class="collapse-button open" src="img/expand_more.svg" alt="collapse button"/>
-                        Code Input
-                    </h2>
-                    <section class="collapse show" id="code-form">
-                        <form action="./js/index.js" method="POST" spellcheck="false">
-                            <fieldset class="form-group">
-                                <div class="row align-items-center">
-                                    <legend class="col-form-label col-sm-2 pt-0"><strong>Code Input Format</strong></legend>
-                                    <div class="col-sm-10">
-                                        <div class="form-group form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="input-source" value="file" id="file" checked="checked" />
-                                            <label class="form-check-label" for="file">File Input</label>
-                                        </div>
-                                        <div class="form-group form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="input-source" value="text" id="text" />
-                                            <label class="form-check-label" for="text">Text Entry</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <div class="form-group mb-0 row align-items-center" id="file-group">
-                                <label for="code-file" class="col-sm-2 col-form-label"><strong>Input code as file</strong></label>
-                                <input type="file" name="code-file" id="code-file" class="form-control-file col-sm-10"/>
-                            </div>
-                            <div class="form-group row d-none" id="text-group">
-                                <label for="code-text" class="col-sm-2 col-form-label"><strong>Input code as text</strong></label>
-                                <div class="col-sm-10">
-                                    <textarea name="code-text" id="code-text" class="form-control form-control-sm mb-1 " rows="10"></textarea>
-                                </div>
-                            </div>
-                            <div class="form-group row align-items-center">
-                                <label for="tab-size" class="col-sm-2 col-form-label"><strong>Tab Size</strong></label>
-                                <div class="container justify-content-start col">
-                                    <input type="number" id="tab-size" name="tab-size" required="required" value="3" class="form-control col-6"/>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary mb-4" name="submit" id="submit" disabled>Analyze Code</button>
-                        </form>
-                    </section>
-                </div>
-                <div class="container">
-                    <h2 class="collapse-toggler" type="button" role="button" data-toggle="collapse" data-target="#lint-output">
-                        <img class="collapse-button closed" src="img/expand_more.svg" alt="collapse button"/>
-                        Errors Found
-                    </h2>
-                    <section class="collapse" id="lint-output">
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                            This tool is meant to provide a lot of information, but makes no guarantees that what is found by this tool will encompass all possible style issues in the input code. In fact, while this tool is made to catch a lot of style issues, creating a tool to catch every possible style error is incredibly difficult and certainly not something I tried to do, so make sure to give your code a second look yourself.
-                        </div>
-                        <ul class="nav nav-tabs">
-                            <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#errors-highlighting">Error Highlighting</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#errors-list">Errors List</a>
-                            </li>
-                        </ul>
-                        <!--Found errors added here by javascript-->
-                        <div id="tab-content" class="tab-content">
-                            <div class="tab-pane fade" id="errors-list">
-                            </div>
-                            <div class="tab-pane fade show active" id="errors-highlighting">
-                                <div class="contatiner mt-4">
-                                    <div class="alert alert-info" role="alert">
-                                        Click on an error to see more information!
-                                    </div>
-                                    <pre><code></code></pre>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
     <footer class="footer bg-primary container-fluid">
         <cite><span>Icon created by <a href="https://www.flaticon.com/authors/freepik" class="footer-link">Freepik</a> from <a href="https://www.flaticon.com" class="footer-link">www.flaticon.com</a>.</span> <span>Images created by <a href="undraw.co" class="footer-link">unDraw</a>.</span></cite>
         <p class="mb-0">Project created by <a href="https://students.washington.edu/oibra" class="footer-link">Omar Ibrahim</a>. <a class="footer-link" href="mailto:oibra@uw.edu">Contact Me</a>.</p>

@@ -15,7 +15,7 @@ let inClass;
 
 window.onload = () => {     
     assignCollapseButtonToggling();
-    assignLinkListeners();
+    // assignLinkListeners();
     assignValidation();    
 
     document.querySelector('form').addEventListener('submit', submitForm);

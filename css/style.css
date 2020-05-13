@@ -11,7 +11,7 @@ body, html {
 }
 
 body {
-    height: 100%;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -270,6 +270,7 @@ h1 {
     align-items: stretch;
     height: 100%;
     color: ghostwhite;
+    display: flex;
 }
 
 #main-page {
@@ -293,10 +294,6 @@ form label:not(.form-check-label), form legend {
 .footer-link:hover {
     color: #cbd3da;
     text-decoration: underline;
-}
-
-#splash-page.show, #splash-page.active {
-    display: flex;
 }
 
 .alert-info {
@@ -365,10 +362,10 @@ form label:not(.form-check-label), form legend {
 }
 
 @media (max-width: 767.98px) {
-    #splash-page.show, #splash-page.active {
+    #splash-page {
         flex-direction: column;
         padding-bottom: 2rem;
-        padding-top: 4rem;
+        padding-top: 1rem;
     }
 
     footer span {
@@ -377,7 +374,7 @@ form label:not(.form-check-label), form legend {
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
-    #splash-page.show, #splash-page.active {
+    #splash-page {
         height: 90%;
         display: flex;
         align-items: center;
@@ -406,7 +403,7 @@ form label:not(.form-check-label), form legend {
 }
 
 @media (min-width: 992px) {
-    #splash-page.show, #splash-page.active {
+    #splash-page {
         font-size: 1.1rem;
     }
 
@@ -421,7 +418,7 @@ form label:not(.form-check-label), form legend {
 }
 
 @media (min-width: 1200px) {
-    #splash-page.show, #splash-page.active {
+    #splash-page {
         font-size: 1rem;
     }
 }
