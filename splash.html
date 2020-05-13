@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Java Style Linter</title>
+    <meta name="author" content="Omar Ibrahim" />
+    <meta name="description" content="a java style linter for intro java programmers to teach them how to write with good java style* *(ish)." />
+    <meta charset="UTF8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="icon" href="img/favicon.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
+<body class="bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+        <a class="navbar-brand" href="./">
+            <img src="img/favicon.png" class="navbrand-img" alt="lint icon">
+            Java Style Linter
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav ml-auto nav-tabs">
+                <li class="nav-item"><a class="nav-link active" href="#" id="splash-link">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="./" id="main-link">Style Checker</a></li>
+                <li class="nav-item"><a class="nav-link" href="https://github.com/info340c-sp20/project-1-oibra">Codebase</a></li>
+            </ul>
+        </div>
+    </nav>
+    <main class="bg-primary" id="splash-page">
+        <div class="p-xs-0 mr-lg-2 splash-box">
+            <img src="img/splash2.svg" alt="a programmer siiting at a computer" class="img-fluid mb-3 mb-md-0"/>
+            <p class="splash-text">I've been a TA for intro CS at UW for the past two years, and I've seen what many students struggle with in the class. I also see what students complain about on <a class="splash-link" href="https://www.reddit.com/r/udub/">r/udub</a>. The most common complaint/warning about the 14X series is the harsh internal grading on style. I made this tool as a potentional way to alleviate that. None of the information presented in this application is a secret, but hopefully puts it into a format that can be more helpful to students than it is currently.</p>
+        </div>
+        <div class="p-xs-0 ml-lg-2  flex-column-reverse flex-lg-column splash-box">
+            <p class="splash-text">This is an educational Java linter that finds sytylistic issues in input Java code. This app is built around the <a href="https://staff.washington.edu/oibra/style-guide/" class="splash-link">style guidelines for UW CSE 14X</a> (Intro CS1 &amp; 2 at UW) with those students as the primary audience, but should be a helpful resource for any novice Java learners. Be aware if you are not a student in those classes, you should only use this tool to the extent that it's consistent with the guidelines of your organization.</p>
+            <img src="img/splash.svg" alt="a programmer confronting code in the wild" class="img-fluid mb-3 mb-md-0"/>
+        </div>
+    </main>
+    <footer class="footer bg-primary container-fluid">
+        <cite><span>Icon created by <a href="https://www.flaticon.com/authors/freepik" class="footer-link">Freepik</a> from <a href="https://www.flaticon.com" class="footer-link">www.flaticon.com</a>.</span> <span>Images created by <a href="undraw.co" class="footer-link">unDraw</a>.</span></cite>
+        <p class="mb-0">Project created by <a href="https://students.washington.edu/oibra" class="footer-link">Omar Ibrahim</a>. <a class="footer-link" href="mailto:oibra@uw.edu">Contact Me</a>.</p>
+    </footer>
+</body>
+</html>
