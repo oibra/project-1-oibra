@@ -1,0 +1,172 @@
+{
+    "indentation": {
+        "over": {
+            "title": "This line is indented incorrectly",
+            "message": "This line is overindented. You should indent your program one tab further every time you open a curly brace and indent one tab less every time you close a curly brace. This line should be indented more."
+        },
+        "under": {
+            "title": "This line is indented incorrectly",
+            "message": "This line is underindented. You should indent your program one tab further every time you open a curly brace and indent one tab less every time you close a curly brace. This line should be indented more."
+        }
+    },
+    "long_lines": {
+        "type": "long_lines",
+        "title": "This line is too long (over 100 characters)",
+        "message": "Lines of code should ideally max out at 80 characters, and should never exceed 100 characters in length. Lines that are too long should be broken up and wrapped to the next line."
+    },
+    "naming_conventions": {
+        "screaming": {
+            "type": "naming_conventions",
+            "title": "This name has the wrong naming conventions.",
+            "message": "Constant names should be SCREAMING_CASED, in all uppercase letters with words separated by underscores."
+        },
+        "pascal": {
+            "type": "naming_conventions",
+            "title": "This name has the wrong naming conventions.",
+            "message": "Class names should be PascalCased, a subset of camel casing where the first letter of every word is uppercased."
+        },
+        "camel": {
+            "type": "naming_conventions",
+            "title": "This name has the wrong naming conventions.",
+            "message": "Method & variable names should be camelCased, a convention where the first letter of every word after the first is uppercased (you can ignore this message if this is a constructor)."
+        }
+    },
+    "empty_struct": {
+        "title": "There's no need for this structure",
+        "message": "This structure seems to be empty, and therefore you don't need it in your code. You should remove it."
+    },
+    "boolean_zen": {   
+        "equals_true": {
+            "type": "boolean_zen",
+            "title": "You should never test booleans for equality",
+            "message": "rather than testing if a boolean x is equal to true, you should just use x itself as a condition"
+        },
+        "equals_false": {
+            "type": "boolean_zen",
+            "title": "You should never test booleans for equality",
+            "message": "rather than testing if a boolean x is equal to false, you should just use !x itself as a condition"
+        }
+    },
+    "scanners": {
+        "title": "There should be one Scanner per source",
+        "message": "It's best practice to only have one Scanner hooked up to console input, and pass that Scanner around to anywhere that needs it."
+    },
+    "private_fields": {
+        "title": "Fields should be private",
+        "message": "The fields of your objects should always be declared private. This ensures that no client of your object will be able to directly change the state of your object in a way that you haven’t allowed them to."
+    },
+    "forbidden_features": {
+        "break": {
+            "type": "forbidden_features",
+            "title": "Forbidden Feature",
+            "message": "break is a forbidden feature. You are not allowed to use it in CSE 14X."
+        },
+        "continue": {
+            "type": "forbidden_features",
+            "title": "Forbidden Feature",
+            "message": "continue is a forbidden feature. You are not allowed to use it in CSE 14X."
+        },
+        "try/catch": {
+            "type": "forbidden_features",
+            "title": "Forbidden Feature",
+            "message": "try/catch is a forbidden feature. You are not allowed to use it in CSE 14X."
+        },
+        "var": {
+            "type": "forbidden_features",
+            "title": "Forbidden Feature",
+            "message": "var is a forbidden feature. You are not allowed to use it in CSE 14X."
+        },
+        "toArray": {
+            "type": "forbidden_features",
+            "title": "Forbidden Feature",
+            "message": "toArray is a forbidden feature. You are not allowed to use it in CSE 14X."
+        },
+        "string": {
+            "builder": {
+                "type": "forbidden_features",
+                "title": "Forbidden Feature",
+                "message": "StringBuilder is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "buffer": {
+                "type": "forbidden_features",
+                "title": "Forbidden Feature",
+                "message": "StringBuffer is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "joiner": {
+                "type": "forbidden_features",
+                "title": "Forbidden Feature",
+                "message": "StringJoiner is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "tokenizer": {
+                "type": "forbidden_features",
+                "title": "Forbidden Feature",
+                "message": "StringTokenizer is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "charArray": {
+                "type": "forbidden_features",
+                "title": "Forbidden Feature",
+                "message": "String.toCharArray() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "join": {
+                "type": "forbidden_features",
+                "title": "Forbidden Feature",
+                "message": "String.join() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "matches": {
+                "type": "forbidden_features",
+                "title": "Forbidden Feature",
+                "message": "String.matches() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            }
+        },
+        "arrays": {
+            "asList": {
+                "type": "forbidden_features",
+                "title": "Forbidden Feature",
+                "message": "Arrays.asList() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "copyOf": {
+                "type": "forbidden_features",
+                "title": "Forbidden Feature",
+                "message": "Arrays.copyOf() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "copyOfRange": {
+                "type": "forbidden_features",
+                "title": "Forbidden Feature",
+                "message": "Arrays.copyOfRange() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "sort": {
+                "type": "forbidden_features",
+                "title": "Forbidden Feature",
+                "message": "Arrays.sort() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            }
+        },
+        "collections": {
+            "copy": {
+                "type": "forbidden_features",
+                "title": "Forbidden Feature",
+                "message": "Collections.copy() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            },
+            "sort": {
+                "type": "forbidden_features",
+                "title": "Forbidden Feature",
+                "message": "Collections.sort() is a forbidden feature. You are not allowed to use it in CSE 14X."
+            }
+        }
+    },
+    "multiple_statements_per_line": {
+        "title": "There is more than one statement on this line",
+        "message": "You should limit your code to one statement per line."
+    },
+    "printing_problems": {
+        "backslash_n": {
+            "type": "printing_problems",
+            "title": "\\n should only be used in printf.",
+            "message": "\\n should only be used in printf statements, and only once at the end of the line. Otherwise, you should just use println if you want to print a full line."
+        },
+        "blank": {
+            "type": "printing_problems",
+            "title": "A blank println should actually be blank",
+            "message": "You should always print a blank line using System.out.println(). Printing an empty String (System.out.println(\"\")) is considered bad style; it makes the intention less clear."
+        }
+    }
+}
